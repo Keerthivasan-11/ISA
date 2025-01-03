@@ -6,6 +6,13 @@ from PIL import Image
 # Page Title
 st.title("ISA Hackathon 2025 Registration")
 
+# Create "data" directory if it doesn't exist
+if not os.path.exists("data"):
+    os.makedirs("data")
+
+# File path to store registrations
+file_path = os.path.join("data", "registrations.csv")
+
 # Registration Form
 st.header("Register for the Hackathon")
 with st.form("registration_form"):
@@ -25,7 +32,6 @@ with st.form("registration_form"):
 if submitted:
     if agree:
         # Check if the CSV file exists
-        file_path = "registrations.csv"
         if os.path.exists(file_path):
             df = pd.read_csv(file_path)
         else:
