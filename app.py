@@ -15,12 +15,16 @@ def initialize_firebase():
             st.error(f"Credentials file {firebase_credentials_path} not found.")
             return
 
-        # Initialize Firebase with the credentials
-        cred = credentials.Certificate(firebase_credentials_path)
-        initialize_app(cred, {
-            'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
-        })
-        st.success("Firebase Admin SDK Initialized Successfully!")
+        # Initialize Firebase only if it hasn't been initialized before
+        if not firebase_admin._apps:
+            # Initialize Firebase with the credentials
+            cred = credentials.Certificate(firebase_credentials_path)
+            initialize_app(cred, {
+                'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
+            })
+            st.success("Firebase Admin SDK Initialized Successfully!")
+        else:
+            st.success("Firebase Admin SDK is already initialized.")
     except Exception as e:
         st.error(f"Error initializing Firebase: {e}")
 
