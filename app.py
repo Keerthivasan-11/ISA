@@ -1,38 +1,39 @@
 import os
 import streamlit as st
 import firebase_admin
+import requests
 from firebase_admin import credentials, initialize_app, db
 from datetime import datetime
 
 # Function to initialize Firebase app
 def initialize_firebase():
     try:
-        # Path to your Firebase credentials file (replace with your file's path if needed)
-        firebase_credentials_path = "isa2025-f3173-firebase-adminsdk-5zx9w-323e82754a.json"
-
-        # Check if the credentials file exists
-        if not os.path.exists(firebase_credentials_path):
-            st.error(f"Credentials file {firebase_credentials_path} not found.")
+        # GitHub URL to download the Firebase credentials file
+        firebase_credentials_url = "https://github.com/Keerthivasan-11/ISA/blob/dc5a0beec0fa6ed54988c4c9bb37a5193e7e70f6/isa2025-f3173-firebase-adminsdk-5zx9w-323e82754a.json?raw=true"
+        
+        # Download the Firebase credentials file from GitHub
+        response = requests.get(firebase_credentials_url)
+        
+        # Check if the request was successful
+        if response.status_code == 200:
+            firebase_credentials = response.json()  # Parse the JSON data from the response
+        else:
+            st.error(f"Failed to download credentials from GitHub: {response.status_code}")
             return
-
-        # Initialize Firebase only if it hasn't been initialized before
+        
+        # Initialize Firebase with the credentials
+        cred = credentials.Certificate(firebase_credentials)
         if not firebase_admin._apps:
-            # Initialize Firebase with the credentials
-            cred = credentials.Certificate(firebase_credentials_path)
             initialize_app(cred, {
                 'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
             })
-            st.success("Firebase Admin SDK Initialized Successfully!")
-        else:
-            st.success("Firebase Admin SDK is already initialized.")
+        st.success("Firebase Admin SDK Initialized Successfully!")
     except Exception as e:
         st.error(f"Error initializing Firebase: {e}")
 
 # Function to save data to Firebase Realtime Database
 def save_to_firebase(user_data):
     try:
-        print(user_data)  # Debugging: Print user data to verify it's being passed correctly
-
         # Push the data to the Firebase database
         ref = db.reference('/registrations')
         ref.push(user_data)
