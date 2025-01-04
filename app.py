@@ -1,9 +1,8 @@
 import os
 import streamlit as st
 import firebase_admin
-from firebase_admin import credentials, initialize_app, db, storage
+from firebase_admin import credentials, initialize_app, db
 from datetime import datetime
-from io import BytesIO
 
 # Firebase credentials JSON data (directly included here)
 firebase_credentials = {
@@ -23,32 +22,17 @@ firebase_credentials = {
 # Function to initialize Firebase app
 def initialize_firebase():
     try:
-        # Initialize Firebase with the provided credentials
-        cred = credentials.Certificate(firebase_credentials)
-        initialize_app(cred, {
-            'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/',
-            'storageBucket': 'isa2025-f3173.appspot.com'
-        })
-        st.success("Firebase Admin SDK Initialized Successfully!")
+        # Check if Firebase app is already initialized
+        if not firebase_admin._apps:
+            cred = credentials.Certificate(firebase_credentials)
+            initialize_app(cred, {
+                'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
+            })
+            st.success("Firebase Admin SDK Initialized Successfully!")
+        else:
+            st.info("Firebase Admin SDK is already initialized.")
     except Exception as e:
         st.error(f"Error initializing Firebase: {e}")
-
-# Function to upload the screenshot to Firebase Storage
-def upload_screenshot(screenshot):
-    try:
-        # Upload screenshot to Firebase Storage
-        bucket = storage.bucket()
-        blob = bucket.blob(f'images/{screenshot.name}')
-        blob.upload_from_file(screenshot)
-        
-        # Make the blob publicly accessible
-        blob.make_public()
-        
-        # Return the URL of the uploaded screenshot
-        return blob.public_url
-    except Exception as e:
-        st.error(f"An error occurred while uploading the screenshot: {e}")
-        return None
 
 # Function to save data to Firebase Realtime Database
 def save_to_firebase(user_data):
@@ -59,6 +43,27 @@ def save_to_firebase(user_data):
         st.success("Registration details successfully saved to Firebase!")
     except Exception as e:
         st.error(f"An error occurred while saving data: {e}")
+
+# Function to fetch and display data from Firebase Realtime Database
+def fetch_from_firebase():
+    try:
+        # Reference the registrations node
+        ref = db.reference('/registrations')
+        data = ref.get()
+        
+        # Display data in the Streamlit app
+        if data:
+            st.subheader("Registered Details:")
+            for key, value in data.items():
+                st.write(f"Name: {value['Name']}")
+                st.write(f"Email: {value['Email']}")
+                st.write(f"Contact: {value['Contact']}")
+                st.write(f"Timestamp: {value['Timestamp']}")
+                st.write("---")
+        else:
+            st.warning("No registrations found.")
+    except Exception as e:
+        st.error(f"An error occurred while fetching data: {e}")
 
 # Streamlit app
 def main():
@@ -85,23 +90,23 @@ def main():
         
         if submit_button:
             if name and email and contact and screenshot and agree:
-                # Upload the screenshot to Firebase Storage
-                screenshot_url = upload_screenshot(screenshot)
+                # Prepare user data
+                user_data = {
+                    "Name": name,
+                    "Email": email,
+                    "Contact": contact,
+                    "Screenshot": screenshot.name,
+                    "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
                 
-                if screenshot_url:
-                    # Prepare user data
-                    user_data = {
-                        "Name": name,
-                        "Email": email,
-                        "Contact": contact,
-                        "ScreenshotURL": screenshot_url,
-                        "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    }
-                    
-                    # Save the data to Firebase
-                    save_to_firebase(user_data)
+                # Save the data to Firebase
+                save_to_firebase(user_data)
             else:
                 st.error("Please fill in all the fields and agree to the terms and conditions.")
+
+    # Button to fetch and display data
+    if st.button("Show Registrations"):
+        fetch_from_firebase()
 
 if __name__ == "__main__":
     main()
