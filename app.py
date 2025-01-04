@@ -1,53 +1,62 @@
-import gspread
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
 import streamlit as st
-import os
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import json
 
-# The scopes required by the API to access Google Sheets
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly', 'https://www.googleapis.com/auth/drive']
+# Directly embed the JSON credentials in the code
+credentials_json = {
+    "web": {
+        "client_id": "39633506830-9n7121fp8qh6a9tvv0h4mnhr871bv4ht.apps.googleusercontent.com",
+        "project_id": "static-destiny-446816-f4",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "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"
+    }
+}
 
-# Path to your credentials.json file
-CREDS_FILE = 'credentials.json'
+# Convert the dictionary to JSON and store it as a string
+credentials_json_str = json.dumps(credentials_json)
 
-# Function to authenticate and authorize using OAuth2
-def authenticate_oauth2():
-    creds = None
-    # If we have saved credentials, load them
-    if os.path.exists(CREDS_FILE):
-        creds = Credentials.from_authorized_user_file(CREDS_FILE, SCOPES)
-    
-    # If no credentials or they are invalid, prompt the user to log in
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(CREDS_FILE, SCOPES)
-            creds = flow.run_local_server(port=0)
-        
-        # Save the credentials for the next run
-        with open(CREDS_FILE, 'w') as token:
-            token.write(creds.to_json())
-    
-    # Use the credentials to authorize the client
-    client = gspread.authorize(creds)
+# Authenticate using the credentials from the JSON string
+def authenticate_google_sheets():
+    credentials_info = json.loads(credentials_json_str)
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(
+        credentials_info, scopes=["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    )
+
+    client = gspread.authorize(credentials)
     return client
 
-# Function to get data from a Google Sheet
-def get_spreadsheet_data(spreadsheet_id, range_name):
-    client = authenticate_oauth2()
-    sheet = client.open_by_key(spreadsheet_id)
-    worksheet = sheet.worksheet(range_name)
-    data = worksheet.get_all_records()
-    return data
+# Function to save person details to Google Sheets
+def save_to_google_sheet(data):
+    client = authenticate_google_sheets()
+    sheet = client.open('Your Google Sheet Name').sheet1  # Replace with your actual Google Sheet name
+    sheet.append_row(data)  # Appends the details as a new row
 
-# Example of calling the function
-spreadsheet_id = "your_spreadsheet_id"
-range_name = "Sheet1"
-data = get_spreadsheet_data(spreadsheet_id, range_name)
+# Streamlit User Interface for collecting personal details
+def main():
+    st.title("Person Details Form")
 
-# Displaying data in Streamlit
-if data:
-    st.write(data)
-else:
-    st.write("No data found.")
+    # Form to collect user details
+    with st.form(key='person_form'):
+        name = st.text_input("Enter Name")
+        age = st.number_input("Enter Age", min_value=1)
+        email = st.text_input("Enter Email")
+        phone = st.text_input("Enter Phone Number")
+
+        # Submit button
+        submit_button = st.form_submit_button("Save Details")
+
+        if submit_button:
+            if name and age and email and phone:
+                # Prepare data to be saved
+                data = [name, age, email, phone]
+                save_to_google_sheet(data)
+                st.success(f"Details for {name} saved successfully!")
+            else:
+                st.error("Please fill all the details.")
+
+# Run the app
+if __name__ == "__main__":
+    main()
