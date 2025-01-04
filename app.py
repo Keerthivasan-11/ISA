@@ -26,16 +26,20 @@ def download_firebase_credentials():
 # Function to initialize Firebase app
 def initialize_firebase():
     try:
-        # Check if the credentials file exists, if not, download it
-        if not os.path.exists("firebase_credentials.json"):
-            download_firebase_credentials()
-        
-        # Initialize Firebase with the downloaded credentials
-        cred = credentials.Certificate("firebase_credentials.json")
-        initialize_app(cred, {
-            'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
-        })
-        st.success("Firebase Admin SDK Initialized Successfully!")
+        # Check if the Firebase app is already initialized
+        if not firebase_admin._apps:
+            # Check if the credentials file exists, if not, download it
+            if not os.path.exists("firebase_credentials.json"):
+                download_firebase_credentials()
+            
+            # Initialize Firebase with the downloaded credentials
+            cred = credentials.Certificate("firebase_credentials.json")
+            initialize_app(cred, {
+                'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
+            })
+            st.success("Firebase Admin SDK Initialized Successfully!")
+        else:
+            st.warning("Firebase Admin SDK already initialized.")
     except Exception as e:
         st.error(f"Error initializing Firebase: {e}")
 
