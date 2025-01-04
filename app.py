@@ -1,39 +1,38 @@
-import streamlit as st
 import gspread
-from google.auth import credentials
-from google.auth.transport.requests import Request
-from google.oauth2.service_account import Credentials
+from oauth2client.client import OAuth2WebServerFlow
+import streamlit as st
+from oauth2client.file import Storage
+from oauth2client.tools import run_flow
 
-# Authentication and Google Sheets connection
-def authenticate_gspread():
-    # Load the credentials from the service account JSON file
-    creds = None
-    if st.secrets.get('gspread_service_account'):
-        creds = Credentials.from_service_account_info(
-            st.secrets["gspread_service_account"],
-            scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
-        )
+# Replace the following credentials with your client ID and client secret from Google Cloud Console
+CLIENT_ID = '39633506830-9n7121fp8qh6a9tvv0h4mnhr871bv4ht.apps.googleusercontent.com'
+CLIENT_SECRET = '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'
+REDIRECT_URI = 'http://localhost:8501'  # Use your Streamlit app's URL
 
-    # If there are no (valid) credentials available, prompt the user to log in
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            st.error("Failed to authenticate. Please check your credentials.")
-            return None
+# Scope to access Google Sheets
+SCOPE = ['https://www.googleapis.com/auth/spreadsheets.readonly', 'https://www.googleapis.com/auth/drive']
 
-    return gspread.authorize(creds)
+# Create an OAuth2 flow object
+flow = OAuth2WebServerFlow(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=SCOPE, redirect_uri=REDIRECT_URI)
+
+# Function to authenticate using OAuth2
+def authenticate_oauth2():
+    storage = Storage('credentials.json')
+    credentials = storage.get()
+
+    if not credentials or credentials.invalid:
+        credentials = run_flow(flow, storage)
+    
+    client = gspread.authorize(credentials)
+    return client
 
 # Example function to access Google Sheets data
 def get_spreadsheet_data(spreadsheet_id, range_name):
-    client = authenticate_gspread()
-    if client:
-        sheet = client.open_by_key(spreadsheet_id)
-        worksheet = sheet.worksheet(range_name)
-        data = worksheet.get_all_records()
-        return data
-    else:
-        return []
+    client = authenticate_oauth2()
+    sheet = client.open_by_key(spreadsheet_id)
+    worksheet = sheet.worksheet(range_name)
+    data = worksheet.get_all_records()
+    return data
 
 # Example of calling the function
 spreadsheet_id = "your_spreadsheet_id"
