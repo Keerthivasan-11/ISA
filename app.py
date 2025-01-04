@@ -1,38 +1,46 @@
 import streamlit as st
-import firebase_admin
-from firebase_admin import credentials, firestore
-from firebase_admin.firestore import SERVER_TIMESTAMP
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
-# Initialize Firebase Admin SDK
-if not firebase_admin._apps:
-    cred = credentials.Certificate('https://github.com/Keerthivasan-11/ISA/blob/dc5a0beec0fa6ed54988c4c9bb37a5193e7e70f6/isa2025-f3173-firebase-adminsdk-5zx9w-323e82754a.json')
-    firebase_admin.initialize_app(cred)
-
-# Create Firestore client
-db = firestore.client()
-
-# Streamlit UI to input data
-st.title("Enter User Details")
-
-with st.form(key='user_form'):
-    name = st.text_input("Name")
-    age = st.number_input("Age", min_value=1, max_value=120)
-    city = st.text_input("City")
+# Authentication and Google Sheets connection
+def authenticate_gspread():
+    # Define the scope of the application
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     
-    submit_button = st.form_submit_button("Submit")
+    # Use your downloaded JSON credentials file
+    creds = ServiceAccountCredentials.from_json_keyfile_name('your_credentials.json', scope)
+    client = gspread.authorize(creds)
     
-    if submit_button:
-        # Use Firebase's server timestamp instead of local time
-        data = {
-            "name": name,
-            "age": age,
-            "city": city,
-            "timestamp": SERVER_TIMESTAMP  # This is a special Firestore field for server timestamp
-        }
+    # Open the Google Sheet (replace with your sheet name)
+    sheet = client.open("ISA Hackathon Registrations").sheet1
+    return sheet
+
+# Streamlit UI
+def app():
+    st.title('ISA Hackathon Registration')
+    
+    # Display event details
+    st.write("""
+    Welcome to the ISA Hackathon! Please fill in the form below to register.
+    """)
+
+    # Registration form
+    with st.form(key='registration_form'):
+        name = st.text_input('Full Name')
+        email = st.text_input('Email Address')
+        team_name = st.text_input('Team Name')
+        phone = st.text_input('Phone Number')
         
-        try:
-            doc_ref = db.collection('users').add(data)
-            st.success(f"Data saved successfully with ID: {doc_ref.id}")
-        except Exception as e:
-            st.error(f"An error occurred while saving data: {e}")
-            print(f"Error: {e}")
+        submit_button = st.form_submit_button(label='Register')
+
+        if submit_button:
+            # Authenticate and get Google Sheets client
+            sheet = authenticate_gspread()
+
+            # Append data to the sheet
+            sheet.append_row([name, email, team_name, phone])
+
+            st.write(f"Registration successful for {name}!")
+
+if __name__ == '__main__':
+    app()
