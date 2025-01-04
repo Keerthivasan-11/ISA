@@ -1,5 +1,7 @@
+import os
 import streamlit as st
 from firebase_admin import credentials, initialize_app, db
+import firebase_admin  # Make sure this is imported
 from datetime import datetime
 
 # Initialize Firebase app using credentials from Streamlit Secrets
