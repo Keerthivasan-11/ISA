@@ -1,20 +1,21 @@
-import os
 import streamlit as st
 from firebase_admin import credentials, initialize_app, db
 from datetime import datetime
 
-# Initialize Firebase app
-if not os.path.exists("firebase_admin_initialized.txt"):  # Avoid reinitialization during hot reload
-    service_account_path = os.getenv("FIREBASE_ADMIN_JSON")  # Path from environment variable
-    if service_account_path and os.path.exists(service_account_path):
-        cred = credentials.Certificate(service_account_path)
+# Initialize Firebase app using credentials from Streamlit Secrets
+if not firebase_admin._apps:  # Check if Firebase has already been initialized
+    try:
+        # Retrieve Firebase credentials from Streamlit secrets
+        firebase_credentials = st.secrets["firebase_credentials"]
+        
+        # Initialize Firebase with the retrieved credentials
+        cred = credentials.Certificate(firebase_credentials)
         initialize_app(cred, {
             'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
         })
-        with open("firebase_admin_initialized.txt", "w") as f:
-            f.write("Firebase Admin Initialized")
-    else:
-        st.error("Service account JSON file not found. Set the FIREBASE_ADMIN_JSON environment variable.")
+        st.success("Firebase Admin SDK Initialized Successfully!")
+    except Exception as e:
+        st.error(f"Error initializing Firebase: {e}")
 
 # Function to save data to Firebase Realtime Database
 def save_to_firebase(user_data):
