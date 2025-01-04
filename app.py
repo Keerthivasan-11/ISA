@@ -1,6 +1,7 @@
 import streamlit as st
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google.auth.transport.requests import Request
+from google.oauth2.service_account import Credentials
 import json
 
 # Directly embed the JSON credentials in the code
@@ -21,10 +22,18 @@ credentials_json_str = json.dumps(credentials_json)
 # Authenticate using the credentials from the JSON string
 def authenticate_google_sheets():
     credentials_info = json.loads(credentials_json_str)
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(
-        credentials_info, scopes=["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+
+    # Use google-auth for authentication
+    credentials = Credentials.from_service_account_info(
+        credentials_info,
+        scopes=["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     )
 
+    # If the credentials are expired, refresh them
+    if credentials.expired and credentials.refresh_token:
+        credentials.refresh(Request())
+
+    # Authorize the client
     client = gspread.authorize(credentials)
     return client
 
