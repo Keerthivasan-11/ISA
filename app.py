@@ -1,25 +1,26 @@
 import os
 import streamlit as st
 import firebase_admin
-import  datetime
 from firebase_admin import credentials, initialize_app, db
 from datetime import datetime
 
 # Function to initialize Firebase app
 def initialize_firebase():
     try:
-        # Retrieve Firebase credentials from Streamlit secrets
-        firebase_credentials = st.secrets["firebase_credentials"]
-        print(firebase_credentials)  # Debugging: Print credentials to check if it's being fetched
+        # Path to your Firebase credentials file (replace with your file's path if needed)
+        firebase_credentials_path = "isa2025-f3173-firebase-adminsdk-5zx9w-323e82754a.json"
 
-        # Initialize Firebase with the retrieved credentials
-        cred = credentials.Certificate(firebase_credentials)
+        # Check if the credentials file exists
+        if not os.path.exists(firebase_credentials_path):
+            st.error(f"Credentials file {firebase_credentials_path} not found.")
+            return
+
+        # Initialize Firebase with the credentials
+        cred = credentials.Certificate(firebase_credentials_path)
         initialize_app(cred, {
             'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
         })
         st.success("Firebase Admin SDK Initialized Successfully!")
-    except KeyError as e:
-        st.error(f"KeyError: {e} - The specified secret key was not found.")
     except Exception as e:
         st.error(f"Error initializing Firebase: {e}")
 
