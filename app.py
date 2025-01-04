@@ -4,29 +4,28 @@ import firebase_admin
 from firebase_admin import credentials, initialize_app, db
 from datetime import datetime
 
-# Firebase credentials JSON data (directly included here)
+# Firebase credentials JSON data (directly included here, replace with your own)
 firebase_credentials = {
     "type": "service_account",
-    "project_id": "isa2025-f3173",
-    "private_key_id": "89916782aefc60e6941e85a127418a9598ecda0a",
-    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCiOoRJXHgFXyAq\nHTopeRkBIqJ2iBGgJb0eshJRCElqL6dKZc0hrMvEohJjL2nJPBijCZ8ZpY4OYszA\nsHuWWjYHm8vQd5oc/ZnPfnzBS52YTy1f+dfXwntsn7P6dESdzPlmg4sxPYDoddR5\nfWrDG8yI8xuQLfvG6zFiVh6EQht/9BoNspnziih3KGIE23BHxDTSlMcf84TAYBc8\nICLszx7bpWiBGUFCrgTJVy0HaCyH3sf2zxUULCAcgPJAbNCozV9dX2kdefoF0eZh\nOUDIuMu6w6kv/VTs//eOmftgaabGILQ8FR3AhU9PjTn5c8JIRAHHXyeP4XFTCxj2\nu1H1ys2jAgMBAAECggEAOWzKT+eeCpS6H346DN0zZy354UhYKN7C+58gEbQDvMVC\ni/jOLInslV2jcZ2ibhvKQsgQm/T4/Imnndu626VyM65H7rKviGySqhrFkWyxS+1X\nC/62E0diBjjf7huDAHLCo7GTr2nsfBzdieXFyWvJMn8PtjE4yxiM4hjG850s+9T9\nroHNbWMzgc/fgZz0y/Q0Qc3mqrXeATjZkE971yU+GzlClHVMXnKv7R/nKTOYy/P1\nI4EY8XXpEjYtJsSUuw83yQctrC1KOVGS1xY49zkBlin+7aLVm1tixXqGufNcBe0X\nY9OTnu6BwRGknU9gtxYJelNO47RFpA9MyEWtsYPKiQKBgQDNKYLa5Ho7qgsYWS7D\n1K9Yj2LsKW6qfkwt3UJCtjiH7whTUOHAQRQu2bDrqyyMqDXiuQHoFVK8ytljSGg+\nEYUc1IAdhjB5WmdntyQ5NXuWnz4i5P3zuyAZg2TXRIPEZJMx/5jvMzodIswmivkz\ndmPS3Zg/zv4RJKi+gtr4lW7TSwKBgQDKbYI39VZ2kIFB855vB1QLrNPRuEIMc2J3\nz6VYrAjwYaeEyldaeWHALULFFhW39+3JhXvGdLCsWqPUgJCXvMC6MpakkcDdrEun\nuX36r8gtABIUMATmbRhOMitpSIo4gfNqUBhRxUpZiVoG98MemnLbWzAj20WE2PS0\nLz5PBfQgCQKBgBaeIe/xykvzlh+MDWzHcMFJpXU1qB6hp9JSlzB1mEvcHUXaH9kr\nE4eKtkd06odjL/WbwcsNNr7behXI8L0O/2bLQoh+t69ZORclCJhJ/iL/0UDVj+2j\nzokhhCd7RS+MivGzJPAR7LEzmeAR6CE1RxIDHfrC3h2TtgqysGNBTiN7AoGALI1d\nk6NTnFTBnhpYTGd4f/lRxV6gas0aZvQ0mAeFECLuE7PU9fyxHvLXNzldHlha5XeT\nfmJAYC6y0BpbuIm6gUCRFzddE2zQWeHhcEMv83eIgxjueyiXqN4x38IvabBwOn3W\nXGjnrD0mq1Hsh9fGX7D6L2obKtn1QZMES7ArwsECgYBSBCQzfJtGZTsd4GQHoQqZ\n50PiNT/UjKaPYXnZDMTMlIg/4gknEEL6jVZ6tWpjYIiqWlRAk1UFPadTqWR6XpuD\n56BOpWxn8gOAOu1ETFLlY2G4zRbBfshHjxa8NFHYWtrEsDCZgxNXtLB2UX1wGruy\nczQxjdlCv7jpa2HOPqDr3w==\n-----END PRIVATE KEY-----\n",
-    "client_email": "firebase-adminsdk-5zx9w@isa2025-f3173.iam.gserviceaccount.com",
-    "client_id": "106456162339754757984",
+    "project_id": "your-project-id",  # Replace with your Firebase Project ID
+    "private_key_id": "your-private-key-id",  # Replace with your private key ID
+    "private_key": "your-private-key",  # Replace with the actual private key
+    "client_email": "your-client-email@firebase.iam.gserviceaccount.com",  # Replace with your client email
+    "client_id": "your-client-id",  # Replace with your client ID
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
     "token_uri": "https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-5zx9w%40isa2025-f3173.iam.gserviceaccount.com",
+    "client_x509_cert_url": "your-client-cert-url",  # Replace with your client cert URL
     "universe_domain": "googleapis.com"
 }
 
 # Function to initialize Firebase app
 def initialize_firebase():
     try:
-        # Check if Firebase app is already initialized
         if not firebase_admin._apps:
             cred = credentials.Certificate(firebase_credentials)
             initialize_app(cred, {
-                'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
+                'databaseURL': 'https://your-database-url.firebaseio.com'  # Replace with your Firebase Realtime Database URL
             })
             st.success("Firebase Admin SDK Initialized Successfully!")
         else:
@@ -79,9 +78,6 @@ def main():
         email = st.text_input("Email Address")
         contact = st.text_input("Contact Number")
         
-        # Upload GPay screenshot
-        screenshot = st.file_uploader("Upload your GPay screenshot", type=["jpg", "jpeg", "png"])
-        
         # Terms and Conditions
         agree = st.checkbox("I agree to the terms and conditions")
         
@@ -89,13 +85,12 @@ def main():
         submit_button = st.form_submit_button(label="Submit")
         
         if submit_button:
-            if name and email and contact and screenshot and agree:
+            if name and email and contact and agree:
                 # Prepare user data
                 user_data = {
                     "Name": name,
                     "Email": email,
                     "Contact": contact,
-                    "Screenshot": screenshot.name,
                     "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 }
                 
