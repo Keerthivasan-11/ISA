@@ -1,7 +1,7 @@
 import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
-import json
+from datetime import datetime  # Import datetime for time synchronization
 
 # Firebase credentials
 cred_dict = {
@@ -42,11 +42,15 @@ with st.form(key='user_form'):
     submit_button = st.form_submit_button("Submit")
     
     if submit_button:
+        # Get the current timestamp in UTC format
+        timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+        
         # Save the data to Firestore
         data = {
             "name": name,
             "age": age,
-            "city": city
+            "city": city,
+            "timestamp": timestamp  # Add timestamp to the data
         }
         
         try:
