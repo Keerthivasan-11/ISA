@@ -1,21 +1,30 @@
-import streamlit as st
-import pandas as pd
 import os
+import streamlit as st
+from firebase_admin import credentials, initialize_app, db
 from datetime import datetime
 
-# Define the directory to save the data
-data_directory = "data"
-if not os.path.exists(data_directory):
-    os.makedirs(data_directory)
-
-# Function to save user data to CSV
-def save_to_csv(user_data):
-    csv_file_path = os.path.join(data_directory, "registrations.csv")
-    df = pd.DataFrame([user_data])
-    if os.path.exists(csv_file_path):
-        df.to_csv(csv_file_path, mode='a', header=False, index=False)
+# Initialize Firebase app
+if not os.path.exists("firebase_admin_initialized.txt"):  # Avoid reinitialization during hot reload
+    service_account_path = os.getenv("FIREBASE_ADMIN_JSON")  # Path from environment variable
+    if service_account_path and os.path.exists(service_account_path):
+        cred = credentials.Certificate(service_account_path)
+        initialize_app(cred, {
+            'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
+        })
+        with open("firebase_admin_initialized.txt", "w") as f:
+            f.write("Firebase Admin Initialized")
     else:
-        df.to_csv(csv_file_path, mode='w', header=True, index=False)
+        st.error("Service account JSON file not found. Set the FIREBASE_ADMIN_JSON environment variable.")
+
+# Function to save data to Firebase Realtime Database
+def save_to_firebase(user_data):
+    try:
+        # Push the data to the Firebase database
+        ref = db.reference('/registrations')
+        ref.push(user_data)
+        st.success("Registration details successfully saved to Firebase!")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 # Streamlit app
 def main():
@@ -39,7 +48,7 @@ def main():
         
         if submit_button:
             if name and email and contact and screenshot and agree:
-                # Save the registration details if everything is correct
+                # Prepare user data
                 user_data = {
                     "Name": name,
                     "Email": email,
@@ -48,13 +57,8 @@ def main():
                     "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 }
                 
-                save_to_csv(user_data)
-                
-                # Display success message
-                st.success("Thank you for registering!")
-                
-                # Optionally, display uploaded file
-                st.image(screenshot, caption="Uploaded GPay Screenshot", use_column_width=True)
+                # Save the data to Firebase
+                save_to_firebase(user_data)
             else:
                 st.error("Please fill all the fields and agree to the terms and conditions.")
 
