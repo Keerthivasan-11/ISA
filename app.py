@@ -1,6 +1,7 @@
 import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
+import json
 
 # Firebase credentials
 cred_dict = {
@@ -53,4 +54,6 @@ with st.form(key='user_form'):
             doc_ref = db.collection('users').add(data)
             st.success(f"Data saved successfully with ID: {doc_ref.id}")
         except Exception as e:
+            # Print error message
             st.error(f"An error occurred while saving data: {e}")
+            print(f"Error: {e}")
