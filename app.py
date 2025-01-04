@@ -1,46 +1,47 @@
 import streamlit as st
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google.auth import credentials
+from google.auth.transport.requests import Request
+from google.oauth2.service_account import Credentials
 
 # Authentication and Google Sheets connection
 def authenticate_gspread():
-    # Define the scope of the application
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    
-    # Use your downloaded JSON credentials file
-    creds = ServiceAccountCredentials.from_json_keyfile_name('your_credentials.json', scope)
-    client = gspread.authorize(creds)
-    
-    # Open the Google Sheet (replace with your sheet name)
-    sheet = client.open("ISA Hackathon Registrations").sheet1
-    return sheet
+    # Load the credentials from the service account JSON file
+    creds = None
+    if st.secrets.get('gspread_service_account'):
+        creds = Credentials.from_service_account_info(
+            st.secrets["gspread_service_account"],
+            scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
+        )
 
-# Streamlit UI
-def app():
-    st.title('ISA Hackathon Registration')
-    
-    # Display event details
-    st.write("""
-    Welcome to the ISA Hackathon! Please fill in the form below to register.
-    """)
+    # If there are no (valid) credentials available, prompt the user to log in
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            st.error("Failed to authenticate. Please check your credentials.")
+            return None
 
-    # Registration form
-    with st.form(key='registration_form'):
-        name = st.text_input('Full Name')
-        email = st.text_input('Email Address')
-        team_name = st.text_input('Team Name')
-        phone = st.text_input('Phone Number')
-        
-        submit_button = st.form_submit_button(label='Register')
+    return gspread.authorize(creds)
 
-        if submit_button:
-            # Authenticate and get Google Sheets client
-            sheet = authenticate_gspread()
+# Example function to access Google Sheets data
+def get_spreadsheet_data(spreadsheet_id, range_name):
+    client = authenticate_gspread()
+    if client:
+        sheet = client.open_by_key(spreadsheet_id)
+        worksheet = sheet.worksheet(range_name)
+        data = worksheet.get_all_records()
+        return data
+    else:
+        return []
 
-            # Append data to the sheet
-            sheet.append_row([name, email, team_name, phone])
+# Example of calling the function
+spreadsheet_id = "your_spreadsheet_id"
+range_name = "Sheet1"
+data = get_spreadsheet_data(spreadsheet_id, range_name)
 
-            st.write(f"Registration successful for {name}!")
-
-if __name__ == '__main__':
-    app()
+# Displaying data in Streamlit
+if data:
+    st.write(data)
+else:
+    st.write("No data found.")
