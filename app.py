@@ -1,7 +1,8 @@
+import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# Provide the Firebase credentials directly as a dictionary
+# Firebase credentials
 cred_dict = {
     "type": "service_account",
     "project_id": "isa2025-f3173",
@@ -28,19 +29,28 @@ except Exception as e:
 # Create a Firestore client
 db = firestore.client()
 
-# Example function to save data to Firestore
-def save_data(collection_name, data):
-    try:
-        # Access the collection and save data
-        doc_ref = db.collection(collection_name).add(data)
-        print(f"Data saved successfully: {doc_ref.id}")
-    except Exception as e:
-        print(f"An error occurred while saving data: {e}")
+# Streamlit UI to input data
+st.title("Enter User Details")
 
-# Example usage
-data = {
-    "name": "John Doe",
-    "age": 30,
-    "city": "New York"
-}
-save_data('users', data)
+with st.form(key='user_form'):
+    # Form fields for user data input
+    name = st.text_input("Name")
+    age = st.number_input("Age", min_value=1, max_value=120)
+    city = st.text_input("City")
+    
+    submit_button = st.form_submit_button("Submit")
+    
+    if submit_button:
+        # Save the data to Firestore
+        data = {
+            "name": name,
+            "age": age,
+            "city": city
+        }
+        
+        try:
+            # Access the collection and save data
+            doc_ref = db.collection('users').add(data)
+            st.success(f"Data saved successfully with ID: {doc_ref.id}")
+        except Exception as e:
+            st.error(f"An error occurred while saving data: {e}")
