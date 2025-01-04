@@ -1,32 +1,40 @@
 import os
+import requests
 import streamlit as st
 import firebase_admin
-import requests
 from firebase_admin import credentials, initialize_app, db
 from datetime import datetime
+
+# Function to download the Firebase credentials file from GitHub
+def download_firebase_credentials():
+    try:
+        # GitHub raw URL for your service account JSON file
+        url = "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/isa2025-f3173-firebase-adminsdk-5zx9w-323e82754a.json"
+        
+        # Send a GET request to fetch the raw content of the JSON file
+        response = requests.get(url)
+        response.raise_for_status()  # Check if request was successful
+        
+        # Write the content to a local file
+        with open("firebase_credentials.json", "wb") as file:
+            file.write(response.content)
+        
+        st.success("Firebase credentials file downloaded successfully.")
+    except Exception as e:
+        st.error(f"Error downloading Firebase credentials: {e}")
 
 # Function to initialize Firebase app
 def initialize_firebase():
     try:
-        # GitHub URL to download the Firebase credentials file
-        firebase_credentials_url = "https://github.com/Keerthivasan-11/ISA/blob/dc5a0beec0fa6ed54988c4c9bb37a5193e7e70f6/isa2025-f3173-firebase-adminsdk-5zx9w-323e82754a.json?raw=true"
+        # Check if the credentials file exists, if not, download it
+        if not os.path.exists("firebase_credentials.json"):
+            download_firebase_credentials()
         
-        # Download the Firebase credentials file from GitHub
-        response = requests.get(firebase_credentials_url)
-        
-        # Check if the request was successful
-        if response.status_code == 200:
-            firebase_credentials = response.json()  # Parse the JSON data from the response
-        else:
-            st.error(f"Failed to download credentials from GitHub: {response.status_code}")
-            return
-        
-        # Initialize Firebase with the credentials
-        cred = credentials.Certificate(firebase_credentials)
-        if not firebase_admin._apps:
-            initialize_app(cred, {
-                'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
-            })
+        # Initialize Firebase with the downloaded credentials
+        cred = credentials.Certificate("firebase_credentials.json")
+        initialize_app(cred, {
+            'databaseURL': 'https://isa2025-f3173-default-rtdb.asia-southeast1.firebasedatabase.app/'
+        })
         st.success("Firebase Admin SDK Initialized Successfully!")
     except Exception as e:
         st.error(f"Error initializing Firebase: {e}")
@@ -34,6 +42,8 @@ def initialize_firebase():
 # Function to save data to Firebase Realtime Database
 def save_to_firebase(user_data):
     try:
+        print(user_data)  # Debugging: Print user data to verify it's being passed correctly
+
         # Push the data to the Firebase database
         ref = db.reference('/registrations')
         ref.push(user_data)
