@@ -26,6 +26,27 @@ def save_to_firebase(user_data):
     except Exception as e:
         st.error(f"An error occurred: {e}")
 
+# Function to fetch and display data from Firebase Realtime Database
+def fetch_from_firebase():
+    try:
+        # Reference the registrations node
+        ref = db.reference('/registrations')
+        data = ref.get()
+        
+        # Display data in the Streamlit app
+        if data:
+            st.subheader("Registered Details:")
+            for key, value in data.items():
+                st.write(f"Name: {value['Name']}")
+                st.write(f"Email: {value['Email']}")
+                st.write(f"Contact: {value['Contact']}")
+                st.write(f"Timestamp: {value['Timestamp']}")
+                st.write("---")
+        else:
+            st.warning("No registrations found.")
+    except Exception as e:
+        st.error(f"An error occurred while fetching data: {e}")
+
 # Streamlit app
 def main():
     st.title("ISA Hackathon Registration")
@@ -61,6 +82,10 @@ def main():
                 save_to_firebase(user_data)
             else:
                 st.error("Please fill all the fields and agree to the terms and conditions.")
+    
+    # Button to view registered details
+    if st.button("View Registered Details"):
+        fetch_from_firebase()
 
 if __name__ == "__main__":
     main()
