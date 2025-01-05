@@ -1,2 +1,6 @@
 streamlit>=1.23.0
-st-gsheets-connection
+gspread
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+
