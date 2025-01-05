@@ -1,33 +1,29 @@
-import streamlit as st
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from streamlit_gsheets import GSheetsConnection
 import pandas as pd
+import streamlit as st
 
 # Title and description
 st.title("ISA Hackathon Registration")
 st.markdown("Welcome to the registration portal for the ISA Hackathon. Fill in the details below to register your team!")
 
-# Google Sheets Authentication Setup
-def authenticate_gsheet():
-    # Define the scope of the API access
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    
-    # Provide the path to your service account key file
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(
-        st.secrets["gsheets"], scope
-    )
-    
-    # Authenticate and return the client
-    client = gspread.authorize(creds)
-    return client
+# Establishing a Google Sheets connection using Streamlit secrets
+gsheets_credentials = {
+    "project_id": st.secrets["gsheets"]["project_id"],
+    "private_key_id": st.secrets["gsheets"]["private_key_id"],
+    "private_key": st.secrets["gsheets"]["private_key"],
+    "client_email": st.secrets["gsheets"]["client_email"],
+    "client_id": st.secrets["gsheets"]["client_id"],
+    "auth_uri": st.secrets["gsheets"]["auth_uri"],
+    "token_uri": st.secrets["gsheets"]["token_uri"],
+    "auth_provider_x509_cert_url": st.secrets["gsheets"]["auth_provider_x509_cert_url"],
+    "client_x509_cert_url": st.secrets["gsheets"]["client_x509_cert_url"]
+}
 
-# Establishing connection to the Google Sheet
-client = authenticate_gsheet()
-sheet = client.open_by_url(st.secrets["gsheets"]["spreadsheet"])
-worksheet = sheet.worksheet("Registrations")
+# Create a connection to Google Sheets
+conn = GSheetsConnection(credentials=gsheets_credentials)
 
 # Fetch existing registration data
-existing_data = pd.DataFrame(worksheet.get_all_records())
+existing_data = conn.read(worksheet="Registrations", usecols=list(range(5)), ttl=5)
 existing_data = existing_data.dropna(how="all")  # Drop empty rows
 
 # Registration Form
@@ -45,7 +41,7 @@ with st.form(key="registration_form"):
     if submit_button:
         # Validation
         if not team_name or not participant_name or not email or not phone or not institution:
-            st.warning("Please fill in all mandatory fields marked with *.")
+            st.warning("Please fill in all mandatory fields marked with *. ")
         elif existing_data["Email"].str.contains(email, case=False, na=False).any():
             st.warning("This email is already registered!")
         else:
@@ -63,11 +59,7 @@ with st.form(key="registration_form"):
                 ]
             )
             updated_df = pd.concat([existing_data, registration_data], ignore_index=True)
-
-            # Update Google Sheet with new data
-            for index, row in updated_df.iterrows():
-                worksheet.append_row(row.values.tolist())
-
+            conn.update(worksheet="Registrations", data=updated_df)
             st.success("Registration successful! Thank you for registering for the ISA Hackathon.")
 
 # View All Registrations (Admin View)
