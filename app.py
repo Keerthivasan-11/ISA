@@ -27,6 +27,12 @@ client = gspread.authorize(credentials)
 spreadsheet_url = "https://docs.google.com/spreadsheets/d/1UQZxEyP_JapwX5mu--9UtdcsrBJC3Fu4KbN9i7fd2sQ"
 spreadsheet = client.open_by_url(spreadsheet_url)
 worksheet = spreadsheet.worksheet("Sheet1")
+try:
+    # Access the spreadsheet
+    spreadsheet = client.open_by_url(spreadsheet_url)
+    worksheet = spreadsheet.worksheet("Registrations")
+except Exception as e:
+    st.error(f"An error occurred: {str(e)}")
 
 # Registration Form
 st.title("ISA Hackathon Registration")
