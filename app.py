@@ -26,7 +26,7 @@ client = gspread.authorize(credentials)
 # Access the spreadsheet
 spreadsheet_url = "https://docs.google.com/spreadsheets/d/1UQZxEyP_JapwX5mu--9UtdcsrBJC3Fu4KbN9i7fd2sQ"
 spreadsheet = client.open_by_url(spreadsheet_url)
-worksheet = spreadsheet.worksheet("Registrations")
+worksheet = spreadsheet.worksheet("Sheet1")
 
 # Registration Form
 st.title("ISA Hackathon Registration")
