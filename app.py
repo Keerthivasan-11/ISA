@@ -2,6 +2,18 @@ import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
+# Establishing a connection to Google Sheets
+conn = st.experimental_connection("gsheets", type=GSheetsConnection)
+
+# Fetch existing data from the Google Sheet
+existing_data = conn.read(worksheet="Registrations", usecols=list(range(5)), ttl=5)
+existing_data = existing_data.dropna(how="all")  # Drop empty rows
+
+# Use the fetched data in your app (e.g., for display or updates)
+st.title("ISA Hackathon Registration")
+st.dataframe(existing_data)
+
+
 # Title and description
 st.title("ISA Hackathon Registration")
 st.markdown("Welcome to the registration portal for the ISA Hackathon. Fill in the details below to register your team!")
