@@ -1,16 +1,19 @@
 import streamlit as st
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import pandas as pd
+from google.auth.transport.requests import Request
+from google.oauth2.service_account import Credentials
 
-# Authenticate and connect to Google Sheets
+# Authenticate using credentials stored in secrets.toml
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-credentials = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["gsheets"], scope)
+credentials = Credentials.from_service_account_info(st.secrets["gsheets"], scopes=scope)
+
+# Use gspread to access Google Sheets
 client = gspread.authorize(credentials)
 
-# Open the Google Spreadsheet
-spreadsheet = client.open_by_url(st.secrets["gsheets"]["spreadsheet_url"])
-worksheet = spreadsheet.worksheet("Registrations")  # Make sure the worksheet exists
+# Access the spreadsheet using the URL from secrets.toml
+spreadsheet_url = st.secrets["gsheets"]["spreadsheet_url"]
+spreadsheet = client.open_by_url(spreadsheet_url)
+worksheet = spreadsheet.worksheet("Sheet1")  # Replace "Registrations" with your worksheet name
 
 # Registration Form
 st.title("ISA Hackathon Registration")
