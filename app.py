@@ -27,11 +27,17 @@ client = gspread.authorize(credentials)
 spreadsheet_url = "https://docs.google.com/spreadsheets/d/1UQZxEyP_JapwX5mu--9UtdcsrBJC3Fu4KbN9i7fd2sQ"
 spreadsheet = client.open_by_url(spreadsheet_url)
 worksheet = spreadsheet.worksheet("Sheet1")
+import logging
+
+# Log credentials loading process for debugging
+logging.basicConfig(level=logging.DEBUG)
+
 try:
     # Access the spreadsheet
     spreadsheet = client.open_by_url(spreadsheet_url)
-    worksheet = spreadsheet.worksheet("Registrations")
+    worksheet = spreadsheet.worksheet("Sheet1")
 except Exception as e:
+    logging.error(f"Error accessing the Google Sheet: {str(e)}")
     st.error(f"An error occurred: {str(e)}")
 
 # Registration Form
