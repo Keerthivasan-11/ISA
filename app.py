@@ -1,66 +1,28 @@
 import streamlit as st
-from streamlit_gsheets import GSheetsConnection
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 
-# Establishing a connection to Google Sheets
-conn = st.experimental_connection("gsheets", type=GSheetsConnection)
+# Authenticate and connect to Google Sheets
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+credentials = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["gsheets"], scope)
+client = gspread.authorize(credentials)
 
-# Fetch existing data from the Google Sheet
-existing_data = conn.read(worksheet="Registrations", usecols=list(range(5)), ttl=5)
-existing_data = existing_data.dropna(how="all")  # Drop empty rows
-
-# Use the fetched data in your app (e.g., for display or updates)
-st.title("ISA Hackathon Registration")
-st.dataframe(existing_data)
-
-
-# Title and description
-st.title("ISA Hackathon Registration")
-st.markdown("Welcome to the registration portal for the ISA Hackathon. Fill in the details below to register your team!")
-
-# Establishing a Google Sheets connection
-conn = st.experimental_connection("gsheets", type=GSheetsConnection)
-
-# Fetch existing registration data
-existing_data = conn.read(worksheet="Registrations", usecols=list(range(5)), ttl=5)
-existing_data = existing_data.dropna(how="all")  # Drop empty rows
+# Open the Google Spreadsheet
+spreadsheet = client.open_by_url(st.secrets["gsheets"]["spreadsheet_url"])
+worksheet = spreadsheet.worksheet("Registrations")  # Make sure the worksheet exists
 
 # Registration Form
-st.markdown("### Participant Registration Form")
-with st.form(key="registration_form"):
-    team_name = st.text_input(label="Team Name*")
-    participant_name = st.text_input(label="Participant Name*")
-    email = st.text_input(label="Email Address*")
-    phone = st.text_input(label="Phone Number*")
-    institution = st.text_input(label="Institution Name*")
-    additional_info = st.text_area(label="Additional Notes (optional)")
+st.title("ISA Hackathon Registration")
+with st.form("registration_form"):
+    name = st.text_input("Full Name")
+    email = st.text_input("Email Address")
+    team_name = st.text_input("Team Name")
+    submitted = st.form_submit_button("Register")
 
-    submit_button = st.form_submit_button(label="Register")
-
-    if submit_button:
-        # Validation
-        if not team_name or not participant_name or not email or not phone or not institution:
-            st.warning("Please fill in all mandatory fields marked with *.")
-        elif existing_data["Email"].str.contains(email, case=False, na=False).any():
-            st.warning("This email is already registered!")
+    if submitted:
+        if name and email and team_name:
+            worksheet.append_row([name, email, team_name])
+            st.success("You have successfully registered!")
         else:
-            # Save registration details
-            registration_data = pd.DataFrame(
-                [
-                    {
-                        "TeamName": team_name,
-                        "ParticipantName": participant_name,
-                        "Email": email,
-                        "Phone": phone,
-                        "Institution": institution,
-                        "AdditionalInfo": additional_info,
-                    }
-                ]
-            )
-            updated_df = pd.concat([existing_data, registration_data], ignore_index=True)
-            conn.update(worksheet="Registrations", data=updated_df)
-            st.success("Registration successful! Thank you for registering for the ISA Hackathon.")
-
-# View All Registrations (Admin View)
-if st.checkbox("View All Registrations (Admin Only)"):
-    st.dataframe(existing_data)
+            st.error("Please fill in all the fields.")
