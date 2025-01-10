@@ -91,9 +91,7 @@ if 'name' not in st.session_state:
     st.session_state.accommodation = ''
     st.session_state.team_members = []
 
-# Show the image from the URL before submitting
-image_url = "https://github.com/Keerthivasan-11/ISA/blob/main/WhatsApp%20Image%202025-01-10%20at%2022.29.36.jpeg?raw=true"
-st.image(image_url, caption="Please view the image before submitting your registration", use_column_width=True)
+
 
 # Create a registration form
 with st.form(key="registration_form"):
@@ -119,13 +117,18 @@ with st.form(key="registration_form"):
     isa_member_1 = st.text_input("ISA ID for Team Member 1 (if applicable)", "")
     isa_member_2 = st.text_input("ISA ID for Team Member 2 (if applicable)", "")
     isa_member_3 = st.text_input("ISA ID for Team Member 3 (if applicable)", "")
-    
+
+
+    # Show the image from the URL before submitting
+    image_url = "https://github.com/Keerthivasan-11/ISA/blob/main/WhatsApp%20Image%202025-01-10%20at%2022.29.36.jpeg?raw=true"
+    st.image(image_url, caption="Please view the image before submitting your registration", use_column_width=True)
     # Image upload with preview
     st.session_state.uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
     
     if st.session_state.uploaded_image:
         image = Image.open(st.session_state.uploaded_image)
         st.image(image, caption="Uploaded Image", use_column_width=True)
+
     
     # Accommodation choice
     st.session_state.accommodation = st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"])
