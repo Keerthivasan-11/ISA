@@ -67,12 +67,15 @@ with st.form(key="registration_form"):
             add_registration_to_sheet(name, email, phone, image_url)
             
             # Show the balloon effect after successful registration
+            st.balloons()  # Trigger the balloon effect
+            
+            # Set the session state to reset the form
             st.session_state.submitted = True
 
         else:
             st.error("Please fill in all the fields and upload an image.")
 
-# Display the balloon effect if the form has been submitted
+# Display the balloon effect and reset the session state after submission
 if st.session_state.submitted:
-    st.balloons()  # Trigger the balloon effect
-    st.session_state.submitted = False  # Reset the flag for next submission
+    st.session_state.submitted = False  # Reset the state for the next submission
+    st.experimental_rerun()  # Force rerun of the app
