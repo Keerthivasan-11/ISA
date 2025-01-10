@@ -14,6 +14,16 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
 ]
 
+# Function to validate email using regex
+def is_valid_email(email):
+    email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    return re.match(email_regex, email)
+
+# Function to validate phone number using regex (simple validation for 10-digit phone numbers)
+def is_valid_phone(phone):
+    phone_regex = r'^\d{10}$'  # Assuming 10-digit phone numbers
+    return re.match(phone_regex, phone)
+
 # Authenticate and connect to Google Sheets using secrets
 def connect_to_gsheet(spreadsheet_name, sheet_name):
     creds_json = st.secrets["gcp_service_account"]  # Access the credentials from secrets
@@ -23,106 +33,128 @@ def connect_to_gsheet(spreadsheet_name, sheet_name):
     return spreadsheet.worksheet(sheet_name)  # Access specific sheet by name
 
 # Function to add a new registration to the Google Sheet
-def add_registration_to_sheet(name, email, phone, image_url, team_members, accommodation, payment_screenshot):
+def add_registration_to_sheet(name, email, phone, image_url, team_members, accommodation):
     try:
         sheet = connect_to_gsheet('Streamlit', 'Sheet1')
-        sheet.append_row([name, email, phone, image_url, team_members, accommodation, payment_screenshot])
-        st.success("Registration successful!")
+        sheet.append_row([name, email, phone, image_url, team_members, accommodation])
+        st.success("Registration successful! Thank you for registering!")
     except Exception as e:
         st.error(f"Error while adding registration to sheet: {str(e)}")
 
-# Validate phone number with more flexibility
-def is_valid_phone(phone):
-    phone_regex = r'^\+?[1-9]\d{1,14}$'  # International format: +[country code] + number
-    return re.match(phone_regex, phone)
-
-# Validate email with more accuracy
-def is_valid_email(email):
-    email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zAZ0-9-]+\.[a-zA-Z0-9-.]+$'
-    return re.match(email_regex, email)
-
-# Streamlit app for registration form
+# Streamlit app to create the registration form
 st.title("Event Registration Form")
 
-# Input validation hints
-st.write("### Help")
-st.write("- Email: Enter a valid email address (example@domain.com)")
-st.write("- Phone: Enter your phone number (use international format if needed)")
+# Initialize session state for form fields
+if 'name' not in st.session_state:
+    st.session_state.name = ''
+    st.session_state.email = ''
+    st.session_state.phone = ''
+    st.session_state.uploaded_image = None
+    st.session_state.submitted = False
+    st.session_state.team_member_1_name = ''
+    st.session_state.team_member_1_year = ''
+    st.session_state.team_member_1_department = ''
+    st.session_state.team_member_2_name = ''
+    st.session_state.team_member_2_year = ''
+    st.session_state.team_member_2_department = ''
+    st.session_state.team_member_3_name = ''
+    st.session_state.team_member_3_year = ''
+    st.session_state.team_member_3_department = ''
+    st.session_state.accommodation = ''
+    st.session_state.team_members = []
 
-# Conditional team member fields (optional member only shows if required)
-show_team_member_3 = st.checkbox("Add Team Member 3")
-
-# Main form
+# Create a registration form
 with st.form(key="registration_form"):
-    # Personal details
-    name = st.text_input("Full Name")
-    email = st.text_input("Email Address")
-    phone = st.text_input("Phone Number")
+    st.session_state.name = st.text_input("Full Name", st.session_state.name)
+    st.session_state.email = st.text_input("Email Address", st.session_state.email, help="Enter a valid email address (e.g., example@domain.com)")
+    st.session_state.phone = st.text_input("Phone Number", st.session_state.phone, help="Enter a 10-digit phone number.")
     
-    # Team members (compulsory fields)
-    team_member_1_name = st.text_input("Team Member 1 Name")
-    team_member_2_name = st.text_input("Team Member 2 Name")
+    # Team Members Information
+    st.session_state.team_member_1_name = st.text_input("Team Member 1 Name", st.session_state.team_member_1_name)
+    st.session_state.team_member_1_year = st.text_input("Team Member 1 Year of Study", st.session_state.team_member_1_year)
+    st.session_state.team_member_1_department = st.text_input("Team Member 1 Department", st.session_state.team_member_1_department)
     
-    if show_team_member_3:
-        team_member_3_name = st.text_input("Team Member 3 Name (Optional)")
+    st.session_state.team_member_2_name = st.text_input("Team Member 2 Name", st.session_state.team_member_2_name)
+    st.session_state.team_member_2_year = st.text_input("Team Member 2 Year of Study", st.session_state.team_member_2_year)
+    st.session_state.team_member_2_department = st.text_input("Team Member 2 Department", st.session_state.team_member_2_department)
     
-    # Display image preview after upload
-    uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
-    if uploaded_image:
-        image = Image.open(uploaded_image)
+    # Optional Team Member 3
+    st.session_state.team_member_3_name = st.text_input("Team Member 3 Name (Optional)", st.session_state.team_member_3_name)
+    st.session_state.team_member_3_year = st.text_input("Team Member 3 Year of Study (Optional)", st.session_state.team_member_3_year)
+    st.session_state.team_member_3_department = st.text_input("Team Member 3 Department (Optional)", st.session_state.team_member_3_department)
+    
+    # ISA Membership ID
+    isa_member_1 = st.text_input("ISA ID for Team Member 1 (if applicable)", "")
+    isa_member_2 = st.text_input("ISA ID for Team Member 2 (if applicable)", "")
+    isa_member_3 = st.text_input("ISA ID for Team Member 3 (if applicable)", "")
+    
+    # Image upload with preview
+    st.session_state.uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
+    
+    if st.session_state.uploaded_image:
+        image = Image.open(st.session_state.uploaded_image)
         st.image(image, caption="Uploaded Image", use_column_width=True)
     
     # Accommodation choice
-    accommodation = st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"])
-
-    # Payment Screenshot upload
-    payment_screenshot = st.file_uploader("Upload Payment Screenshot", type=["jpg", "png", "jpeg"])
+    st.session_state.accommodation = st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"])
 
     submit_button = st.form_submit_button(label="Submit")
 
     if submit_button:
-        # Validate email and phone fields with real-time feedback
-        if not is_valid_email(email):
-            st.error("Invalid email address. Please enter a valid email.")
-        elif not is_valid_phone(phone):
-            st.error("Invalid phone number. Please enter a valid phone number.")
-        elif not uploaded_image:
-            st.error("Please upload your image.")
-        elif not payment_screenshot:
-            st.error("Please upload the payment screenshot.")
-        else:
+        # Validate the email and phone number
+        if not is_valid_email(st.session_state.email):
+            st.error("Please enter a valid email address.")
+        elif not is_valid_phone(st.session_state.phone):
+            st.error("Please enter a valid 10-digit phone number.")
+        elif st.session_state.name and st.session_state.email and st.session_state.phone and st.session_state.uploaded_image and \
+           st.session_state.team_member_1_name and st.session_state.team_member_1_year and st.session_state.team_member_1_department and \
+           st.session_state.team_member_2_name and st.session_state.team_member_2_year and st.session_state.team_member_2_department:
+            
             # Save the uploaded image to a temporary location
-            image_path = f"uploaded_images/{uploaded_image.name}"
+            image = Image.open(st.session_state.uploaded_image)
+            image_path = f"uploaded_images/{st.session_state.uploaded_image.name}"
             os.makedirs(os.path.dirname(image_path), exist_ok=True)
-            with open(image_path, "wb") as f:
-                f.write(uploaded_image.getbuffer())
-
+            image.save(image_path)
+            
             # Convert the image to base64 (optional if you store URL elsewhere)
             with open(image_path, "rb") as img_file:
                 encoded_image = base64.b64encode(img_file.read()).decode("utf-8")
             
             # You can upload the image to a cloud service and get the image URL here
-            image_url = f"data:image/png;base64,{encoded_image}"
-
-            # Gather team member names
-            team_members = f"{team_member_1_name}, {team_member_2_name}"
-            if show_team_member_3:
-                team_members += f", {team_member_3_name}"
-
+            image_url = f"data:image/png;base64,{encoded_image}"  # You can replace this with the cloud URL
+            
+            # Collect team member details
+            team_members = {
+                "Team Member 1": {
+                    "name": st.session_state.team_member_1_name,
+                    "year": st.session_state.team_member_1_year,
+                    "department": st.session_state.team_member_1_department,
+                    "isa_id": isa_member_1
+                },
+                "Team Member 2": {
+                    "name": st.session_state.team_member_2_name,
+                    "year": st.session_state.team_member_2_year,
+                    "department": st.session_state.team_member_2_department,
+                    "isa_id": isa_member_2
+                }
+            }
+            
+            if st.session_state.team_member_3_name:  # If Team Member 3 is filled
+                team_members["Team Member 3"] = {
+                    "name": st.session_state.team_member_3_name,
+                    "year": st.session_state.team_member_3_year,
+                    "department": st.session_state.team_member_3_department,
+                    "isa_id": isa_member_3
+                }
+            
             # Add the data to the Google Sheet
-            add_registration_to_sheet(name, email, phone, image_url, team_members, accommodation, payment_screenshot)
-
+            add_registration_to_sheet(st.session_state.name, st.session_state.email, st.session_state.phone, image_url, team_members, st.session_state.accommodation)
+            
             # Show the balloon effect after successful registration
             st.balloons()  # Trigger the balloon effect
 
-            # Confirmation message
-            st.success("Form submitted successfully! Thank you for registering.")
-            
-            # Reset form fields (if necessary)
+            # Set the session state to indicate that the form was submitted
             st.session_state.submitted = True
 
-# Add QR code image at the end of the form
-st.write("### Payment QR Code")
-# Use the raw link to your QR code image hosted on GitHub
-qr_code_image_url = "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/WhatsApp%20Image%202025-01-10%20at%2022.29.36.jpeg"
-st.image(qr_code_image_url, caption="Scan to Pay", use_column_width=True)
+        else:
+            st.error("Please fill in all the compulsory fields and upload an image.")
