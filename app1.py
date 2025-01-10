@@ -34,49 +34,49 @@ def add_registration_to_sheet(name, email, phone, image_url):
 # Streamlit app to create the registration form
 st.title("Event Registration Form")
 
-# Use st.empty() to create a placeholder for the form, which can be dynamically cleared
-form_placeholder = st.empty()
+# Initialize session state for form fields
+if 'name' not in st.session_state:
+    st.session_state.name = ''
+    st.session_state.email = ''
+    st.session_state.phone = ''
+    st.session_state.uploaded_image = None
+    st.session_state.submitted = False
 
-# Create the registration form inside the placeholder
-with form_placeholder.container():
-    # Wrapping the form logic correctly inside the 'form' context
-    with st.form(key='registration_form'):
-        name = st.text_input("Full Name")
-        email = st.text_input("Email Address")
-        phone = st.text_input("Phone Number")
-        
-        # Image upload
-        uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
+# Create a registration form
+with st.form(key="registration_form"):
+    st.session_state.name = st.text_input("Full Name", st.session_state.name)
+    st.session_state.email = st.text_input("Email Address", st.session_state.email)
+    st.session_state.phone = st.text_input("Phone Number", st.session_state.phone)
+    
+    # Image upload
+    st.session_state.uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
 
-        submit_button = st.form_submit_button(label="Submit")
+    submit_button = st.form_submit_button(label="Submit")
 
-        if submit_button:
-            if name and email and phone and uploaded_image:
-                # Save the uploaded image to a temporary location
-                image = Image.open(uploaded_image)
-                image_path = f"uploaded_images/{uploaded_image.name}"
-                os.makedirs(os.path.dirname(image_path), exist_ok=True)
-                image.save(image_path)
-                
-                # Convert the image to base64 (optional if you store URL elsewhere)
-                with open(image_path, "rb") as img_file:
-                    encoded_image = base64.b64encode(img_file.read()).decode("utf-8")
-                
-                # You can upload the image to a cloud service and get the image URL here
-                image_url = f"data:image/png;base64,{encoded_image}"  # You can replace this with the cloud URL
-                
-                # Add the data to the Google Sheet
-                add_registration_to_sheet(name, email, phone, image_url)
-                
-                # Show the balloon effect after successful registration
-                st.balloons()  # Trigger the balloon effect
-                
-                # Clear the form by creating an empty placeholder
-                form_placeholder.empty()
-
-                # Recreate the form after a delay for a new submission
-                time.sleep(2)  # Optional delay to show the balloon effect
-                  # Trigger a "reload" after a few seconds
+    if submit_button:
+        if st.session_state.name and st.session_state.email and st.session_state.phone and st.session_state.uploaded_image:
+            # Save the uploaded image to a temporary location
+            image = Image.open(st.session_state.uploaded_image)
+            image_path = f"uploaded_images/{st.session_state.uploaded_image.name}"
+            os.makedirs(os.path.dirname(image_path), exist_ok=True)
+            image.save(image_path)
             
-            else:
-                st.error("Please fill in all the fields and upload an image.")
+            # Convert the image to base64 (optional if you store URL elsewhere)
+            with open(image_path, "rb") as img_file:
+                encoded_image = base64.b64encode(img_file.read()).decode("utf-8")
+            
+            # You can upload the image to a cloud service and get the image URL here
+            image_url = f"data:image/png;base64,{encoded_image}"  # You can replace this with the cloud URL
+            
+            # Add the data to the Google Sheet
+            add_registration_to_sheet(st.session_state.name, st.session_state.email, st.session_state.phone, image_url)
+            
+            # Show the balloon effect after successful registration
+            st.balloons()  # Trigger the balloon effect
+
+            # Set the session state to indicate that the form was submitted
+            st.session_state.submitted = True
+
+        else:
+            st.error("Please fill in all the fields and upload an image.")
+
