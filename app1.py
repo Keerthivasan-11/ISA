@@ -1,10 +1,6 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
-import os
-from PIL import Image
-import base64
-import time
 
 # Define the scope for Google Sheets and Drive
 SCOPE = [
@@ -27,55 +23,33 @@ def connect_to_gsheet(spreadsheet_name, sheet_name):
     spreadsheet = client.open(spreadsheet_name)  
     return spreadsheet.worksheet(sheet_name)  # Access specific sheet by name
 
-# Function to add a new registration to the Google Sheet
+# Add registration data to the Google Sheet
 def add_registration_to_sheet(name, email, phone, image_url):
-    # Connect to the Google Sheet
-    sheet = connect_to_gsheet('Streamlit', 'Sheet1')
+    try:
+        # Connect to the sheet
+        sheet = connect_to_gsheet('Streamlit', 'Sheet1')
+        # Append the row to the sheet
+        sheet.append_row([name, email, phone, image_url])
+        st.success("Registration added successfully!")
+    except gspread.exceptions.APIError as e:
+        st.error(f"Error adding registration: {e}")
+        st.error(f"API error details: {e.args}")
 
-    # Add the new registration data to the sheet (assuming columns: Name, Email, Phone, Image)
-    sheet.append_row([name, email, phone, image_url])
+# Streamlit form
+st.title("Registration Form")
 
-# Streamlit app to create the registration form
-st.title("Event Registration Form")
+# User inputs
+name = st.text_input("Full Name")
+email = st.text_input("Email")
+phone = st.text_input("Phone")
+image = st.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
 
-# Create a registration form
-with st.form(key="registration_form"):
-    name = st.text_input("Full Name")
-    email = st.text_input("Email Address")
-    phone = st.text_input("Phone Number")
-    
-    # Image upload
-    uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
-
-    # Add a submit button to the form
-    submit_button = st.form_submit_button(label="Submit")
-
-    if submit_button:
-        if name and email and phone and uploaded_image:
-            # Save the uploaded image to a temporary location
-            image = Image.open(uploaded_image)
-            image_path = f"uploaded_images/{uploaded_image.name}"
-            os.makedirs(os.path.dirname(image_path), exist_ok=True)
-            image.save(image_path)
-            
-            # Convert the image to base64 (if you want to store it as an image URL)
-            with open(image_path, "rb") as img_file:
-                encoded_image = base64.b64encode(img_file.read()).decode("utf-8")
-            
-            # Here we store the base64 encoded image or the image path depending on your needs.
-            # In this example, I'm storing the base64-encoded image as the image URL.
-            image_url = f"data:image/png;base64,{encoded_image}"
-            
-            # Add the data to the Google Sheet
-            add_registration_to_sheet(name, email, phone, image_url)
-            
-            # Display a success message and simulate the balloon effect
-            st.success("Registration successful! 🎈🎉")
-            
-            # Wait for 3 seconds to simulate the effect before resetting the form
-            time.sleep(3)
-            
-            # Reset the form (clear inputs for next user)
-            st.experimental_rerun()
-        else:
-            st.error("Please fill in all the fields and upload an image.")
+# Process the form
+if st.button("Submit"):
+    if name and email and phone and image:
+        # Process image (uploading it to a static URL or handling it in some way)
+        # For now, we'll just display the image URL
+        image_url = image.name  # This can be improved to upload to a server
+        add_registration_to_sheet(name, email, phone, image_url)
+    else:
+        st.error("Please fill in all fields.")
