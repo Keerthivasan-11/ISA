@@ -82,4 +82,4 @@ if st.session_state.submitted:
     time.sleep(2)  # Optional: Add delay for better user experience
     st.session_state.submitted = False  # Reset the state for the next submission
     # Trigger page reload
-    st.experimental_rerun()  # Uncomment this only if rerun works. Otherwise, use the session state logic.
+ # Uncomment this only if rerun works. Otherwise, use the session state logic.
