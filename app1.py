@@ -4,6 +4,7 @@ import streamlit as st
 import os
 from PIL import Image
 import base64
+import time
 
 # Define the scope for Google Sheets and Drive
 SCOPE = [
@@ -67,6 +68,14 @@ with st.form(key="registration_form"):
             
             # Add the data to the Google Sheet
             add_registration_to_sheet(name, email, phone, image_url)
-            st.success("Registration successful!")
+            
+            # Display a success message and simulate the balloon effect
+            st.success("Registration successful! 🎈🎉")
+            
+            # Wait for 3 seconds to simulate the effect before resetting the form
+            time.sleep(3)
+            
+            # Reset the form (clear inputs for next user)
+            st.experimental_rerun()
         else:
             st.error("Please fill in all the fields and upload an image.")
