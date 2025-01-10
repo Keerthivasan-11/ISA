@@ -84,5 +84,8 @@ with st.form(key="registration_form"):
                 <div class="balloon"></div>
             """)
             
+            # Optional: Trigger rerun after submission to reset the form
+            st.rerun()  # This will rerun the app and reset the form
+            
         else:
             st.error("Please fill in all the fields and upload an image.")
