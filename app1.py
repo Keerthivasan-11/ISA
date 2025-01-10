@@ -3,25 +3,30 @@ from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
 import pandas as pd
 
-# Authenticate and connect to Google Sheets
+# Authenticate and connect to Google Sheets using secrets
 def connect_to_gsheet(spreadsheet_name, sheet_name):
-    scope = ["https://spreadsheets.google.com/feeds", 
-             'https://www.googleapis.com/auth/spreadsheets',
-             "https://www.googleapis.com/auth/drive.file", 
-             "https://www.googleapis.com/auth/drive"]
+    # Retrieve credentials from Streamlit secrets
+    creds_json = st.secrets["gcp_service_account"]
+
+    # Use the credentials from the secrets file
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_json, scope=[
+        "https://spreadsheets.google.com/feeds", 
+        'https://www.googleapis.com/auth/spreadsheets',
+        "https://www.googleapis.com/auth/drive.file", 
+        "https://www.googleapis.com/auth/drive"
+    ])
     
-    # Use credentials from Streamlit Secrets
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["gcp_service_account"], scope)
+    # Authorize the credentials
     client = gspread.authorize(credentials)
     spreadsheet = client.open(spreadsheet_name)  
     return spreadsheet.worksheet(sheet_name)  # Access specific sheet by name
 
-# Google Sheet details
+# Google Sheet credentials and details
 SPREADSHEET_NAME = 'Streamlit'
 SHEET_NAME = 'Sheet1'
 
 # Connect to the Google Sheet
-sheet_by_name = connect_to_gsheet(SPREADSHEET_NAME, sheet_name=SHEET_NAME)
+sheet_by_name = connect_to_gsheet(SPREADSHEET_NAME, SHEET_NAME)
 
 st.title("Simple Data Entry using Streamlit")
 
