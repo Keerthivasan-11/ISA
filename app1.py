@@ -24,8 +24,8 @@ def connect_to_gsheet(spreadsheet_name, sheet_name):
     return spreadsheet.worksheet(sheet_name)  # Access specific sheet by name
 
 # Example usage
-spreadsheet_name = 'your_spreadsheet_name'
-sheet_name = 'your_sheet_name'
+spreadsheet_name = 'Streamlit'
+sheet_name = 'Sheet1'
 
 # Connect to the Google Sheet
 sheet_by_name = connect_to_gsheet(spreadsheet_name, sheet_name)
