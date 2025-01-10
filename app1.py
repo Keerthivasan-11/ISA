@@ -63,7 +63,7 @@ with st.form(key="registration_form"):
             # Add the data to the Google Sheet
             add_registration_to_sheet(name, email, phone, image_url)
             
-            # Trigger balloon effect after successful submission
+            # Balloon effect
             components.html("""
                 <style>
                     @keyframes balloonAnimation {
@@ -82,10 +82,10 @@ with st.form(key="registration_form"):
                     }
                 </style>
                 <div class="balloon"></div>
-            """)
-            
+            """, height=100)
+
             # Optional: Trigger rerun after submission to reset the form
-            st.rerun()  # This will rerun the app and reset the form
+            st.experimental_rerun()  # This will rerun the app and reset the form
             
         else:
             st.error("Please fill in all the fields and upload an image.")
