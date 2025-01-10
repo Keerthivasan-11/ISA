@@ -70,6 +70,10 @@ def show_balloon_effect():
 # Streamlit app to create the registration form
 st.title("Event Registration Form")
 
+# Use session state to track if the form is submitted
+if 'submitted' not in st.session_state:
+    st.session_state.submitted = False
+
 # Create a registration form
 with st.form(key="registration_form"):
     name = st.text_input("Full Name")
@@ -102,14 +106,14 @@ with st.form(key="registration_form"):
             # Show the balloon effect after successful registration
             show_balloon_effect()
 
-            # Wait a bit before resetting
-            time.sleep(3)
-
-            # Clear form fields and reset the app using session state
-            st.session_state.clear()  # Clear session state to reset the form
-
-            # Reload the page to allow next user to fill the form
-            st.experimental_rerun()  # Trigger the app rerun after 3 seconds delay
+            # Mark the form as submitted
+            st.session_state.submitted = True
 
         else:
             st.error("Please fill in all the fields and upload an image.")
+
+# If form is submitted, reset the state after a delay to allow the user to submit again
+if st.session_state.submitted:
+    time.sleep(3)  # Delay to let balloons show
+    st.session_state.submitted = False  # Reset the submission flag
+    st.experimental_rerun()  # Rerun the app to allow the next user to fill the form
