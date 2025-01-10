@@ -35,14 +35,41 @@ def connect_to_gsheet(spreadsheet_name, sheet_name):
 # Function to add a new registration to the Google Sheet
 def add_registration_to_sheet(name, email, phone, image_url, team_members, accommodation):
     try:
+        # Clean up the team_members dictionary: only add non-empty members
+        cleaned_team_members = {}
+        for key, member in team_members.items():
+            # Only include team members where 'name' is not empty
+            if member["name"]:
+                cleaned_team_members[key] = member
+        
+        # Connect to the Google Sheet
         sheet = connect_to_gsheet('Streamlit', 'Sheet1')
-        sheet.append_row([name, email, phone, image_url, team_members, accommodation])
+        
+        # Append data to the Google Sheet (make sure team_members is valid)
+        sheet.append_row([name, email, phone, image_url, str(cleaned_team_members), accommodation])
         st.success("Registration successful! Thank you for registering!")
     except Exception as e:
         st.error(f"Error while adding registration to sheet: {str(e)}")
 
 # Streamlit app to create the registration form
 st.title("Event Registration Form")
+
+# Important note at the top
+st.markdown("""
+    **IMPORTANT NOTE**: 
+    Please note that **NO prelims will be conducted** for the *Indian Engineers Elite Challenge 2025*.
+
+    **Registration Fees**:
+    - **1,500 INR** with ISA Student membership (All team members must be ISA members).
+    - **2,000 INR** without ISA Student membership.
+    
+    **Payment Instructions**:
+    - While paying, add your *team name* and *college name* in the payment notes.
+    - After successful transaction, attach the screenshot in the last section of the form before submitting.
+
+    **Please ensure you fill both the Google Form and the website form to complete your registration**. 
+    (⭐️ = Mandatory fields)
+""")
 
 # Initialize session state for form fields
 if 'name' not in st.session_state:
@@ -62,6 +89,10 @@ if 'name' not in st.session_state:
     st.session_state.team_member_3_department = ''
     st.session_state.accommodation = ''
     st.session_state.team_members = []
+
+# Show the image from the URL before submitting
+image_url = "https://github.com/Keerthivasan-11/ISA/blob/main/WhatsApp%20Image%202025-01-10%20at%2022.29.36.jpeg?raw=true"
+st.image(image_url, caption="Please view the image before submitting your registration", use_column_width=True)
 
 # Create a registration form
 with st.form(key="registration_form"):
