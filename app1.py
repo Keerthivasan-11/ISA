@@ -35,7 +35,7 @@ def add_registration_to_sheet(name, email, phone, image_url):
 
 # Function to show the balloon effect
 def show_balloon_effect():
-    balloon_count = random.randint(5, 10)  # Random number of balloons
+    balloon_count = random.randint(30, 50)  # Increase the range to get 30-50 balloons
     balloon_html = """
         <style>
             @keyframes balloonAnimation {
@@ -48,7 +48,7 @@ def show_balloon_effect():
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
-                animation: balloonAnimation 3s ease-out forwards;
+                animation: balloonAnimation 4s ease-out forwards;
             }
             /* Add random colors to the balloons */
             .balloon:nth-child(1) { background-color: #FF5733; }
@@ -61,6 +61,46 @@ def show_balloon_effect():
             .balloon:nth-child(8) { background-color: #8A2BE2; }
             .balloon:nth-child(9) { background-color: #00CED1; }
             .balloon:nth-child(10) { background-color: #FF1493; }
+            .balloon:nth-child(11) { background-color: #7FFF00; }
+            .balloon:nth-child(12) { background-color: #FF4500; }
+            .balloon:nth-child(13) { background-color: #DAA520; }
+            .balloon:nth-child(14) { background-color: #9932CC; }
+            .balloon:nth-child(15) { background-color: #FFD700; }
+            .balloon:nth-child(16) { background-color: #8B0000; }
+            .balloon:nth-child(17) { background-color: #228B22; }
+            .balloon:nth-child(18) { background-color: #8B4513; }
+            .balloon:nth-child(19) { background-color: #483D8B; }
+            .balloon:nth-child(20) { background-color: #D3D3D3; }
+            .balloon:nth-child(21) { background-color: #C71585; }
+            .balloon:nth-child(22) { background-color: #2E8B57; }
+            .balloon:nth-child(23) { background-color: #B22222; }
+            .balloon:nth-child(24) { background-color: #20B2AA; }
+            .balloon:nth-child(25) { background-color: #4B0082; }
+            .balloon:nth-child(26) { background-color: #FFC0CB; }
+            .balloon:nth-child(27) { background-color: #00FA9A; }
+            .balloon:nth-child(28) { background-color: #A52A2A; }
+            .balloon:nth-child(29) { background-color: #0000CD; }
+            .balloon:nth-child(30) { background-color: #F08080; }
+            .balloon:nth-child(31) { background-color: #FF00FF; }
+            .balloon:nth-child(32) { background-color: #32CD32; }
+            .balloon:nth-child(33) { background-color: #4169E1; }
+            .balloon:nth-child(34) { background-color: #FFFF00; }
+            .balloon:nth-child(35) { background-color: #FF8C00; }
+            .balloon:nth-child(36) { background-color: #800080; }
+            .balloon:nth-child(37) { background-color: #808000; }
+            .balloon:nth-child(38) { background-color: #A9A9A9; }
+            .balloon:nth-child(39) { background-color: #2F4F4F; }
+            .balloon:nth-child(40) { background-color: #7CFC00; }
+            .balloon:nth-child(41) { background-color: #BC8F8F; }
+            .balloon:nth-child(42) { background-color: #FFB6C1; }
+            .balloon:nth-child(43) { background-color: #D8BFD8; }
+            .balloon:nth-child(44) { background-color: #FF4500; }
+            .balloon:nth-child(45) { background-color: #32CD32; }
+            .balloon:nth-child(46) { background-color: #ADD8E6; }
+            .balloon:nth-child(47) { background-color: #98FB98; }
+            .balloon:nth-child(48) { background-color: #FF1493; }
+            .balloon:nth-child(49) { background-color: #FF6347; }
+            .balloon:nth-child(50) { background-color: #FFFACD; }
         </style>
     """
     # Add multiple balloons to the page
@@ -70,7 +110,7 @@ def show_balloon_effect():
 # Streamlit app to create the registration form
 st.title("Event Registration Form")
 
-# Use session state to track if the form is submitted
+# Create a session state to track form submission
 if 'submitted' not in st.session_state:
     st.session_state.submitted = False
 
@@ -104,16 +144,12 @@ with st.form(key="registration_form"):
             add_registration_to_sheet(name, email, phone, image_url)
             
             # Show the balloon effect after successful registration
-            show_balloon_effect()
-
-            # Mark the form as submitted
             st.session_state.submitted = True
 
         else:
             st.error("Please fill in all the fields and upload an image.")
 
-# If form is submitted, reset the state after a delay to allow the user to submit again
+# Display the balloon effect if the form has been submitted
 if st.session_state.submitted:
-    time.sleep(3)  # Delay to let balloons show
-    st.session_state.submitted = False  # Reset the submission flag
-    st.experimental_rerun()  # Rerun the app to allow the next user to fill the form
+    show_balloon_effect()
+    st.session_state.submitted = False  # Reset the flag for next submission
