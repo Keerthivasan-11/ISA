@@ -37,44 +37,46 @@ st.title("Event Registration Form")
 # Use st.empty() to create a placeholder for the form, which can be dynamically cleared
 form_placeholder = st.empty()
 
-# Create a registration form inside the placeholder
+# Create the registration form inside the placeholder
 with form_placeholder.container():
-    name = st.text_input("Full Name")
-    email = st.text_input("Email Address")
-    phone = st.text_input("Phone Number")
-    
-    # Image upload
-    uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
+    # Wrapping the form logic correctly inside the 'form' context
+    with st.form(key='registration_form'):
+        name = st.text_input("Full Name")
+        email = st.text_input("Email Address")
+        phone = st.text_input("Phone Number")
+        
+        # Image upload
+        uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
 
-    submit_button = st.form_submit_button(label="Submit")
+        submit_button = st.form_submit_button(label="Submit")
 
-    if submit_button:
-        if name and email and phone and uploaded_image:
-            # Save the uploaded image to a temporary location
-            image = Image.open(uploaded_image)
-            image_path = f"uploaded_images/{uploaded_image.name}"
-            os.makedirs(os.path.dirname(image_path), exist_ok=True)
-            image.save(image_path)
-            
-            # Convert the image to base64 (optional if you store URL elsewhere)
-            with open(image_path, "rb") as img_file:
-                encoded_image = base64.b64encode(img_file.read()).decode("utf-8")
-            
-            # You can upload the image to a cloud service and get the image URL here
-            image_url = f"data:image/png;base64,{encoded_image}"  # You can replace this with the cloud URL
-            
-            # Add the data to the Google Sheet
-            add_registration_to_sheet(name, email, phone, image_url)
-            
-            # Show the balloon effect after successful registration
-            st.balloons()  # Trigger the balloon effect
-            
-            # Clear the form by creating an empty placeholder
-            form_placeholder.empty()
+        if submit_button:
+            if name and email and phone and uploaded_image:
+                # Save the uploaded image to a temporary location
+                image = Image.open(uploaded_image)
+                image_path = f"uploaded_images/{uploaded_image.name}"
+                os.makedirs(os.path.dirname(image_path), exist_ok=True)
+                image.save(image_path)
+                
+                # Convert the image to base64 (optional if you store URL elsewhere)
+                with open(image_path, "rb") as img_file:
+                    encoded_image = base64.b64encode(img_file.read()).decode("utf-8")
+                
+                # You can upload the image to a cloud service and get the image URL here
+                image_url = f"data:image/png;base64,{encoded_image}"  # You can replace this with the cloud URL
+                
+                # Add the data to the Google Sheet
+                add_registration_to_sheet(name, email, phone, image_url)
+                
+                # Show the balloon effect after successful registration
+                st.balloons()  # Trigger the balloon effect
+                
+                # Clear the form by creating an empty placeholder
+                form_placeholder.empty()
 
-            # Recreate the form after a delay for a new submission
-            time.sleep(2)  # Optional delay to show the balloon effect
-              # Trigger a "reload" after a few seconds
+                # Recreate the form after a delay for a new submission
+                time.sleep(2)  # Optional delay to show the balloon effect
+                st.experimental_rerun()  # Trigger a "reload" after a few seconds
             
-        else:
-            st.error("Please fill in all the fields and upload an image.")
+            else:
+                st.error("Please fill in all the fields and upload an image.")
