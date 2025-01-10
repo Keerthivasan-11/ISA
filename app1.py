@@ -23,12 +23,30 @@ def connect_to_gsheet(spreadsheet_name, sheet_name):
     spreadsheet = client.open(spreadsheet_name)  
     return spreadsheet.worksheet(sheet_name)  # Access specific sheet by name
 
-# Example usage
-spreadsheet_name = 'Streamlit'
-sheet_name = 'Sheet1'
+# Function to add a new registration to the Google Sheet
+def add_registration_to_sheet(name, email, phone):
+    # Connect to the Google Sheet
+    sheet = connect_to_gsheet('Streamlit', 'Sheet1')
 
-# Connect to the Google Sheet
-sheet_by_name = connect_to_gsheet(spreadsheet_name, sheet_name)
+    # Add the new registration data to the sheet (assuming columns: Name, Email, Phone)
+    sheet.append_row([name, email, phone])
 
-# Continue with your Streamlit app
-st.title("Tasks Form")
+# Streamlit app to create the registration form
+st.title("Event Registration Form")
+
+# Create a registration form
+with st.form(key="registration_form"):
+    name = st.text_input("Full Name")
+    email = st.text_input("Email Address")
+    phone = st.text_input("Phone Number")
+    
+    # Add a submit button to the form
+    submit_button = st.form_submit_button(label="Submit")
+
+    if submit_button:
+        if name and email and phone:
+            # Add the data to the Google Sheet
+            add_registration_to_sheet(name, email, phone)
+            st.success("Registration successful!")
+        else:
+            st.error("Please fill in all the fields.")
