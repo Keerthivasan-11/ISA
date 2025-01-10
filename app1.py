@@ -5,6 +5,8 @@ import os
 from PIL import Image
 import base64
 import streamlit.components.v1 as components
+import random
+import time
 
 # Define the scope for Google Sheets and Drive
 SCOPE = [
@@ -63,8 +65,9 @@ with st.form(key="registration_form"):
             # Add the data to the Google Sheet
             add_registration_to_sheet(name, email, phone, image_url)
             
-            # Balloon effect using custom HTML
-            components.html("""
+            # Balloon effect using custom HTML with random placement and colors
+            balloon_count = random.randint(5, 10)  # Random number of balloons
+            balloon_html = """
                 <style>
                     @keyframes balloonAnimation {
                         0% { transform: translateY(0); opacity: 1; }
@@ -73,19 +76,38 @@ with st.form(key="registration_form"):
                     .balloon {
                         position: fixed;
                         bottom: 10px;
-                        left: 50%;
                         width: 50px;
                         height: 50px;
-                        background-color: #FF5733;
                         border-radius: 50%;
                         animation: balloonAnimation 3s ease-out forwards;
                     }
+                    /* Add random colors to the balloons */
+                    .balloon:nth-child(1) { background-color: #FF5733; }
+                    .balloon:nth-child(2) { background-color: #33FF57; }
+                    .balloon:nth-child(3) { background-color: #3357FF; }
+                    .balloon:nth-child(4) { background-color: #F0E68C; }
+                    .balloon:nth-child(5) { background-color: #FF6347; }
+                    .balloon:nth-child(6) { background-color: #D2691E; }
+                    .balloon:nth-child(7) { background-color: #ADFF2F; }
+                    .balloon:nth-child(8) { background-color: #8A2BE2; }
+                    .balloon:nth-child(9) { background-color: #00CED1; }
+                    .balloon:nth-child(10) { background-color: #FF1493; }
                 </style>
                 <div class="balloon"></div>
-            """, height=100)
+            """
             
-            # Reset form data using session state
-            st.session_state.clear()  # Clears session state and resets the form
+            # Add multiple balloons to the page
+            for _ in range(balloon_count):
+                components.html(balloon_html, height=100)
+
+            # Wait a bit before resetting
+            time.sleep(3)
+
+            # Clear form fields and reset the app using session state
+            st.session_state.clear()  # Clear session state to reset the form
+
+            # Reload the page to allow next user to fill the form
+            st.experimental_rerun()  # Trigger the app rerun after 3 seconds delay
 
         else:
             st.error("Please fill in all the fields and upload an image.")
