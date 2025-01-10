@@ -68,14 +68,18 @@ with st.form(key="registration_form"):
             
             # Show the balloon effect after successful registration
             st.balloons()  # Trigger the balloon effect
-            
+
             # Set the session state to reset the form
             st.session_state.submitted = True
 
         else:
             st.error("Please fill in all the fields and upload an image.")
 
-# Display the balloon effect and reset the session state after submission
+# After submission, reset the form (clear the inputs)
 if st.session_state.submitted:
+    # Wait for a few seconds before resetting the form
+    import time
+    time.sleep(2)  # Optional: Add delay for better user experience
     st.session_state.submitted = False  # Reset the state for the next submission
-    st.experimental_rerun()  # Force rerun of the app
+    # Trigger page reload
+    st.experimental_rerun()  # Uncomment this only if rerun works. Otherwise, use the session state logic.
