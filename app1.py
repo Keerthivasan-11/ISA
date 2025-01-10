@@ -76,7 +76,7 @@ with form_placeholder.container():
 
                 # Recreate the form after a delay for a new submission
                 time.sleep(2)  # Optional delay to show the balloon effect
-                st.experimental_rerun()  # Trigger a "reload" after a few seconds
+                  # Trigger a "reload" after a few seconds
             
             else:
                 st.error("Please fill in all the fields and upload an image.")
