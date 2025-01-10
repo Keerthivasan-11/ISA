@@ -5,7 +5,7 @@ import os
 from PIL import Image
 import base64
 import re
-import qrcode
+
 
 # Define the scope for Google Sheets and Drive
 SCOPE = [
