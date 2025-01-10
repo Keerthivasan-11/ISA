@@ -1,6 +1,9 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
+import os
+from PIL import Image
+import base64
 
 # Define the scope for Google Sheets and Drive
 SCOPE = [
@@ -24,12 +27,12 @@ def connect_to_gsheet(spreadsheet_name, sheet_name):
     return spreadsheet.worksheet(sheet_name)  # Access specific sheet by name
 
 # Function to add a new registration to the Google Sheet
-def add_registration_to_sheet(name, email, phone):
+def add_registration_to_sheet(name, email, phone, image_url):
     # Connect to the Google Sheet
     sheet = connect_to_gsheet('Streamlit', 'Sheet1')
 
-    # Add the new registration data to the sheet (assuming columns: Name, Email, Phone)
-    sheet.append_row([name, email, phone])
+    # Add the new registration data to the sheet (assuming columns: Name, Email, Phone, Image)
+    sheet.append_row([name, email, phone, image_url])
 
 # Streamlit app to create the registration form
 st.title("Event Registration Form")
@@ -40,13 +43,30 @@ with st.form(key="registration_form"):
     email = st.text_input("Email Address")
     phone = st.text_input("Phone Number")
     
+    # Image upload
+    uploaded_image = st.file_uploader("Upload your image", type=["jpg", "png", "jpeg"])
+
     # Add a submit button to the form
     submit_button = st.form_submit_button(label="Submit")
 
     if submit_button:
-        if name and email and phone:
+        if name and email and phone and uploaded_image:
+            # Save the uploaded image to a temporary location
+            image = Image.open(uploaded_image)
+            image_path = f"uploaded_images/{uploaded_image.name}"
+            os.makedirs(os.path.dirname(image_path), exist_ok=True)
+            image.save(image_path)
+            
+            # Convert the image to base64 (if you want to store it as an image URL)
+            with open(image_path, "rb") as img_file:
+                encoded_image = base64.b64encode(img_file.read()).decode("utf-8")
+            
+            # Here we store the base64 encoded image or the image path depending on your needs.
+            # In this example, I'm storing the base64-encoded image as the image URL.
+            image_url = f"data:image/png;base64,{encoded_image}"
+            
             # Add the data to the Google Sheet
-            add_registration_to_sheet(name, email, phone)
+            add_registration_to_sheet(name, email, phone, image_url)
             st.success("Registration successful!")
         else:
-            st.error("Please fill in all the fields.")
+            st.error("Please fill in all the fields and upload an image.")
