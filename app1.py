@@ -33,6 +33,40 @@ def add_registration_to_sheet(name, email, phone, image_url):
     except Exception as e:
         st.error(f"Error while adding registration to sheet: {str(e)}")
 
+# Function to show the balloon effect
+def show_balloon_effect():
+    balloon_count = random.randint(5, 10)  # Random number of balloons
+    balloon_html = """
+        <style>
+            @keyframes balloonAnimation {
+                0% { transform: translateY(0); opacity: 1; }
+                100% { transform: translateY(-500px); opacity: 0; }
+            }
+            .balloon {
+                position: fixed;
+                bottom: 10px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                animation: balloonAnimation 3s ease-out forwards;
+            }
+            /* Add random colors to the balloons */
+            .balloon:nth-child(1) { background-color: #FF5733; }
+            .balloon:nth-child(2) { background-color: #33FF57; }
+            .balloon:nth-child(3) { background-color: #3357FF; }
+            .balloon:nth-child(4) { background-color: #F0E68C; }
+            .balloon:nth-child(5) { background-color: #FF6347; }
+            .balloon:nth-child(6) { background-color: #D2691E; }
+            .balloon:nth-child(7) { background-color: #ADFF2F; }
+            .balloon:nth-child(8) { background-color: #8A2BE2; }
+            .balloon:nth-child(9) { background-color: #00CED1; }
+            .balloon:nth-child(10) { background-color: #FF1493; }
+        </style>
+    """
+    # Add multiple balloons to the page
+    for _ in range(balloon_count):
+        components.html(balloon_html, height=100)
+
 # Streamlit app to create the registration form
 st.title("Event Registration Form")
 
@@ -65,40 +99,8 @@ with st.form(key="registration_form"):
             # Add the data to the Google Sheet
             add_registration_to_sheet(name, email, phone, image_url)
             
-            # Balloon effect using custom HTML with random placement and colors
-            balloon_count = random.randint(5, 10)  # Random number of balloons
-            balloon_html = """
-                <style>
-                    @keyframes balloonAnimation {
-                        0% { transform: translateY(0); opacity: 1; }
-                        100% { transform: translateY(-500px); opacity: 0; }
-                    }
-                    .balloon {
-                        position: fixed;
-                        bottom: 10px;
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        animation: balloonAnimation 3s ease-out forwards;
-                    }
-                    /* Add random colors to the balloons */
-                    .balloon:nth-child(1) { background-color: #FF5733; }
-                    .balloon:nth-child(2) { background-color: #33FF57; }
-                    .balloon:nth-child(3) { background-color: #3357FF; }
-                    .balloon:nth-child(4) { background-color: #F0E68C; }
-                    .balloon:nth-child(5) { background-color: #FF6347; }
-                    .balloon:nth-child(6) { background-color: #D2691E; }
-                    .balloon:nth-child(7) { background-color: #ADFF2F; }
-                    .balloon:nth-child(8) { background-color: #8A2BE2; }
-                    .balloon:nth-child(9) { background-color: #00CED1; }
-                    .balloon:nth-child(10) { background-color: #FF1493; }
-                </style>
-                <div class="balloon"></div>
-            """
-            
-            # Add multiple balloons to the page
-            for _ in range(balloon_count):
-                components.html(balloon_html, height=100)
+            # Show the balloon effect after successful registration
+            show_balloon_effect()
 
             # Wait a bit before resetting
             time.sleep(3)
