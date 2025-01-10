@@ -5,6 +5,7 @@ import os
 from PIL import Image
 import base64
 import re
+import qrcode
 
 # Define the scope for Google Sheets and Drive
 SCOPE = [
@@ -183,6 +184,15 @@ with st.form(key="registration_form"):
             
             # Show the balloon effect after successful registration
             st.balloons()  # Trigger the balloon effect
+
+            # Generate the QR code for the confirmation or registration
+            qr_data = f"Registration Successful for {st.session_state.name}"
+            qr_img = qrcode.make(qr_data)
+            qr_img_path = "qr_code.png"
+            qr_img.save(qr_img_path)
+            
+            # Show the QR code at the end
+            st.image(qr_img_path, caption="Scan the QR Code for Registration Confirmation", use_column_width=True)
 
             # Set the session state to indicate that the form was submitted
             st.session_state.submitted = True
