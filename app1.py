@@ -125,7 +125,9 @@ def app():
                         "department": st.session_state.team_member_3_department,
                     },
                 }
-
+                st.markdown("### 🏦 **GPay QR Code for Payment**")
+                gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg"  # Replace with your QR code URL
+                st.image(gpay_qr_url, caption="Scan to Pay", use_column_width=True)
                 # Optional: Handle the uploaded image
                 image_url = "No Image Uploaded"
                 if uploaded_image:
