@@ -95,11 +95,12 @@ def app():
         st.text_input("Team Member 3 Name (Optional)", key="team_member_3_name")
         st.text_input("Team Member 3 Year of Study (Optional)", key="team_member_3_year")
         st.text_input("Team Member 3 Department (Optional)", key="team_member_3_department")
-
+        st.markdown("### 🏦 **GPay QR Code for Payment**")
+        gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
+        st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
         st.markdown("#### 🏠 **⭐️Accommodation**")
         st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"], key="accommodation")
-        # Display the GPay QR code
-        display_gpay_qr()
+       
         st.markdown("#### 🖼️ **Payment Proof Upload **")
         uploaded_image = st.file_uploader("Upload your payment screenshot (JPG/PNG only, optional)", type=["jpg", "png", "jpeg"])
         
