@@ -34,7 +34,7 @@ if analytics_tag:
 with st.sidebar:
     selected_option = option_menu(
         menu_title="ISA MIT Student Chapter",
-        options=["Home", "Events", "Membership", "Resources", "About Us", "Contact"],
+        options=["Home", "Events", "Registration form", "Resources", "About Us", "Contact"],
         icons=["house-fill", "calendar-event-fill", "person-plus-fill", "book-fill", "info-circle-fill", "envelope-fill"],
         menu_icon="gear-fill",
         default_index=0,
