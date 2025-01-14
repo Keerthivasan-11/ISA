@@ -142,12 +142,12 @@ def app():
                     team_members,
                     st.session_state.accommodation,
                 )
-
+                # Display the GPay QR code at the end
+                st.markdown("### 🏦 **GPay QR Code for Payment**")
+                gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
+                st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
                 # Display success
                 st.balloons()
                 st.success("🎉 Your registration has been successfully submitted!")
 
-    # Display the GPay QR code at the end
-    st.markdown("### 🏦 **GPay QR Code for Payment**")
-    gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
-    st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
+    
