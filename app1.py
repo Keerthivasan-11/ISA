@@ -3,9 +3,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
 import os
 from PIL import Image
-import base64
 import re
-import qrcode
+
 
 def app():
     # Define the scope for Google Sheets and Drive
@@ -63,9 +62,9 @@ def app():
         - **2,000 INR** without ISA Student membership.
         
         ### 📝 **Instructions for Payment**:
-        - While paying, include your *team name* and *college name* in the payment notes.
-        - After successful transaction, attach the screenshot of the payment proof in the form below.
-        
+        - Include your *team name* and *college name* in the payment notes while paying.
+        - After payment, scan the **GPay QR code** (displayed at the end) for reference.
+
         ⭐️ **Fields marked with a star are mandatory.**
     """)
 
@@ -92,11 +91,11 @@ def app():
         st.text_input("Team Member 3 Year of Study (Optional)", key="team_member_3_year")
         st.text_input("Team Member 3 Department (Optional)", key="team_member_3_department")
 
-        st.markdown("#### 🏠 **Accommodation**")
+        st.markdown("#### 🏠 **Accommodation**⭐️")
         st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"], key="accommodation")
 
-        st.markdown("#### 🖼️ **Payment Proof Upload**")
-        uploaded_image = st.file_uploader("⭐️ Upload your payment screenshot (JPG/PNG only)", type=["jpg", "png", "jpeg"])
+        st.markdown("#### 🖼️ **Payment Proof Upload (Optional)**")
+        uploaded_image = st.file_uploader("Upload your payment screenshot (JPG/PNG only, optional)", type=["jpg", "png", "jpeg"])
         
         submit_button = st.form_submit_button(label="🚀 Submit")
 
@@ -125,9 +124,7 @@ def app():
                         "department": st.session_state.team_member_3_department,
                     },
                 }
-                st.markdown("### 🏦 **GPay QR Code for Payment**")
-                gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg"  # Replace with your QR code URL
-                st.image(gpay_qr_url, caption="Scan to Pay", use_column_width=True)
+
                 # Optional: Handle the uploaded image
                 image_url = "No Image Uploaded"
                 if uploaded_image:
@@ -148,11 +145,9 @@ def app():
 
                 # Display success
                 st.balloons()
-
-                # Generate QR Code
-                qr_data = f"Registration Confirmed: {st.session_state.name}"
-                qr_img = qrcode.make(qr_data)
-                qr_img_path = "qr_code.png"
-                qr_img.save(qr_img_path)
-                st.image(qr_img_path, caption="Scan for Confirmation", use_column_width=True)
                 st.success("🎉 Your registration has been successfully submitted!")
+
+    # Display the GPay QR code at the end
+    st.markdown("### 🏦 **GPay QR Code for Payment**")
+    gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
+    st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
