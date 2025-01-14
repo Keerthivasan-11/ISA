@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import app1
 import app2
 import app3
+
 # Load environment variables
 load_dotenv()
 
@@ -31,6 +32,44 @@ if analytics_tag:
         """, unsafe_allow_html=True
     )
 
+# Scrolling Image and Text
+def display_scrolling_content():
+    st.markdown("""
+    <style>
+        .scrolling-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            overflow: hidden;
+        }
+        .scrolling-content {
+            display: flex;
+            animation: scroll 10s linear infinite;
+        }
+        .scrolling-content img {
+            height: 100px;  # You can adjust the size of the image as needed
+            margin-right: 30px;  # Space between the image and text
+        }
+        .scrolling-content span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1f4e79;  # Change text color as per requirement
+            line-height: 100px;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+    <div class="scrolling-container">
+        <div class="scrolling-content">
+            <img src="https://github.com/Keerthivasan-11/ISA/blob/main/isa%20image.png?raw=true" alt="ISA Image">
+            <span>Department of Instrumentation Engineering</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 # Sidebar Navigation
 with st.sidebar:
     selected_option = option_menu(
@@ -49,19 +88,13 @@ with st.sidebar:
 
 # Page Logic
 if selected_option == "Home":
-   app2.app()
+    # Display scrolling image and text
+    display_scrolling_content()
+    app2.app()
 elif selected_option == "Registration form":
-   app1.app()
-   
-
+    app1.app()
 elif selected_option == "Gform registration":
-   app3.app()
-# elif selected_option == "Resources":
-#     st.title("Resources")
-#     st.write("Access study materials, newsletters, and shared resources.")
-# elif selected_option == "About Us":
-#     st.title("About ISA MIT Student Chapter")
-#     st.write("Learn about our mission, vision, and activities.")
+    app3.app()
 elif selected_option == "Contact":
-     st.title("Contact Us")
-     st.write("Reach out to us for queries and suggestions.")
+    st.title("Contact Us")
+    st.write("Reach out to us for queries and suggestions.")
