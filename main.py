@@ -3,6 +3,7 @@ from streamlit_option_menu import option_menu
 import os
 from dotenv import load_dotenv
 import app1
+import app2
 # Load environment variables
 load_dotenv()
 
@@ -47,10 +48,9 @@ with st.sidebar:
 
 # Page Logic
 if selected_option == "Home":
+   app2.app()
+elif selected_option == "Registration form":
    app1.app()
-# elif selected_option == "Events":
-#     st.title("Upcoming Events")
-#     st.write("Check out our latest events and register to participate.")
 # elif selected_option == "Membership":
 #     st.title("Membership Details")
 #     st.write("Join the ISA MIT Student Chapter and be part of a vibrant community.")
