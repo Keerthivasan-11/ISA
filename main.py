@@ -51,9 +51,7 @@ if selected_option == "Home":
    app2.app()
 elif selected_option == "Registration form":
    app1.app()
-   st.markdown("### 🏦 **GPay QR Code for Payment**")
-   gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
-   st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
+   
 
 # elif selected_option == "Membership":
 #     st.title("Membership Details")
