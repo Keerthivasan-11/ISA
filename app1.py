@@ -91,10 +91,10 @@ def app():
         st.text_input("Team Member 3 Year of Study (Optional)", key="team_member_3_year")
         st.text_input("Team Member 3 Department (Optional)", key="team_member_3_department")
 
-        st.markdown("#### 🏠 **Accommodation**⭐️")
+        st.markdown("#### 🏠 **⭐️Accommodation**")
         st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"], key="accommodation")
 
-        st.markdown("#### 🖼️ **Payment Proof Upload (Optional)**")
+        st.markdown("#### 🖼️ **Payment Proof Upload **")
         uploaded_image = st.file_uploader("Upload your payment screenshot (JPG/PNG only, optional)", type=["jpg", "png", "jpeg"])
         
         submit_button = st.form_submit_button(label="🚀 Submit")
