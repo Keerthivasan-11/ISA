@@ -13,10 +13,6 @@ def app():
 
         [Fill the Registration Form](https://docs.google.com/forms/d/e/1FAIpQLSeVWmnEmcbFz2rE68iC9oUWcf4qdZJFyivGmBsuCr2rAMmvkw/viewform)
 
-        ### 💸 **Payment Instructions:**
-        - Please make the payment using the details provided in the QR code below. After completing the payment, make sure to upload the screenshot in the website registration form.
-
-        ### 🏦 **GPay QR Code for Payment**:
     """)
     
     # Display the QR code image for GPay payment
