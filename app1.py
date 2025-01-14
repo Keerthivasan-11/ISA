@@ -97,7 +97,7 @@ def app():
         st.text_input("Team Member 3 Department (Optional)", key="team_member_3_department")
         st.markdown("### 🏦 **GPay QR Code for Payment**")
         gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
-        st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
+        st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=False, width=400)
         st.markdown("#### 🏠 **⭐️Accommodation**")
         st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"], key="accommodation")
        
