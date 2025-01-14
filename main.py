@@ -46,16 +46,17 @@ def display_scrolling_content():
         .scrolling-content {
             display: flex;
             animation: scroll 10s linear infinite;
+            align-items: center;
         }
         .scrolling-content img {
-            height: 100px;  # You can adjust the size of the image as needed
-            margin-right: 30px;  # Space between the image and text
+            height: 60px;  /* Adjust image size to match text */
+            margin-right: 15px;  /* Space between image and text */
         }
         .scrolling-content span {
-            font-size: 24px;
+            font-size: 32px;  /* Adjust font size to match image height */
             font-weight: bold;
-            color: #1f4e79;  # Change text color as per requirement
-            line-height: 100px;
+            color: #1f4e79;  /* Change text color as per requirement */
+            line-height: 60px;  /* Align text vertically with image */
         }
         @keyframes scroll {
             0% { transform: translateX(100%); }
