@@ -6,7 +6,7 @@ from PIL import Image
 import base64
 import re
 
-
+def app():
 # Define the scope for Google Sheets and Drive
 SCOPE = [
     "https://spreadsheets.google.com/feeds", 
