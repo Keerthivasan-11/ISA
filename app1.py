@@ -19,7 +19,12 @@ def app():
     def is_valid_email(email):
         email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         return re.match(email_regex, email)
-
+    def display_gpay_qr():
+    """Function to display the GPay QR code at the bottom of each page"""
+    st.markdown("### 🏦 **GPay QR Code for Payment**")
+    gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
+    st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
+    
     # Function to validate phone number using regex (simple validation for 10-digit phone numbers)
     def is_valid_phone(phone):
         phone_regex = r'^\d{10}$'  # Assuming 10-digit phone numbers
@@ -142,12 +147,8 @@ def app():
                     team_members,
                     st.session_state.accommodation,
                 )
-                # Display the GPay QR code at the end
-                st.markdown("### 🏦 **GPay QR Code for Payment**")
-                gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
-                st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
                 # Display success
                 st.balloons()
                 st.success("🎉 Your registration has been successfully submitted!")
-
+ display_gpay_qr()
     
