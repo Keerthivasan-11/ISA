@@ -98,12 +98,13 @@ def app():
 
         st.markdown("#### 🏠 **⭐️Accommodation**")
         st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"], key="accommodation")
-
+        # Display the GPay QR code
+        display_gpay_qr()
         st.markdown("#### 🖼️ **Payment Proof Upload **")
         uploaded_image = st.file_uploader("Upload your payment screenshot (JPG/PNG only, optional)", type=["jpg", "png", "jpeg"])
         
         submit_button = st.form_submit_button(label="🚀 Submit")
-
+        
         if submit_button:
             # Validate the email and phone number
             if not is_valid_email(st.session_state.email):
@@ -151,5 +152,4 @@ def app():
                 st.balloons()
                 st.success("🎉 Your registration has been successfully submitted!")
                 
-    # Display the GPay QR code
-    display_gpay_qr()
+    
