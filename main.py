@@ -66,7 +66,7 @@ def display_scrolling_content():
     <div class="scrolling-container">
         <div class="scrolling-content">
             <img src="https://github.com/Keerthivasan-11/ISA/blob/main/isa%20image.png?raw=true" alt="ISA Image">
-            <span>Department of Instrumentation Engineering</span>
+            <span> & Department of Instrumentation Engineering</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
