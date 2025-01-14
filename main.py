@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 import app1
 import app2
+import app3
 # Load environment variables
 load_dotenv()
 
@@ -34,7 +35,7 @@ if analytics_tag:
 with st.sidebar:
     selected_option = option_menu(
         menu_title="ISA MIT Student Chapter",
-        options=["Home", "Events", "Registration form", "Resources", "About Us", "Contact"],
+        options=["Home", "Events", "Registration form", "Gform registration", "About Us", "Contact"],
         icons=["house-fill", "calendar-event-fill", "person-plus-fill", "book-fill", "info-circle-fill", "envelope-fill"],
         menu_icon="gear-fill",
         default_index=0,
@@ -53,9 +54,8 @@ elif selected_option == "Registration form":
    app1.app()
    
 
-# elif selected_option == "Membership":
-#     st.title("Membership Details")
-#     st.write("Join the ISA MIT Student Chapter and be part of a vibrant community.")
+elif selected_option == "Gform registration":
+   app3.app()
 # elif selected_option == "Resources":
 #     st.title("Resources")
 #     st.write("Access study materials, newsletters, and shared resources.")
