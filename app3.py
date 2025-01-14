@@ -17,7 +17,7 @@ def app():
     
     # Display the QR code image for GPay payment
     qr_code_url = "https://github.com/Keerthivasan-11/ISA/blob/main/qrcode_159208919_9c425f9aad044cff32e6661c000bc9cf.png?raw=true"
-    st.image(qr_code_url, caption="Scan to Pay using GPay", width=500)
+    st.image(qr_code_url, caption="Scan to Pay to fill gform", width=500)
 
     st.markdown("""
         ### 🎉 Thank you for registering! 🎉
