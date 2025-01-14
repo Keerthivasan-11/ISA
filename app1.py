@@ -5,7 +5,6 @@ import os
 from PIL import Image
 import re
 
-
 def app():
     # Define the scope for Google Sheets and Drive
     SCOPE = [
@@ -19,12 +18,13 @@ def app():
     def is_valid_email(email):
         email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         return re.match(email_regex, email)
+
+    # Function to display the GPay QR code at the bottom of each page
     def display_gpay_qr():
-    """Function to display the GPay QR code at the bottom of each page"""
-    st.markdown("### 🏦 **GPay QR Code for Payment**")
-    gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
-    st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
-    
+        st.markdown("### 🏦 **GPay QR Code for Payment**")
+        gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
+        st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
+
     # Function to validate phone number using regex (simple validation for 10-digit phone numbers)
     def is_valid_phone(phone):
         phone_regex = r'^\d{10}$'  # Assuming 10-digit phone numbers
@@ -150,5 +150,6 @@ def app():
                 # Display success
                 st.balloons()
                 st.success("🎉 Your registration has been successfully submitted!")
- display_gpay_qr()
-    
+                
+    # Display the GPay QR code
+    display_gpay_qr()
