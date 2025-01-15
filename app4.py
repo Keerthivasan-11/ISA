@@ -18,9 +18,9 @@ def load_css():
             animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
-            width: 35%; /* Adjust image size to fit 3 images in one row */
-            margin-right: 20px; /* Spacing between images */
-            max-height: 600px; /* Increase the max-height for larger images */
+            width: 30%; /* Adjust image size to fit 3 images in one row */
+            margin-right: 10px; /* Reduce the margin between images */
+            max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
         }
         /* Keyframes for seamless scroll */
@@ -30,9 +30,9 @@ def load_css():
         }
 
         .carousel-four img {
-            width: 30%; /* Adjust image size to fit 4 images in one row */
-            margin-right: 20px; /* Spacing between images */
-            max-height: 600px; /* Increase the max-height for larger images */
+            width: 25%; /* Adjust image size to fit 4 images in one row */
+            margin-right: 10px; /* Reduce margin between images */
+            max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
         }
 
