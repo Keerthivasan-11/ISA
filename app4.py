@@ -18,7 +18,7 @@ def load_css():
             animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
-            width: 45%; /* Adjust image size to fit 3 images in one row */
+            width: 55%; /* Adjust image size to fit 3 images in one row */
             margin-right: 10px; /* Adjust margin between images */
             max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
@@ -30,7 +30,7 @@ def load_css():
         }
 
         .carousel-four img {
-            width: 40%; /* Adjust image size to fit 4 images in one row */
+            width: 50%; /* Adjust image size to fit 4 images in one row */
             margin-right: 10px; /* Adjust margin between images */
             max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
