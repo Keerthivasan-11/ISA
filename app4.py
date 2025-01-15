@@ -15,10 +15,10 @@ def load_css():
         }
         .carousel {
             display: flex;
-            animation: scroll 300s linear infinite; /* Slow and continuous rolling animation */
+            animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
-            width:40 %; /* Adjust image size to fit 4 images in one row */
+            width: 35%; /* Adjust image size to fit 3 images in one row */
             margin-right: 20px; /* Spacing between images */
             max-height: 600px; /* Increase the max-height for larger images */
             object-fit: contain;
@@ -26,19 +26,19 @@ def load_css():
         /* Keyframes for seamless scroll */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-400%); } /* Scroll by 4 images (100% * 4) */
+            100% { transform: translateX(-300%); } /* Scroll by 3 images */
         }
 
-        .carousel-three img {
-            width: 40%; /* Adjust image size to fit 3 images in one row */
+        .carousel-four img {
+            width: 30%; /* Adjust image size to fit 4 images in one row */
             margin-right: 20px; /* Spacing between images */
             max-height: 600px; /* Increase the max-height for larger images */
             object-fit: contain;
         }
 
-        @keyframes scroll-three {
+        @keyframes scroll-four {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-300%); } /* Scroll by 3 images */
+            100% { transform: translateX(-400%); } /* Scroll by 4 images */
         }
         </style>
         """,
@@ -48,8 +48,8 @@ def load_css():
 # Function to display laboratory section with rolling effect
 def display_lab(lab_name, images, is_three_images=False):
     st.markdown(f"### {lab_name}")
-    animation_class = "carousel-three" if is_three_images else "carousel"
-    animation = "scroll-three" if is_three_images else "scroll"
+    animation_class = "carousel-four" if not is_three_images else "carousel"
+    animation = "scroll-four" if not is_three_images else "scroll"
     st.markdown(
         f"""
         <div class="carousel-container">
