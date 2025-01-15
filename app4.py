@@ -1,7 +1,5 @@
 import streamlit as st
 
-
-
 # CSS for rolling carousel
 def load_css():
     st.markdown(
@@ -17,7 +15,7 @@ def load_css():
         }
         .carousel {
             display: flex;
-            animation: scroll 30s linear infinite; /* Continuous rolling animation */
+            animation: scroll 50s linear infinite; /* Continuous rolling animation */
         }
         .carousel img {
             width: 100%; /* Adjust the image size */
@@ -74,8 +72,8 @@ def app():
         "Control System Laboratory",
         [
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control1.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control2.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control3.jpg",
+           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control2.jpg",
+           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control3.jpg",
         ]
     )
 
@@ -86,7 +84,6 @@ def app():
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded1.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded2.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded3.jpg",
-        
         ]
     )
 
