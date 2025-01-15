@@ -2,7 +2,7 @@ import streamlit as st
 
 
 
-# CSS for image carousel
+# CSS for rolling carousel
 def load_css():
     st.markdown(
         """
@@ -17,41 +17,32 @@ def load_css():
         }
         .carousel {
             display: flex;
-            width: 100%;
-            position: relative;
+            animation: scroll 10s linear infinite; /* Continuous rolling animation */
         }
         .carousel img {
-            width: 80%; /* Adjust image size */
-            max-height: 500px; /* Limit image height */
+            width: 80%; /* Adjust the image size */
+            margin-right: 20px; /* Add spacing between images */
+            max-height: 500px; /* Limit the image height */
             object-fit: contain;
-            transition: transform 1s ease-in-out;
         }
-        @keyframes slide {
-            0%, 20% { transform: translateX(0); }
-            25%, 45% { transform: translateX(-100%); }
-            50%, 70% { transform: translateX(-200%); }
-            75%, 95% { transform: translateX(-300%); }
-            100% { transform: translateX(0); }
-        }
-        .carousel-track {
-            display: flex;
-            animation: slide 8s infinite; /* Updated for smoother transitions */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-# Function to display laboratory section
+# Function to display laboratory section with rolling effect
 def display_lab(lab_name, images):
     st.markdown(f"### {lab_name}")
     st.markdown(
         f"""
         <div class="carousel-container">
             <div class="carousel">
-                <div class="carousel-track">
-                    {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])}
-                </div>
+                {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])}
+                {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])} <!-- Duplicate images for seamless rolling -->
             </div>
         </div>
         """,
@@ -60,7 +51,7 @@ def display_lab(lab_name, images):
 
 # Main app function
 def app():
-    # Load the CSS for carousel
+    # Load the CSS for the rolling carousel
     load_css()
   
     # Laboratory Facilities
