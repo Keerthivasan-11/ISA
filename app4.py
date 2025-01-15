@@ -18,7 +18,7 @@ def load_css():
             animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
-            width: 75%; /* Adjust image size to fit 3 images in one row */
+            width: 75%; /* Adjust image size to fit images proportionally */
             margin-right: 10px; /* Adjust margin between images */
             max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
@@ -30,7 +30,7 @@ def load_css():
         }
 
         .carousel-four img {
-            width: 70%; /* Adjust image size to fit 4 images in one row */
+            width: 70%; /* Adjust image size to fit 4 images proportionally */
             margin-right: 10px; /* Adjust margin between images */
             max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
@@ -50,10 +50,15 @@ def display_lab(lab_name, images, is_three_images=False):
     st.markdown(f"### {lab_name}")
     animation_class = "carousel-four" if not is_three_images else "carousel"
     animation = "scroll-four" if not is_three_images else "scroll"
+    
+    if not images:
+        st.warning(f"No images available for {lab_name}")
+        return
+
     st.markdown(
         f"""
         <div class="carousel-container">
-            <div class="carousel {animation_class}">
+            <div class="carousel {animation_class}" style="animation: {animation} 120s linear infinite;">
                 {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])}
                 {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])} <!-- Duplicate images for seamless looping -->
             </div>
