@@ -18,15 +18,27 @@ def load_css():
             animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
-            width: 33.33%; /* Adjust the image size to fit exactly 3 images in one row */
+            width: 25%; /* Adjust image size to fit 4 images in one row */
             margin-right: 20px; /* Spacing between images */
-            max-height: 500px; /* Limit the image height */
+            max-height: 600px; /* Increase the max-height for larger images */
             object-fit: contain;
         }
         /* Keyframes for seamless scroll */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-300%); } /* Scroll by 3 images (100% * 3) */
+            100% { transform: translateX(-400%); } /* Scroll by 4 images (100% * 4) */
+        }
+
+        .carousel-three img {
+            width: 33.33%; /* Adjust image size to fit 3 images in one row */
+            margin-right: 20px; /* Spacing between images */
+            max-height: 600px; /* Increase the max-height for larger images */
+            object-fit: contain;
+        }
+
+        @keyframes scroll-three {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-300%); } /* Scroll by 3 images */
         }
         </style>
         """,
@@ -34,12 +46,14 @@ def load_css():
     )
 
 # Function to display laboratory section with rolling effect
-def display_lab(lab_name, images):
+def display_lab(lab_name, images, is_three_images=False):
     st.markdown(f"### {lab_name}")
+    animation_class = "carousel-three" if is_three_images else "carousel"
+    animation = "scroll-three" if is_three_images else "scroll"
     st.markdown(
         f"""
         <div class="carousel-container">
-            <div class="carousel">
+            <div class="carousel {animation_class}">
                 {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])}
                 {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])} <!-- Duplicate images for seamless looping -->
             </div>
@@ -57,7 +71,7 @@ def app():
     st.title("Laboratory Facilities 🔬")
     st.write("Explore the state-of-the-art laboratories in the Department of Instrumentation Engineering, MIT Campus.")
 
-    # Automation Laboratory
+    # Automation Laboratory (4 images)
     display_lab(
         "Automation Laboratory",
         [
@@ -68,64 +82,69 @@ def app():
         ]
     )
 
-    # Control System Laboratory
+    # Control System Laboratory (3 images)
     display_lab(
         "Control System Laboratory",
         [
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control1.jpg",
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control2.jpg",
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control3.jpg",
-        ]
+        ],
+        is_three_images=True
     )
 
-    # Embedded Laboratory
+    # Embedded Laboratory (3 images)
     display_lab(
         "Embedded Laboratory",
         [
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded1.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded2.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded3.jpg",
-        ]
+        ],
+        is_three_images=True
     )
 
-    # Machines Laboratory
+    # Machines Laboratory (4 images)
     display_lab(
         "Machines Laboratory",
         [
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines1.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines2.jpg",
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines3.jpg"
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines3.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines4.jpg",
         ]
     )
 
-    # PG DCF Laboratory
+    # PG DCF Laboratory (4 images)
     display_lab(
         "PG DCF Laboratory",
         [
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf2.jpg",
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf3.jpg",
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf1.jpg",
+           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf4.jpg",
         ]
     )
 
-    # Process Control Laboratory
+    # Process Control Laboratory (3 images)
     display_lab(
         "Process Control Laboratory",
         [
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process1.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process2.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process3.jpg",
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process4.jpg",
-        ]
+        ],
+        is_three_images=True
     )
 
-    # UG DCF Laboratory
+    # UG DCF Laboratory (4 images)
     display_lab(
         "UG DCF Laboratory",
         [
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf1.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf2.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf3.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf4.jpg",
         ]
     )
 
