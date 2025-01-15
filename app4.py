@@ -18,7 +18,7 @@ def load_css():
             animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
-            width: 100%; /* Adjust the image size */
+            width: 33.33%; /* Adjust the image size, reduce to fit 3 images in one view */
             margin-right: 20px; /* Spacing between images */
             max-height: 500px; /* Limit the image height */
             object-fit: contain;
@@ -26,7 +26,7 @@ def load_css():
         /* Keyframes for seamless scroll */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-100%); }
         }
         </style>
         """,
