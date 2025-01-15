@@ -1,6 +1,5 @@
 import streamlit as st
 
-# Streamlit page configuration
 
 
 # CSS for image carousel
@@ -8,34 +7,35 @@ def load_css():
     st.markdown(
         """
         <style>
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
         .carousel {
             display: flex;
-            overflow: hidden;
-            max-width: 100%;
+            width: 100%;
             position: relative;
         }
         .carousel img {
-            width: 100%;
+            width: 80%; /* Adjust image size */
+            max-height: 500px; /* Limit image height */
+            object-fit: contain;
             transition: transform 1s ease-in-out;
         }
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-        }
         @keyframes slide {
-            0% { transform: translateX(0); }
-            20% { transform: translateX(0); }
-            25% { transform: translateX(-100%); }
-            45% { transform: translateX(-100%); }
-            50% { transform: translateX(-200%); }
-            70% { transform: translateX(-200%); }
-            75% { transform: translateX(-300%); }
-            95% { transform: translateX(-300%); }
+            0%, 20% { transform: translateX(0); }
+            25%, 45% { transform: translateX(-100%); }
+            50%, 70% { transform: translateX(-200%); }
+            75%, 95% { transform: translateX(-300%); }
             100% { transform: translateX(0); }
         }
         .carousel-track {
             display: flex;
-            animation: slide 15s infinite;
+            animation: slide 8s infinite; /* Updated for smoother transitions */
         }
         </style>
         """,
@@ -64,17 +64,17 @@ def app():
     load_css()
   
     # Laboratory Facilities
-    st.title("Laboratory Facilities🔬")
+    st.title("Laboratory Facilities 🔬")
     st.write("Explore the state-of-the-art laboratories in the Department of Instrumentation Engineering, MIT Campus.")
 
     # Automation Laboratory
     display_lab(
         "Automation Laboratory",
         [
-            "https://github.com/Keerthivasan-11/ISA/blob/main/automation.jpg",
-            "https://github.com/Keerthivasan-11/ISA/blob/main/automation2.jpg",
-            "https://github.com/Keerthivasan-11/ISA/blob/main/automation3.jpg",
-            "https://github.com/Keerthivasan-11/ISA/blob/main/automation4.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/automation.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/automation2.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/automation3.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/automation4.jpg",
         ]
     )
 
@@ -143,3 +143,7 @@ def app():
             "https://via.placeholder.com/800x400?text=UG+DCF+Lab+4",
         ]
     )
+
+# Run the app
+if __name__ == "__main__":
+    app()
