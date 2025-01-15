@@ -102,10 +102,9 @@ def app():
     display_lab(
         "PG DCF Laboratory",
         [
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf2.jpg
-", "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf3.jpg
-", "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf1.jpg
-",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf2.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf3.jpg
+", "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf1.jpg"
             
         ]
     )
