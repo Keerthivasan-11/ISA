@@ -112,11 +112,10 @@ def app():
     display_lab(
         "Process Control Laboratory",
         [
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process1.jpg
-","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process2.jpg
-","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process3.jpg
-","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process4.jpg
-"
+  "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process1.jpg",
+        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process2.jpg",
+        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process3.jpg",
+        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process4.jpg",
             
         ]
     )
@@ -125,10 +124,9 @@ def app():
     display_lab(
         "UG DCF Laboratory",
         [
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf1.jpg
-","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf2.jpg
-","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf3.jpg
-",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf1.jpg",
+        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf2.jpg",
+        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf3.jpg",
             
         ]
     )
