@@ -19,7 +19,7 @@ def load_css():
         }
         .carousel img {
             width: 30%; /* Adjust image size to fit 3 images in one row */
-            margin-right: 10px; /* Reduce the margin between images */
+            margin-right: 15px; /* Reduce the margin between images */
             max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
         }
@@ -31,7 +31,7 @@ def load_css():
 
         .carousel-four img {
             width: 25%; /* Adjust image size to fit 4 images in one row */
-            margin-right: 10px; /* Reduce margin between images */
+            margin-right: 15px; /* Reduce margin between images */
             max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
         }
