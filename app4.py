@@ -92,10 +92,9 @@ def app():
     display_lab(
         "Machines Laboratory",
         [
-            "https://via.placeholder.com/800x400?text=Machines+Lab+1",
-            "https://via.placeholder.com/800x400?text=Machines+Lab+2",
-            "https://via.placeholder.com/800x400?text=Machines+Lab+3",
-            "https://via.placeholder.com/800x400?text=Machines+Lab+4",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines1.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines2.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines3.jpg"
         ]
     )
 
@@ -103,10 +102,11 @@ def app():
     display_lab(
         "PG DCF Laboratory",
         [
-            "https://via.placeholder.com/800x400?text=PG+DCF+Lab+1",
-            "https://via.placeholder.com/800x400?text=PG+DCF+Lab+2",
-            "https://via.placeholder.com/800x400?text=PG+DCF+Lab+3",
-            "https://via.placeholder.com/800x400?text=PG+DCF+Lab+4",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf2.jpg
+", "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf3.jpg
+", "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf1.jpg
+",
+            
         ]
     )
 
@@ -114,10 +114,12 @@ def app():
     display_lab(
         "Process Control Laboratory",
         [
-            "https://via.placeholder.com/800x400?text=Process+Control+Lab+1",
-            "https://via.placeholder.com/800x400?text=Process+Control+Lab+2",
-            "https://via.placeholder.com/800x400?text=Process+Control+Lab+3",
-            "https://via.placeholder.com/800x400?text=Process+Control+Lab+4",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process1.jpg
+","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process2.jpg
+","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process3.jpg
+","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process4.jpg
+"
+            
         ]
     )
 
@@ -125,10 +127,11 @@ def app():
     display_lab(
         "UG DCF Laboratory",
         [
-            "https://via.placeholder.com/800x400?text=UG+DCF+Lab+1",
-            "https://via.placeholder.com/800x400?text=UG+DCF+Lab+2",
-            "https://via.placeholder.com/800x400?text=UG+DCF+Lab+3",
-            "https://via.placeholder.com/800x400?text=UG+DCF+Lab+4",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf1.jpg
+","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf2.jpg
+","https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf3.jpg
+",
+            
         ]
     )
 
