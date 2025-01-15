@@ -18,7 +18,7 @@ def load_css():
             animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
-            width: 25%; /* Adjust image size to fit 4 images in one row */
+            width:40 %; /* Adjust image size to fit 4 images in one row */
             margin-right: 20px; /* Spacing between images */
             max-height: 600px; /* Increase the max-height for larger images */
             object-fit: contain;
