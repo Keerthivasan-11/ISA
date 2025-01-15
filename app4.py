@@ -83,10 +83,10 @@ def app():
     display_lab(
         "Embedded Laboratory",
         [
-            "https://via.placeholder.com/800x400?text=Embedded+Lab+1",
-            "https://via.placeholder.com/800x400?text=Embedded+Lab+2",
-            "https://via.placeholder.com/800x400?text=Embedded+Lab+3",
-            "https://via.placeholder.com/800x400?text=Embedded+Lab+4",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded1.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded2.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/embedded3.jpg",
+        
         ]
     )
 
