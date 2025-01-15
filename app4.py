@@ -15,7 +15,7 @@ def load_css():
         }
         .carousel {
             display: flex;
-            animation: scroll 60s linear infinite; /* Slow and continuous rolling animation */
+            animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
             width: 100%; /* Adjust the image size */
@@ -103,8 +103,8 @@ def app():
         "PG DCF Laboratory",
         [
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf2.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf3.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf1.jpg",
+           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf3.jpg",
+           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf1.jpg",
         ]
     )
 
@@ -112,11 +112,10 @@ def app():
     display_lab(
         "Process Control Laboratory",
         [
-  "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process1.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process2.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process3.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process4.jpg",
-            
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process1.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process2.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process3.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/process4.jpg",
         ]
     )
 
@@ -125,9 +124,8 @@ def app():
         "UG DCF Laboratory",
         [
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf1.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf2.jpg",
-        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf3.jpg",
-            
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf2.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf3.jpg",
         ]
     )
 
