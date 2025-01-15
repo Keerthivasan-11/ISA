@@ -19,14 +19,14 @@ def load_css():
         }
         .carousel img {
             width: 100%; /* Adjust the image size */
-            margin-right: 20px; /* No spacing between images */
+            margin-right: 20px; /* Spacing between images */
             max-height: 500px; /* Limit the image height */
             object-fit: contain;
         }
         /* Keyframes for seamless scroll */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-50%); }
         }
         </style>
         """,
