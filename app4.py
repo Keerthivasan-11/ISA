@@ -73,10 +73,9 @@ def app():
     display_lab(
         "Control System Laboratory",
         [
-            "https://github.com/Keerthivasan-11/ISA/blob/main/control1.jpg",
-            "https://github.com/Keerthivasan-11/ISA/blob/main/control2.jpg",
-            "https://github.com/Keerthivasan-11/ISA/blob/main/control3.jpg",
-            
+           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control1.jpg",
+        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control2.jpg",
+        "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/control3.jpg",
         ]
     )
 
