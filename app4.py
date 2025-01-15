@@ -9,20 +9,21 @@ def load_css():
             display: flex;
             justify-content: center;
             align-items: center;
-            max-width: 100%;
+            width: 100%;
             position: relative;
             overflow: hidden;
         }
         .carousel {
             display: flex;
-            animation: scroll 50s linear infinite; /* Continuous rolling animation */
+            animation: scroll 60s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
             width: 100%; /* Adjust the image size */
-            margin-right: 20px; /* Add spacing between images */
+            margin-right: 20px; /* No spacing between images */
             max-height: 500px; /* Limit the image height */
             object-fit: contain;
         }
+        /* Keyframes for seamless scroll */
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-100%); }
@@ -40,7 +41,7 @@ def display_lab(lab_name, images):
         <div class="carousel-container">
             <div class="carousel">
                 {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])}
-                {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])} <!-- Duplicate images for seamless rolling -->
+                {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])} <!-- Duplicate images for seamless looping -->
             </div>
         </div>
         """,
