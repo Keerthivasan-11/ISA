@@ -20,7 +20,7 @@ def load_css():
             animation: scroll 10s linear infinite; /* Continuous rolling animation */
         }
         .carousel img {
-            width: 80%; /* Adjust the image size */
+            width: 100%; /* Adjust the image size */
             margin-right: 20px; /* Add spacing between images */
             max-height: 500px; /* Limit the image height */
             object-fit: contain;
