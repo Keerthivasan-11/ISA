@@ -73,10 +73,10 @@ def app():
     display_lab(
         "Control System Laboratory",
         [
-            "https://via.placeholder.com/800x400?text=Control+Lab+1",
-            "https://via.placeholder.com/800x400?text=Control+Lab+2",
-            "https://via.placeholder.com/800x400?text=Control+Lab+3",
-            "https://via.placeholder.com/800x400?text=Control+Lab+4",
+            "https://github.com/Keerthivasan-11/ISA/blob/main/control1.jpg",
+            "https://github.com/Keerthivasan-11/ISA/blob/main/control2.jpg",
+            "https://github.com/Keerthivasan-11/ISA/blob/main/control3.jpg",
+            
         ]
     )
 
