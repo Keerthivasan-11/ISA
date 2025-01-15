@@ -1,11 +1,7 @@
 import streamlit as st
 
 # Streamlit page configuration
-st.set_page_config(
-    page_title="Laboratory Facilities - Department of Instrumentation Engineering",
-    page_icon="🔬",
-    layout="wide"
-)
+
 
 # CSS for image carousel
 def load_css():
@@ -66,9 +62,9 @@ def display_lab(lab_name, images):
 def app():
     # Load the CSS for carousel
     load_css()
-
+  
     # Laboratory Facilities
-    st.title("Laboratory Facilities")
+    st.title("Laboratory Facilities🔬")
     st.write("Explore the state-of-the-art laboratories in the Department of Instrumentation Engineering, MIT Campus.")
 
     # Automation Laboratory
