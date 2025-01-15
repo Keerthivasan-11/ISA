@@ -17,7 +17,7 @@ def load_css():
         }
         .carousel {
             display: flex;
-            animation: scroll 10s linear infinite; /* Continuous rolling animation */
+            animation: scroll 15s linear infinite; /* Continuous rolling animation */
         }
         .carousel img {
             width: 100%; /* Adjust the image size */
