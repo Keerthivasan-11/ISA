@@ -84,7 +84,7 @@ def app():
         """
         ### Contact Information:
         **Event Organizer**:  
-        Mr. [Name], Final Year EIE, President, ISA Student Chapter-MIT  
+        Mr. G.KEERTHIVASAN, Final Year EIE, President, ISA Student Chapter-MIT  
         **Mobile**: +91 9344810244  
         **Email**: keerthivasangopal2004@gmail.com
         
