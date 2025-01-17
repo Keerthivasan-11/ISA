@@ -18,9 +18,9 @@ def load_css():
             animation: scroll 120s linear infinite; /* Slow and continuous rolling animation */
         }
         .carousel img {
-            width: 45%; /* Adjust image size to fit 3 images in one row */
-            margin-right: 10px; /* Adjust margin between images */
-            max-height: 600px; /* Ensure images don't exceed max height */
+            width: 70%; /* Increase image width to make it larger */
+            margin-right: 15px; /* Adjust margin between images */
+            max-height: 800px; /* Adjust max height for larger images */
             object-fit: contain;
             cursor: pointer;
         }
@@ -31,9 +31,9 @@ def load_css():
         }
 
         .carousel-four img {
-            width: 40%; /* Adjust image size to fit 4 images in one row */
-            margin-right: 10px; /* Adjust margin between images */
-            max-height: 600px; /* Ensure images don't exceed max height */
+            width: 60%; /* Increase image width for 4-image layout */
+            margin-right: 15px; /* Adjust margin between images */
+            max-height: 800px; /* Adjust max height for larger images */
             object-fit: contain;
             cursor: pointer;
         }
@@ -113,7 +113,6 @@ def app():
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines1.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines2.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines3.jpg"
-            
         ]
     )
 
@@ -124,7 +123,6 @@ def app():
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf2.jpg",
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf3.jpg",
            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf1.jpg"
-          
         ]
     )
 
@@ -146,7 +144,6 @@ def app():
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf1.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf2.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf3.jpg"
-           
         ]
     )
 
