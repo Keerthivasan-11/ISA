@@ -54,9 +54,9 @@ def app():
     )
     st.image(
         [
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/20240330_171330.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/IMG_20240329_092945.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/IMG_20240329_094957.jpg",
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/IMG_20240329_101413.jpg"
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/20240330_171330.jpg"
         ],
         caption=["Lighting the Lamp of Knowledge", "Eminent Speakers Addressing the Audience", "Participants Welcoming the Challenge"],
         width=600,
