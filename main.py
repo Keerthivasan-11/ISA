@@ -6,6 +6,7 @@ import app1
 import app2
 import app3
 import app4
+import app5
 
 # Load environment variables
 load_dotenv()
@@ -99,7 +100,8 @@ elif selected_option == "Gform registration":
     app3.app()
 elif selected_option == "Laboratory Facilities":
     app4.app()
-
+elif selected_option == "Events":
+    app5.app()
 elif selected_option == "Contact":
     st.title("Contact Us")
     st.write("Reach out to us for queries and suggestions.")
