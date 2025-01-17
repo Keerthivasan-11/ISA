@@ -20,16 +20,19 @@ st.set_page_config(
     layout="wide"
 )
 
-# CSS to hide Streamlit branding, GitHub symbol, and extra elements
+# CSS to hide Streamlit branding, GitHub symbol, and "Manage app" button
 st.markdown("""
     <style>
         /* Hide Streamlit Branding */
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
+        footer {visibility: hidden !important;}
+        header {visibility: hidden !important;}
 
         /* Hide GitHub symbol and other unnecessary icons */
         .stDeployButton, .css-1rs6os {display: none !important;}
         
+        /* Hide the "Manage app" button in the bottom right corner */
+        .st-emotion-cache-1v0mbdj {display: none !important;}
+
         /* Custom styling for sidebar */
         .sidebar .sidebar-content {
             background-color: #1f4e79;  /* Sidebar color */
