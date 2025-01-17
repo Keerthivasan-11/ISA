@@ -77,7 +77,7 @@ def display_scrolling_content():
 with st.sidebar:
     selected_option = option_menu(
         menu_title="ISA MIT Student Chapter",
-        options=["Home","Laboratory Facilities", "Events", "Registration form", "Gform registration", "About Us", "Contact"],
+        options=["Home","Laboratory Facilities", "2024 Events", "Registration form", "Gform registration", "About Us", "Contact"],
         icons=["house-fill", "calendar-event-fill", "person-plus-fill", "book-fill", "info-circle-fill", "envelope-fill"],
         menu_icon="gear-fill",
         default_index=0,
@@ -100,7 +100,7 @@ elif selected_option == "Gform registration":
     app3.app()
 elif selected_option == "Laboratory Facilities":
     app4.app()
-elif selected_option == "Events":
+elif selected_option == "2024 Events":
     app5.app()
 elif selected_option == "Contact":
     st.title("Contact Us")
