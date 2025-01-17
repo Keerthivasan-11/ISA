@@ -8,6 +8,7 @@ import app3
 import app4
 import app5
 import app6
+import app7
 
 # Load environment variables
 load_dotenv()
@@ -106,5 +107,4 @@ elif selected_option == "2024 Events":
 elif selected_option == "About":
     app6.app()
 elif selected_option == "Contact":
-    st.title("Contact Us")
-    st.write("Reach out to us for queries and suggestions.")
+    app7.app()
