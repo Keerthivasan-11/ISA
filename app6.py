@@ -25,7 +25,7 @@ def app():
 
     # Closing remarks
     st.markdown("---")
-    st.write("Together, Keerthivasan and Shane have exemplified dedication, creativity, and teamwork in their respective contributions to this initiative.")
+    st.write("Creativity and teamwork in their respective contributions to this initiative.")
 
 # Run the app
 if __name__ == "__main__":
