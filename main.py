@@ -20,6 +20,59 @@ st.set_page_config(
     layout="wide"
 )
 
+# CSS to hide Streamlit logo and enhance the design
+st.markdown("""
+    <style>
+        /* Hide Streamlit Logo */
+        .css-1v3fvcr {
+            visibility: hidden;
+        }
+        
+        /* Custom styling for the app */
+        .sidebar .sidebar-content {
+            background-color: #1f4e79;  /* Sidebar color */
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+        }
+        
+        .sidebar .sidebar-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        /* Scrollbar styling for the sidebar */
+        .css-1d391kg {
+            background-color: #1f4e79;
+        }
+
+        /* Custom button styling */
+        .stButton>button {
+            background-color: #02ab21;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .stButton>button:hover {
+            background-color: #1f4e79;
+        }
+        
+        /* Custom heading style */
+        h1, h2, h3 {
+            color: #1f4e79;
+            font-weight: bold;
+        }
+
+        /* Custom font styling */
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Google Analytics Integration
 analytics_tag = os.getenv('analytics_tag')
 if analytics_tag:
@@ -38,7 +91,7 @@ if analytics_tag:
 
 # Scrolling Image and Text
 def display_scrolling_content():
-    st.markdown("""
+    st.markdown(""" 
     <style>
         .scrolling-container {
             display: flex;
