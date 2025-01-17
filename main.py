@@ -20,15 +20,17 @@ st.set_page_config(
     layout="wide"
 )
 
-# CSS to hide Streamlit logo and enhance the design
+# CSS to hide Streamlit branding, GitHub symbol, and extra elements
 st.markdown("""
     <style>
-        /* Hide Streamlit Logo */
-        .css-1v3fvcr {
-            visibility: hidden;
-        }
+        /* Hide Streamlit Branding */
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+
+        /* Hide GitHub symbol and other unnecessary icons */
+        .stDeployButton, .css-1rs6os {display: none !important;}
         
-        /* Custom styling for the app */
+        /* Custom styling for sidebar */
         .sidebar .sidebar-content {
             background-color: #1f4e79;  /* Sidebar color */
             color: white;
