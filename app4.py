@@ -1,6 +1,6 @@
 import streamlit as st
 
-# CSS for rolling carousel
+# CSS for rolling carousel and lightbox effect
 def load_css():
     st.markdown(
         """
@@ -22,6 +22,7 @@ def load_css():
             margin-right: 10px; /* Adjust margin between images */
             max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
+            cursor: pointer;
         }
         /* Keyframes for seamless scroll */
         @keyframes scroll {
@@ -34,6 +35,7 @@ def load_css():
             margin-right: 10px; /* Adjust margin between images */
             max-height: 600px; /* Ensure images don't exceed max height */
             object-fit: contain;
+            cursor: pointer;
         }
 
         @keyframes scroll-four {
@@ -45,7 +47,7 @@ def load_css():
         unsafe_allow_html=True
     )
 
-# Function to display laboratory section with rolling effect
+# Function to display laboratory section with rolling effect and clickable images
 def display_lab(lab_name, images, is_three_images=False):
     st.markdown(f"### {lab_name}")
     animation_class = "carousel-four" if not is_three_images else "carousel"
@@ -54,8 +56,8 @@ def display_lab(lab_name, images, is_three_images=False):
         f"""
         <div class="carousel-container">
             <div class="carousel {animation_class}">
-                {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])}
-                {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])} <!-- Duplicate images for seamless looping -->
+                {''.join([f'<a href="{img}" target="_blank"><img src="{img}" alt="{lab_name} Image"></a>' for img in images])}
+                {''.join([f'<a href="{img}" target="_blank"><img src="{img}" alt="{lab_name} Image"></a>' for img in images])} <!-- Duplicate images for seamless looping -->
             </div>
         </div>
         """,
