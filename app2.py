@@ -30,7 +30,7 @@ def app():
     st.markdown(
         """
         ### Schedule:
-        **March 6th:**
+        **March 7th:**
         - **08:30 AM to 09:00 AM**: Registration  
         - **09:00 AM to 10:00 AM**: Inauguration  
         - **10:30 AM to 11:30 AM**: Lab Visit  
@@ -40,7 +40,7 @@ def app():
         - **04:30 PM to 06:30 PM**: Challenge 3  
         - **07:30 PM to 08:30 PM**: Dinner  
 
-        **March 7th:**
+        **March 8th:**
         - **09:00 AM to 12:30 PM**: Challenge 4  
         - **12:30 PM to 01:30 PM**: Lunch  
         - **01:30 PM to 03:30 PM**: Challenge 5  
