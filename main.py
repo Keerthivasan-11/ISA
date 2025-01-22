@@ -9,6 +9,7 @@ import app4
 import app5
 import app6
 import app7
+import app8
 
 # Load environment variables
 load_dotenv()
@@ -134,7 +135,7 @@ def display_scrolling_content():
 with st.sidebar:
     selected_option = option_menu(
         menu_title="ISA MIT Student Chapter",
-        options=["Home","Laboratory Facilities", "2024 Events", "Registration form", "Gform registration", "About", "Contact"],
+        options=["Home","Laboratory Facilities", "2024 Events","International Society of Automation Officer", "Registration form", "Gform registration", "About", "Contact"],
         icons=["house-fill", "calendar-event-fill", "person-plus-fill", "book-fill", "info-circle-fill", "envelope-fill"],
         menu_icon="gear-fill",
         default_index=0,
@@ -159,6 +160,9 @@ elif selected_option == "Laboratory Facilities":
     app4.app()
 elif selected_option == "2024 Events":
     app5.app()
+elif selected_option=="International Society of Automation Officer":
+    app8.app()
+    
 elif selected_option == "About":
     app6.app()
 elif selected_option == "Contact":
