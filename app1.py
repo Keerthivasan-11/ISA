@@ -153,9 +153,5 @@ def app():
                 st.balloons()
                 st.success("🎉 Your registration has been successfully submitted!")
 
-    # Add Instagram link with emoji at the end
-    st.markdown("""
-        #### 📸 **Follow us on Instagram!**
-        Check out our latest updates and connect with us on Instagram: [@isa_mit_ei](https://www.instagram.com/isa_mit_ei/?igsh=bHluMzM4dngzenJx#)
-    """)
+   
 
