@@ -16,7 +16,7 @@ def app():
 
     # Function to validate email using regex
     def is_valid_email(email):
-        email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA0-9-.]+$'
         return re.match(email_regex, email)
 
     # Function to display the GPay QR code at the bottom of each page
@@ -57,7 +57,7 @@ def app():
 
     # Streamlit app to create the registration form
     st.title("🌟 Event Registration Form 🌟")
-    st.markdown("""
+    st.markdown(""" 
         ### 📌 **IMPORTANT NOTE** 
         - Please note that **NO prelims will be conducted** for the *Indian Engineers Elite Challenge 2025*.
         - Make sure to fill both **Google Form** and this **Website Form** to complete your registration.
@@ -95,9 +95,12 @@ def app():
         st.text_input("Team Member 3 Name (Optional)", key="team_member_3_name")
         st.text_input("Team Member 3 Year of Study (Optional)", key="team_member_3_year")
         st.text_input("Team Member 3 Department (Optional)", key="team_member_3_department")
+        
+        # Add GPay QR Code
         st.markdown("### 🏦 **GPay QR Code for Payment**")
         gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
         st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=False, width=400)
+
         st.markdown("#### 🏠 **⭐️Accommodation**")
         st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"], key="accommodation")
        
@@ -152,5 +155,10 @@ def app():
                 # Display success
                 st.balloons()
                 st.success("🎉 Your registration has been successfully submitted!")
-                
-    
+
+    # Add Instagram link with emoji
+    st.markdown("""
+    ### 📸 **Follow us on Instagram!**
+    Stay updated with the latest events and news! 
+    [Instagram: @isa_mit_ei](https://www.instagram.com/isa_mit_ei/?igsh=bHluMzM4dngzenJx) 📲
+    """)
