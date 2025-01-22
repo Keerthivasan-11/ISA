@@ -91,10 +91,12 @@ def app():
         """
     )
 
-    # Add Instagram logo with link
+    # Instagram logo with reduced size and clickable link
     st.markdown("""
         ### Follow Us on Instagram!
         Check out our latest updates and connect with us on Instagram:
-        [![Instagram](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png)](https://www.instagram.com/isa_mit_ei/?igsh=bHluMzM4dngzenJx#)
-    """)
+        <a href="https://www.instagram.com/isa_mit_ei/?igsh=bHluMzM4dngzenJx#" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png" width="30" height="30" style="display:block;" />
+        </a>
+    """, unsafe_allow_html=True)
 
