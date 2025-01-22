@@ -136,7 +136,7 @@ def app():
         ],
         is_three_images=True
     )
-     display_lab(
+    display_lab(
         "Industrial Instrumentation",
         [
             "https://github.com/Keerthivasan-11/ISA/raw/main/II%201.png",
