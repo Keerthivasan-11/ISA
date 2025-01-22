@@ -136,14 +136,23 @@ def app():
         ],
         is_three_images=True
     )
+     display_lab(
+        "Industrial Instrumentation",
+        [
+            "https://github.com/Keerthivasan-11/ISA/raw/main/II%201.png",
+            "https://github.com/Keerthivasan-11/ISA/raw/main/II%202.png",
+            "https://github.com/Keerthivasan-11/ISA/raw/main/II%203.png"
+        ],
+        is_three_images=True
+    )
 
     # UG DCF Laboratory (4 images)
     display_lab(
-        "UG DCF Laboratory",
+        "Transducer Laboratory",
         [
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf1.jpg",
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf2.jpg",
-            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/ugdcf3.jpg"
+            "https://github.com/Keerthivasan-11/ISA/raw/main/TRANSDUCER%201.jpg",
+            "https://github.com/Keerthivasan-11/ISA/raw/main/TRANSDUCER%202.jpg",
+            "https://github.com/Keerthivasan-11/ISA/raw/main/TRANSDUCER%203.jpg"
            
         ]
     )
