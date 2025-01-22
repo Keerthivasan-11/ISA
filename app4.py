@@ -117,12 +117,12 @@ def app():
 
     # PG DCF Laboratory (4 images)
     display_lab(
-        "PG DCF Laboratory",
+        "FLOW Laboratory",
         [
-           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf2.jpg",
-           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf3.jpg",
-           "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/pgdcf1.jpg"
-          
+          "https://github.com/Keerthivasan-11/ISA/raw/main/FLOW%201.png",
+            "https://github.com/Keerthivasan-11/ISA/raw/main/FLOW%202.png",
+            "https://github.com/Keerthivasan-11/ISA/raw/main/FLOW%203.png"
+    
         ]
     )
 
