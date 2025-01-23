@@ -101,8 +101,6 @@ def app():
         st.markdown("#### 🏠 **⭐️Accommodation**")
         st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"], key="accommodation")
        
-        st.markdown("#### 🖼️ **Payment Proof Upload **")
-        uploaded_image = st.file_uploader("Upload your payment screenshot (JPG/PNG only, optional)", type=["jpg", "png", "jpeg"])
         
         submit_button = st.form_submit_button(label="🚀 Submit")
         
@@ -132,14 +130,7 @@ def app():
                     },
                 }
 
-                # Optional: Handle the uploaded image
-                image_url = "No Image Uploaded"
-                if uploaded_image:
-                    image = Image.open(uploaded_image)
-                    image_url = f"uploaded_images/{uploaded_image.name}"
-                    os.makedirs("uploaded_images", exist_ok=True)
-                    image.save(image_url)
-
+              
                 # Add to Google Sheet
                 add_registration_to_sheet(
                     st.session_state.name,
