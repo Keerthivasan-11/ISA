@@ -2,7 +2,6 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
 import os
-from PIL import Image
 import re
 
 def app():
@@ -19,12 +18,6 @@ def app():
         email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         return re.match(email_regex, email)
 
-    # Function to display the GPay QR code at the bottom of each page
-    def display_gpay_qr():
-        st.markdown("### 🏦 **GPay QR Code for Payment**")
-        gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
-        st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=True)
-
     # Function to validate phone number using regex (simple validation for 10-digit phone numbers)
     def is_valid_phone(phone):
         phone_regex = r'^\d{10}$'  # Assuming 10-digit phone numbers
@@ -39,7 +32,7 @@ def app():
         return spreadsheet.worksheet(sheet_name)  # Access specific sheet by name
 
     # Function to add a new registration to the Google Sheet
-    def add_registration_to_sheet(name, email, phone, image_url, team_members, accommodation):
+    def add_registration_to_sheet(name, email, phone, team_members, accommodation):
         try:
             # Clean up the team_members dictionary: only add non-empty members
             cleaned_team_members = {
@@ -50,7 +43,7 @@ def app():
             sheet = connect_to_gsheet('Streamlit', 'Sheet1')
             
             # Append data to the Google Sheet
-            sheet.append_row([name, email, phone, image_url, str(cleaned_team_members), accommodation])
+            sheet.append_row([name, email, phone, str(cleaned_team_members), accommodation])
             st.success("🎉 Registration successful! Thank you for registering! 🎉")
         except Exception as e:
             st.error(f"⚠️ Error while adding registration to sheet: {str(e)}")
@@ -95,12 +88,13 @@ def app():
         st.text_input("Team Member 3 Name (Optional)", key="team_member_3_name")
         st.text_input("Team Member 3 Year of Study (Optional)", key="team_member_3_year")
         st.text_input("Team Member 3 Department (Optional)", key="team_member_3_department")
+
         st.markdown("### 🏦 **GPay QR Code for Payment**")
         gpay_qr_url = "https://github.com/Keerthivasan-11/ISA/blob/main/Gpay%20qr.jpeg?raw=true"
         st.image(gpay_qr_url, caption="Scan to Pay using GPay", use_column_width=False, width=400)
+
         st.markdown("#### 🏠 **⭐️Accommodation**")
         st.selectbox("Do you need Hostel Accommodation?", ["Yes", "No"], key="accommodation")
-       
         
         submit_button = st.form_submit_button(label="🚀 Submit")
         
@@ -130,13 +124,11 @@ def app():
                     },
                 }
 
-              
                 # Add to Google Sheet
                 add_registration_to_sheet(
                     st.session_state.name,
                     st.session_state.email,
                     st.session_state.phone,
-                    image_url,
                     team_members,
                     st.session_state.accommodation,
                 )
@@ -144,5 +136,5 @@ def app():
                 st.balloons()
                 st.success("🎉 Your registration has been successfully submitted!")
 
-   
-
+if __name__ == "__main__":
+    app()
