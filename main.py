@@ -155,8 +155,24 @@ def display_scrolling_content():
 with st.sidebar:
     selected_option = option_menu(
         menu_title="ISA MIT Student Chapter",
-        options=["Home", "Laboratory Facilities", "2024 Events", "International Society of Automation Officer", "Registration form", "Gform registration", "About", "Contact"],
-        icons=["house-fill", "calendar-event-fill", "person-plus-fill", "book-fill", "info-circle-fill", "envelope-fill"],
+        options=[
+            "Home", 
+            "Laboratory Facilities", 
+            "2024 Events", 
+            "International Society of Automation Officer", 
+            "Registration form", 
+            "Gform registration", 
+            "About", 
+            "Contact"
+        ],
+        icons=[
+            "house-fill", 
+            "calendar-event-fill", 
+            "person-plus-fill", 
+            "book-fill", 
+            "info-circle-fill", 
+            "envelope-fill"
+        ],
         menu_icon="gear-fill",
         default_index=0,
         styles={
