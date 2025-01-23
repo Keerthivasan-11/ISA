@@ -93,7 +93,17 @@ def app():
 
     # Use the raw URL of the video file from GitHub
     video_url = 'https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/isa_3%20(1).mp4'
-    st.video(video_url)
+    
+    # Embed the video with reduced width and height
+    st.markdown(
+       f"""
+       <video width="480" height="270" controls>
+           <source src="{video_url}" type="video/mp4">
+           Your browser does not support the video tag.
+       </video>
+       """,
+       unsafe_allow_html=True
+   )
 
     # Instagram logo with reduced size and clickable link
     st.markdown("""
