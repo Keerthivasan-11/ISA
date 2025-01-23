@@ -91,8 +91,13 @@ def app():
         """
     )
 
-    # Add your YouTube Shorts video link
-    st.video('https://www.youtube.com/shorts/pcX0RlvKu7A')
+    # Embed your YouTube Shorts video using an iframe
+    st.markdown(
+        """
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/pcX0RlvKu7A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        """,
+        unsafe_allow_html=True
+    )
 
     # Instagram logo with reduced size and clickable link
     st.markdown("""
