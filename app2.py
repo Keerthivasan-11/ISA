@@ -1,13 +1,3 @@
-Sure! You can add the YouTube Shorts video link to your Streamlit app by updating the `st.video` section. Here's how you can do it:
-
-```python
-# Add your YouTube Shorts video link
-st.video('https://youtube.com/shorts/pcX0RlvKu7A?feature=share')
-```
-
-Here's the updated part of your code:
-
-```python
 import streamlit as st
 
 def app():
@@ -115,6 +105,3 @@ def app():
 
 if __name__ == "__main__":
     app()
-```
-
-This will embed the YouTube Shorts video in your Streamlit app. If you need any further assistance, feel free to ask! 😊
