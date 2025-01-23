@@ -58,7 +58,7 @@ st.markdown("""
         }
 
         /* Highlight the arrow for sidebar */
-        .css-18ni7ap {  
+        .css-1v3fvcr + .css-18ni7ap {  
             color: #FFA500 !important;  /* Change arrow color to orange */
             font-size: 24px !important;  /* Increase arrow size */
             animation: pulse 2s infinite;  /* Add pulsing animation */
