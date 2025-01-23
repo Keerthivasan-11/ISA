@@ -78,6 +78,13 @@ st.markdown("""
         .css-18ni7ap {
             color: #FFA500 !important;  /* Change arrow color to orange */
             font-size: 24px !important;  /* Increase arrow size */
+            animation: pulse 2s infinite;  /* Add pulsing animation */
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
     </style>
 """, unsafe_allow_html=True)
