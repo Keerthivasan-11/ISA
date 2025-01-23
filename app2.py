@@ -91,6 +91,9 @@ def app():
         """
     )
 
+    # Add your video file from the provided URL
+    st.video('https://github.com/Keerthivasan-11/ISA/blob/main/isa-1_XWi5m22u%20(1).mp4')
+
     # Instagram logo with reduced size and clickable link
     st.markdown("""
         ### Follow Us on Instagram!
@@ -100,3 +103,5 @@ def app():
         </a>
     """, unsafe_allow_html=True)
 
+if __name__ == "__main__":
+    app()
