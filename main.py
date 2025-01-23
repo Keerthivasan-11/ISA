@@ -142,8 +142,8 @@ with st.sidebar:
         styles={
             "container": {"padding": "5!important", "background-color": "#1f4e79"},
             "icon": {"color": "white", "font-size": "20px"},
-            "nav-link": {"color": "white", "font-size": "18px", "margin": "0px", "--hover-color": "#add8e6"},
-            "nav-link-selected": {"background-color": "#02ab21"},
+            "nav-link": {"color": "white", "font-size": "18px", "margin": "0px", "--hover-color": "#FFA500"},
+            "nav-link-selected": {"background-color": "#FFA500"},  # Highlight selected option in orange
         }
     )
 
