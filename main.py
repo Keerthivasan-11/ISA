@@ -21,33 +21,53 @@ st.set_page_config(
     layout="wide"
 )
 
-# CSS to hide Streamlit branding, GitHub symbol, and extra elements
+# CSS to style the page and highlight the sidebar arrow
 st.markdown("""
     <style>
         /* Hide Streamlit Branding */
         footer {visibility: hidden;}
         header {visibility: hidden;}
 
-        /* Hide GitHub symbol and other unnecessary icons */
-        .stDeployButton, .css-1rs6os {display: none !important;}
-        
         /* Custom styling for sidebar */
-        .sidebar .sidebar-content {
-            background-color: #1f4e79;  /* Sidebar color */
+        .css-1lcbmhc {  /* Sidebar container */
+            background-color: #1f4e79;
             color: white;
             padding: 15px;
             font-size: 16px;
         }
-        
-        .sidebar .sidebar-header {
+
+        .css-1v3fvcr {  /* Sidebar header */
             font-size: 24px;
             font-weight: bold;
             color: white;
         }
-        
-        /* Scrollbar styling for the sidebar */
-        .css-1d391kg {
-            background-color: #1f4e79;
+
+        /* Custom styling for sidebar options */
+        .css-1j3uqpy {  /* Sidebar menu items */
+            color: white !important;
+            font-size: 18px !important;
+        }
+
+        .css-1j3uqpy:hover {  /* Sidebar menu items on hover */
+            color: #FFA500 !important;
+        }
+
+        .css-r4o0c3 {  /* Selected menu item */
+            background-color: #FFA500 !important;
+            border-radius: 10px !important;
+        }
+
+        /* Highlight the arrow for sidebar */
+        .css-18ni7ap {  
+            color: #FFA500 !important;  /* Change arrow color to orange */
+            font-size: 24px !important;  /* Increase arrow size */
+            animation: pulse 2s infinite;  /* Add pulsing animation */
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         /* Custom button styling */
@@ -73,21 +93,29 @@ st.markdown("""
         body {
             font-family: 'Arial', sans-serif;
         }
+    </style>
+""", unsafe_allow_html=True)
 
-        /* Highlight the arrow for sidebar in mobile */
-        .css-18ni7ap {
-            color: #FFA500 !important;  /* Change arrow color to orange */
-            font-size: 24px !important;  /* Increase arrow size */
-            animation: pulse 2s infinite;  /* Add pulsing animation */
-        }
+# Google Analytics Integration
+analytics_tag = os.getenv('analytics_tag')
+if analytics_tag:
+    st.markdown(
+        f"""
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={analytics_tag}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){{dataLayer.push(arguments);}}
+            gtag('js', new Date());
+            gtag('config', '{analytics_tag}');
+        </script>
+        """, unsafe_allow_html=True
+    )
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        /* Scrolling Image and Text Styling */
+# Scrolling Image and Text
+def display_scrolling_content():
+    st.markdown(""" 
+    <style>
         .scrolling-container {
             display: flex;
             align-items: center;
@@ -115,27 +143,6 @@ st.markdown("""
             100% { transform: translateX(-100%); }
         }
     </style>
-""", unsafe_allow_html=True)
-
-# Google Analytics Integration
-analytics_tag = os.getenv('analytics_tag')
-if analytics_tag:
-    st.markdown(
-        f"""
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id={analytics_tag}"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){{dataLayer.push(arguments);}}
-            gtag('js', new Date());
-            gtag('config', '{analytics_tag}');
-        </script>
-        """, unsafe_allow_html=True
-    )
-
-# Scrolling Image and Text
-def display_scrolling_content():
-    st.markdown(""" 
     <div class="scrolling-container">
         <div class="scrolling-content">
             <img src="https://github.com/Keerthivasan-11/ISA/blob/main/isa%20image.png?raw=true" alt="ISA Image">
@@ -162,6 +169,7 @@ with st.sidebar:
 
 # Page Logic
 if selected_option == "Home":
+    # Display scrolling image and text
     display_scrolling_content()
     app2.app()
 elif selected_option == "Registration form":
