@@ -60,7 +60,15 @@ st.markdown("""
         /* Styling for the sidebar arrow */
         .css-18ni7ap {  /* Sidebar arrow */
             color: #FFA500 !important;  /* Change arrow color to orange */
-            font-size: 50px !important;  /* Increase arrow size */
+            font-size: 36px !important;  /* Increase arrow size */
+            animation: pulse 2s infinite;  /* Add pulsing animation */
+        }
+
+        /* Apply effect to the sidebar arrow specifically */
+        .css-18ni7ap::before {
+            content: "➔"; /* Use the desired arrow icon */
+            color: #FFA500 !important;
+            font-size: 36px !important;  /* Increase arrow size */
             animation: pulse 2s infinite;  /* Add pulsing animation */
         }
 
