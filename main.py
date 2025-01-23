@@ -57,10 +57,10 @@ st.markdown("""
             border-radius: 10px !important;
         }
 
-        /* Highlight the arrow for sidebar */
-        .css-1v3fvcr + .css-18ni7ap {  
+        /* Styling for the sidebar arrow */
+        .css-18ni7ap {  /* Sidebar arrow */
             color: #FFA500 !important;  /* Change arrow color to orange */
-            font-size: 36px !important;  /* Increase arrow size */
+            font-size: 50px !important;  /* Increase arrow size */
             animation: pulse 2s infinite;  /* Add pulsing animation */
         }
 
@@ -94,14 +94,21 @@ st.markdown("""
             font-family: 'Arial', sans-serif;
         }
 
-        /* Responsive adjustments for mobile */
+        /* Mobile styling to ensure visibility */
         @media (max-width: 768px) {
-            .css-1v3fvcr + .css-18ni7ap {  
-                font-size: 32px !important;  /* Slightly smaller arrow size for mobile */
-                animation: pulse 1.5s infinite;  /* Faster pulsing effect for mobile */
+            .css-18ni7ap {
+                font-size: 40px !important;  /* Larger arrow for mobile */
+                animation: pulse 1s infinite;  /* Faster pulsing effect on mobile */
+            }
+
+            .css-1j3uqpy {
+                font-size: 16px !important;  /* Adjust font size of menu items for mobile */
+            }
+
+            .css-1v3fvcr {
+                font-size: 20px !important;  /* Adjust sidebar header font size */
             }
         }
-
     </style>
 """, unsafe_allow_html=True)
 
