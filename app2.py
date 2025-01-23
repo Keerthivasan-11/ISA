@@ -88,15 +88,7 @@ def app():
         **Mobile**: +91 9344810244  
         **Email**: keerthivasangopal2004@gmail.com
         
-        
-       <a href="mailto:mitindiaisastudentchapter@gmail.com" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Gmail_Icon.png/1024px-Gmail_Icon.png" width="30" height="30" style="display:block;" />
-       </a>
-       <a href="https://www.linkedin.com/in/mitindia-isa-studentchapter-277794348" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="30" height="30" style="display:block;" />
-       </a>
-        
-       """
+        """
     )
 
     # Use the raw URL of the video file from GitHub
@@ -113,13 +105,19 @@ def app():
        unsafe_allow_html=True
    )
 
-    # Instagram logo with reduced size and clickable link
+    # Instagram, Gmail, and LinkedIn logos with clickable links
     st.markdown("""
-        ### Follow Us on Instagram!
-        Check out our latest updates and connect with us on Instagram:
+        ### Follow Us on Social Media!
+        Check out our latest updates and connect with us:
         <a href="https://www.instagram.com/isa_mit_ei/?igsh=bHluMzM4dngzenJx#" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png" width="30" height="30" style="display:block;" />
-       </a>
+        </a>
+        <a href="mailto:mitindiaisastudentchapter@gmail.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Gmail_Icon.png/1024px-Gmail_Icon.png" width="30" height="30" style="display:block;" />
+        </a>
+        <a href="https://www.linkedin.com/in/mitindia-isa-studentchapter-277794348" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="30" height="30" style="display:block;" />
+        </a>
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
