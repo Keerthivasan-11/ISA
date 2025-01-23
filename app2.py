@@ -88,16 +88,24 @@ def app():
         **Mobile**: +91 9344810244  
         **Email**: keerthivasangopal2004@gmail.com
         
-        """
+        
+       <a href="mailto:mitindiaisastudentchapter@gmail.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Gmail_Icon.png/1024px-Gmail_Icon.png" width="30" height="30" style="display:block;" />
+       </a>
+       <a href="https://www.linkedin.com/in/mitindia-isa-studentchapter-277794348" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="30" height="30" style="display:block;" />
+       </a>
+        
+       """
     )
 
     # Use the raw URL of the video file from GitHub
     video_url = 'https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/isa_3%20(1).mp4'
     
-    # Embed the video with reduced width and height
+    # Embed the video with increased width and height for portrait orientation
     st.markdown(
        f"""
-       <video width="700" height="1080" controls>
+       <video width="360" height="640" controls>
            <source src="{video_url}" type="video/mp4">
            Your browser does not support the video tag.
        </video>
@@ -111,7 +119,7 @@ def app():
         Check out our latest updates and connect with us on Instagram:
         <a href="https://www.instagram.com/isa_mit_ei/?igsh=bHluMzM4dngzenJx#" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png" width="30" height="30" style="display:block;" />
-        </a>
+       </a>
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
