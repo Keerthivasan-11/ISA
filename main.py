@@ -73,6 +73,12 @@ st.markdown("""
         body {
             font-family: 'Arial', sans-serif;
         }
+
+        /* Highlight the arrow for sidebar in mobile */
+        .css-18ni7ap {
+            color: #FFA500 !important;  /* Change arrow color to orange */
+            font-size: 24px !important;  /* Increase arrow size */
+        }
     </style>
 """, unsafe_allow_html=True)
 
