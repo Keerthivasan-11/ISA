@@ -1,3 +1,13 @@
+Sure! You can add the YouTube Shorts video link to your Streamlit app by updating the `st.video` section. Here's how you can do it:
+
+```python
+# Add your YouTube Shorts video link
+st.video('https://youtube.com/shorts/pcX0RlvKu7A?feature=share')
+```
+
+Here's the updated part of your code:
+
+```python
 import streamlit as st
 
 def app():
@@ -64,7 +74,7 @@ def app():
         ### Event Location:
         **Department of Instrumentation Engineering, MIT**  
         Radha Nagar, Chromepet, Chennai - 600044  
-        [Google Maps Link](https://maps.app.goo.gl/D1T6AB44dd1AQARm8)
+        Google Maps Link
         """
     )
     
@@ -91,8 +101,8 @@ def app():
         """
     )
 
-    # Add your Google Drive video link
-    st.video('https://drive.google.com/uc?id=1Dk9vPrUrq97GQBQZi7gBjSNhVXaa_Y1b')
+    # Add your YouTube Shorts video link
+    st.video('https://youtube.com/shorts/pcX0RlvKu7A?feature=share')
 
     # Instagram logo with reduced size and clickable link
     st.markdown("""
@@ -105,3 +115,6 @@ def app():
 
 if __name__ == "__main__":
     app()
+```
+
+This will embed the YouTube Shorts video in your Streamlit app. If you need any further assistance, feel free to ask! 😊
