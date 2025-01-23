@@ -50,6 +50,7 @@ st.markdown("""
 
         .css-1j3uqpy:hover {  /* Sidebar menu items on hover */
             color: #FFA500 !important;
+            cursor: pointer;
         }
 
         .css-r4o0c3 {  /* Selected menu item */
@@ -57,25 +58,15 @@ st.markdown("""
             border-radius: 10px !important;
         }
 
-        /* Styling for the sidebar arrow */
-        .css-18ni7ap {  /* Sidebar arrow */
-            color: #FFA500 !important;  /* Change arrow color to orange */
+        /* Custom styling for the sidebar arrow */
+        .css-1lcbmhc .stSidebarIcon {
             font-size: 36px !important;  /* Increase arrow size */
-            animation: pulse 2s infinite;  /* Add pulsing animation */
+            color: #FFA500 !important;  /* Make the arrow orange */
         }
 
-        /* Apply effect to the sidebar arrow specifically */
-        .css-18ni7ap::before {
-            content: "➔"; /* Use the desired arrow icon */
-            color: #FFA500 !important;
-            font-size: 36px !important;  /* Increase arrow size */
-            animation: pulse 2s infinite;  /* Add pulsing animation */
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        .css-1lcbmhc .stSidebarIcon:hover {
+            font-size: 40px !important;  /* Increase size on hover */
+            color: #FF6347 !important;  /* Change color to tomato on hover */
         }
 
         /* Custom button styling */
@@ -104,9 +95,9 @@ st.markdown("""
 
         /* Mobile styling to ensure visibility */
         @media (max-width: 768px) {
-            .css-18ni7ap {
+            .css-1lcbmhc .stSidebarIcon {
                 font-size: 40px !important;  /* Larger arrow for mobile */
-                animation: pulse 1s infinite;  /* Faster pulsing effect on mobile */
+                color: #FFA500 !important;
             }
 
             .css-1j3uqpy {
