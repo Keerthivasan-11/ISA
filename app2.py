@@ -91,13 +91,9 @@ def app():
         """
     )
 
-    # Embed your YouTube Shorts video using an iframe
-    st.markdown(
-        """
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/pcX0RlvKu7A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        """,
-        unsafe_allow_html=True
-    )
+    # Use the raw URL of the video file from GitHub
+    video_url = 'https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/isa_3%20(1).mp4'
+    st.video(video_url)
 
     # Instagram logo with reduced size and clickable link
     st.markdown("""
