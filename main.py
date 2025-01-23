@@ -60,7 +60,7 @@ st.markdown("""
         /* Highlight the arrow for sidebar */
         .css-1v3fvcr + .css-18ni7ap {  
             color: #FFA500 !important;  /* Change arrow color to orange */
-            font-size: 24px !important;  /* Increase arrow size */
+            font-size: 36px !important;  /* Increase arrow size */
             animation: pulse 2s infinite;  /* Add pulsing animation */
         }
 
@@ -93,6 +93,15 @@ st.markdown("""
         body {
             font-family: 'Arial', sans-serif;
         }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 768px) {
+            .css-1v3fvcr + .css-18ni7ap {  
+                font-size: 32px !important;  /* Slightly smaller arrow size for mobile */
+                animation: pulse 1.5s infinite;  /* Faster pulsing effect for mobile */
+            }
+        }
+
     </style>
 """, unsafe_allow_html=True)
 
