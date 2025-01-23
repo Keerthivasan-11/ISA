@@ -16,6 +16,10 @@ def app():
             "Position": "HoD, Department of Instrumentation Engineering, MIT Campus, Anna University Chennai 🏫",
             "Name": "Dr. Srinivasan",
         },
+        {
+            "Position": "Assistant Professor, Student Mentor of ISA MIT Student Chapter 👩‍🏫✨",
+            "Name": "Dr. M. Mythily",
+        },
     ]
 
     # Display the officer list with emojis
