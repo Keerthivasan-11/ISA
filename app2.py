@@ -4,18 +4,6 @@ def app():
     st.title("Welcome to ISA MIT Student Chapter!")
     st.subheader("India Engineers Elite Challenge 2025")
     
-    st.sidebar.title("Event Details")
-    st.sidebar.markdown(
-        """
-        - **About the Challenge**
-        - **Schedule**
-        - **Facilities Provided**
-        - **Event Location**
-        - **Prerequisites**
-        - **Contact Information**
-        """
-    )
-    
     st.markdown(
         """
         ### About the Challenge:
@@ -76,7 +64,7 @@ def app():
         ### Event Location:
         **Department of Instrumentation Engineering, MIT**  
         Radha Nagar, Chromepet, Chennai - 600044  
-        [Google Maps Link](https://maps.app.goo.gl/D1T6AB44dd1AQARm8)
+        Google Maps Link
         """
     )
     
@@ -106,10 +94,10 @@ def app():
     # Use the raw URL of the video file from GitHub
     video_url = 'https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/isa_3%20(1).mp4'
     
-    # Embed the video with increased width and height
+    # Embed the video with reduced width and height
     st.markdown(
        f"""
-       <video width="640" height="360" controls>
+       <video width="700" height="1080" controls>
            <source src="{video_url}" type="video/mp4">
            Your browser does not support the video tag.
        </video>
