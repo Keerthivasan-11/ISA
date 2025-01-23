@@ -86,29 +86,8 @@ st.markdown("""
             50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
-    </style>
-""", unsafe_allow_html=True)
 
-# Google Analytics Integration
-analytics_tag = os.getenv('analytics_tag')
-if analytics_tag:
-    st.markdown(
-        f"""
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id={analytics_tag}"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){{dataLayer.push(arguments);}}
-            gtag('js', new Date());
-            gtag('config', '{analytics_tag}');
-        </script>
-        """, unsafe_allow_html=True
-    )
-
-# Scrolling Image and Text
-def display_scrolling_content():
-    st.markdown(""" 
-    <style>
+        /* Scrolling Image and Text Styling */
         .scrolling-container {
             display: flex;
             align-items: center;
@@ -136,6 +115,27 @@ def display_scrolling_content():
             100% { transform: translateX(-100%); }
         }
     </style>
+""", unsafe_allow_html=True)
+
+# Google Analytics Integration
+analytics_tag = os.getenv('analytics_tag')
+if analytics_tag:
+    st.markdown(
+        f"""
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={analytics_tag}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){{dataLayer.push(arguments);}}
+            gtag('js', new Date());
+            gtag('config', '{analytics_tag}');
+        </script>
+        """, unsafe_allow_html=True
+    )
+
+# Scrolling Image and Text
+def display_scrolling_content():
+    st.markdown(""" 
     <div class="scrolling-container">
         <div class="scrolling-content">
             <img src="https://github.com/Keerthivasan-11/ISA/blob/main/isa%20image.png?raw=true" alt="ISA Image">
@@ -162,7 +162,6 @@ with st.sidebar:
 
 # Page Logic
 if selected_option == "Home":
-    # Display scrolling image and text
     display_scrolling_content()
     app2.app()
 elif selected_option == "Registration form":
