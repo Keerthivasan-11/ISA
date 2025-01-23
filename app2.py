@@ -92,7 +92,7 @@ def app():
     )
 
     # Add your YouTube Shorts video link
-    st.video('https://youtube.com/shorts/pcX0RlvKu7A?feature=share')
+    st.video('https://www.youtube.com/shorts/pcX0RlvKu7A')
 
     # Instagram logo with reduced size and clickable link
     st.markdown("""
