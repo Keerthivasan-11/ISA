@@ -141,7 +141,7 @@ def app():
         [
             "https://github.com/Keerthivasan-11/ISA/raw/main/II%201.png",
             "https://github.com/Keerthivasan-11/ISA/raw/main/II%202.png",
-            "https://github.com/Keerthivasan-11/ISA/raw/main/II%203.png"
+            "https://github.com/Keerthivasan-11/ISA/raw/main/II%201.png"
         ],
         is_three_images=True
     )
