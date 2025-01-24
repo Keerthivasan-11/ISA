@@ -64,7 +64,7 @@ def app():
         ### Event Location:
         **Department of Instrumentation Engineering, MIT**  
         Radha Nagar, Chromepet, Chennai - 600044  
-        Google Maps Link
+       
         """
     )
     
