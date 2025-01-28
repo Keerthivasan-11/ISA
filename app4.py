@@ -156,6 +156,18 @@ def app():
            
         ]
     )
+    display_lab(
+        "Smart instrumentation Laboratory",
+        [
+            "https://github.com/Keerthivasan-11/ISA/blob/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%201.jpeg",
+            "https://github.com/Keerthivasan-11/ISA/blob/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%202.jpeg",
+            
+           
+        ]
+    )
+    
+
+ 
 
 # Run the app
 if __name__ == "__main__":
