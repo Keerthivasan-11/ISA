@@ -50,12 +50,13 @@ def display_lab(lab_name, images, is_three_images=False):
     st.markdown(f"### {lab_name}")
     animation_class = "carousel-four" if not is_three_images else "carousel"
     animation = "scroll-four" if not is_three_images else "scroll"
+    
     st.markdown(
         f"""
         <div class="carousel-container">
             <div class="carousel {animation_class}">
-                {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])}
-                {''.join([f'<img src="{img}" alt="{lab_name} Image">' for img in images])} <!-- Duplicate images for seamless looping -->
+                {''.join([f'<img src="{img}" onerror="this.src=\'https://via.placeholder.com/300\'" alt="{lab_name} Image">' for img in images])}
+                {''.join([f'<img src="{img}" onerror="this.src=\'https://via.placeholder.com/300\'" alt="{lab_name} Image">' for img in images])} <!-- Duplicate images for seamless looping -->
             </div>
         </div>
         """,
@@ -111,18 +112,16 @@ def app():
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines1.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines2.jpg",
             "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/machines3.jpg"
-            
         ]
     )
 
-    # PG DCF Laboratory (4 images)
+    # FLOW Laboratory (4 images)
     display_lab(
         "FLOW Laboratory",
         [
-          "https://github.com/Keerthivasan-11/ISA/raw/main/FLOW%201.png",
-            "https://github.com/Keerthivasan-11/ISA/raw/main/FLOW%202.png",
-            "https://github.com/Keerthivasan-11/ISA/raw/main/FLOW%203.png"
-    
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/FLOW%201.png",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/FLOW%202.png",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/FLOW%203.png"
         ]
     )
 
@@ -136,42 +135,36 @@ def app():
         ],
         is_three_images=True
     )
+
+    # Industrial Instrumentation (3 images)
     display_lab(
         "Industrial Instrumentation",
         [
-            "https://github.com/Keerthivasan-11/ISA/raw/main/II%201.png",
-            "https://github.com/Keerthivasan-11/ISA/raw/main/II%202.png",
-            "https://github.com/Keerthivasan-11/ISA/raw/main/II%201.png"
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/II%201.png",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/II%202.png",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/II%201.png"
         ],
         is_three_images=True
     )
 
-    # UG DCF Laboratory (4 images)
+    # Transducer Laboratory (4 images)
     display_lab(
         "Transducer Laboratory",
         [
-            "https://github.com/Keerthivasan-11/ISA/raw/main/TRANSDUCER%201.jpg",
-            "https://github.com/Keerthivasan-11/ISA/raw/main/TRANSDUCER%202.jpg",
-            "https://github.com/Keerthivasan-11/ISA/raw/main/TRANSDUCER%203.jpg"
-           
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/TRANSDUCER%201.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/TRANSDUCER%202.jpg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/TRANSDUCER%203.jpg"
         ]
     )
+
+    # Smart Instrumentation Laboratory (Fixed URLs)
     display_lab(
-        "Smart instrumentation Laboratory",
+        "Smart Instrumentation Laboratory",
         [
-            ""https://github.com/Keerthivasan-11/ISA/raw/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%202.jpeg"
-",
-            ""https://github.com/Keerthivasan-11/ISA/raw/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%201.jpeg"
-",
-            
-           
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/smart%20flow%201.jpeg",
+            "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/smart%20flow%202.jpeg"
         ]
     )
-   
-
-    
-
- 
 
 # Run the app
 if __name__ == "__main__":
