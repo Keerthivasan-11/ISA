@@ -159,30 +159,15 @@ def app():
     display_lab(
         "Smart instrumentation Laboratory",
         [
-            "https://github.com/Keerthivasan-11/ISA/blob/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%201.jpeg",
-            "https://github.com/Keerthivasan-11/ISA/blob/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%202.jpeg",
+            ""https://github.com/Keerthivasan-11/ISA/raw/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%202.jpeg"
+",
+            ""https://github.com/Keerthivasan-11/ISA/raw/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%201.jpeg"
+",
             
            
         ]
     )
-    image_url = "https://github.com/Keerthivasan-11/ISA/blob/f9a44ba2409360beeea51b484b906e2c65822c72/smart%20flow%202.jpeg?raw=true"  # Use raw image URL
-    rolling_image_html = f"""
-    <div style="width: 100%; overflow: hidden; background-color: #f0f0f0; padding: 10px;">
-    <div style="
-        display: inline-block;
-        white-space: nowrap;
-        animation: roll 10s linear infinite;">
-        <img src="{image_url}" alt="Rolling Image" style="height: 200px;">
-    </div>
-    </div>
-
-    <style>
-    @keyframes roll {{
-    0% {{ transform: translateX(100%); }}
-    100% {{ transform: translateX(-100%); }}
-    }}
-    </style>
-    """
+   
 
     
 
