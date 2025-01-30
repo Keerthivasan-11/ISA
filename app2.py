@@ -92,7 +92,7 @@ def app():
     )
 
     # Use the raw URL of the video file from GitHub
-    video_url = 'https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/isa_3%20(1).mp4'
+    video_url = "https://raw.githubusercontent.com/Keerthivasan-11/ISA/c9674e22e269a36468addc58f58640b2ad4c27a2/isa_4%20(1).mp4"
     
     # Embed the video with increased width and height for portrait orientation
     st.markdown(
