@@ -12,12 +12,12 @@ def app():
         - **Process Modeling**
         - **Controller Tuning**
         - **PLC-based Automation**
-        - *Embedded System Design**
+        - **Embedded System Design**
         
         #### Prize Amounts:
-        - 🥇 **1st Prize**: ₹10,000  
-        - 🥈 **2nd Prize**: ₹5,000  
-        - 🥉 **3rd Prize**: ₹2,500  
+        - 🥇 **1st Prize**: ₹15,000  
+        - 🥈 **2nd Prize**: ₹10,000  
+        - 🥉 **3rd Prize**: ₹5000  
         
         #### Registration Fees:
         - **ISA Student Members**: ₹1,500  
