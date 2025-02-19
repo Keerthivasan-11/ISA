@@ -54,7 +54,7 @@ def app():
                 T-shirt order placed by Placka Instruments and delivering high-quality T-shirts 
                 on time for the event.
             </p>
-            <a href="{tshirt_provider_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
+            <a> href="{tshirt_provider_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
                 Visit Root5
             </a>
             <p style="font-size: 16px; color: #333;">{tshirt_provider_contact}</p>
