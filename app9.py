@@ -9,23 +9,13 @@ def app():
     sponsor_website = "https://www.plackainstruments.com/"
     sponsor_logo = "https://github.com/Keerthivasan-11/ISA/blob/main/Placaka.png?raw=true"
 
-    sponsor_address = """
-        No-5, Ramamoorthy Street, Nehru Nagar, <br>
-        Chromepet, Chennai - 600 044, India.
-    """
-    sponsor_phone = "📞 91-44-22231559, 22234562, 22230187"
-    sponsor_fax = "📠 91-44-22236984"
-    sponsor_email = """
-        ✉ sales@plackainstruments.com <br>
-        ✉ plackainstruments@yahoo.com
-    """
+    # Supplier details
+    tshirt_supplier_name = "Root5"
+    tshirt_supplier_website = "https://www.root5.in/"
+    tshirt_supplier_contact = "8925379459"
+    tshirt_image = "https://github.com/Keerthivasan-11/ISA/blob/main/Capture.JPG?raw=true"
 
-    tshirt_provider_name = "Root5"
-    tshirt_provider_website = "https://www.root5.in/"
-    tshirt_provider_logo = "https://github.com/Keerthivasan-11/ISA/blob/main/Capture.JPG?raw=true"
-    tshirt_provider_contact = "📞 8925379459"
-
-    # Center-aligned sponsorship message
+    # Sponsorship appreciation
     st.markdown(
         f"""
         <div style="text-align: center;">
@@ -35,33 +25,30 @@ def app():
                 We extend our heartfelt gratitude to <strong>{sponsor_name}</strong> 
                 for their generous support and contributions to the ISA MIT Student Chapter.
             </p>
-            <p style="font-size: 16px; color: #333;">
-                {sponsor_address} <br>
-                {sponsor_phone} <br>
-                {sponsor_fax} <br>
-                {sponsor_email}
+            <p>
+                📍 <strong>Address:</strong> No-5, Ramamoorthy Street, Nehru Nagar, Chromepet, Chennai - 600 044, India.<br>
+                📞 <strong>Phone:</strong> +91-44-22231559, 22234562, 22230187<br>
+                📠 <strong>Fax:</strong> +91-44-22236984<br>
+                📧 <strong>Email:</strong> <a href="mailto:sales@plackainstruments.com">sales@plackainstruments.com</a>, 
+                <a href="mailto:plackainstruments@yahoo.com">plackainstruments@yahoo.com</a>
             </p>
             <p>
-                <a href="{sponsor_website}" style="font-size: 18px; color: #FFA500;">
+                <a href="{sponsor_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
                     Visit Placka Instruments
                 </a>
             </p>
-        </div>
-        <br>
-        <div style="text-align: center;">
-            <h3 style="color: #1f4e79;">Acknowledgment for T-Shirt Order</h3>
-            <img src="{tshirt_provider_logo}" width="300" alt="Root5 Logo">
+            <hr>
+            <h3 style="color: #1f4e79;">👏 Special Thanks to Root5 👕</h3>
+            <img src="{tshirt_image}" width="300" alt="T-Shirt Order">
             <p style="font-size: 18px; color: #333;">
-                A special thanks to <strong>{tshirt_provider_name}</strong> for fulfilling our 
-                T-shirt order placed by Placka Instruments and delivering high-quality T-shirts 
-                on time for the event.
+                We sincerely appreciate <strong>{tshirt_supplier_name}</strong> for their timely delivery of high-quality T-shirts.
             </p>
             <p>
-                <a href="{tshirt_provider_website}" style="font-size: 18px; color: #FFA500;">
+                📞 <strong>Contact:</strong> {tshirt_supplier_contact} <br>
+                🌐 <a href="{tshirt_supplier_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
                     Visit Root5
                 </a>
             </p>
-            <p style="font-size: 16px; color: #333;">{tshirt_provider_contact}</p>
         </div>
         """,
         unsafe_allow_html=True
