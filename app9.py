@@ -1,4 +1,4 @@
-import streamlit as st
+\import streamlit as st
 
 def app():
     # Page title
@@ -8,6 +8,11 @@ def app():
     sponsor_name = "Placka Instruments"
     sponsor_website = "https://www.plackainstruments.com/"
     sponsor_logo = "https://github.com/Keerthivasan-11/ISA/blob/main/Placaka.png?raw=true"
+
+    tshirt_provider_name = "Root5"
+    tshirt_provider_website = "https://www.root5.in/"
+    tshirt_provider_logo = "https://github.com/Keerthivasan-11/ISA/blob/main/Capture.JPG?raw=true"
+    tshirt_provider_contact = "📞 8925379459"
 
     # Center-aligned sponsorship message
     st.markdown(
@@ -23,8 +28,21 @@ def app():
                 Visit Placka Instruments
             </a>
         </div>
+        <br>
+        <div style="text-align: center;">
+            <h3 style="color: #1f4e79;">A Big Thanks to Our T-Shirt Provider</h3>
+            <img src="{tshirt_provider_logo}" width="300" alt="Root5 Logo">
+            <p style="font-size: 18px; color: #333;">
+                We also appreciate <strong>{tshirt_provider_name}</strong> for providing high-quality T-shirts on time for our order.
+            </p>
+            <a href="{tshirt_provider_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
+                Visit Root5
+            </a>
+            <p style="font-size: 16px; color: #333;">{tshirt_provider_contact}</p>
+        </div>
         """,
         unsafe_allow_html=True
     )
+
 if __name__ == "__main__":
     app()
