@@ -5,9 +5,20 @@ def app():
     st.title("🙏 Sponsorship Appreciation 🙏")
 
     # Sponsor details
-    sponsor_name = "Placka Instruments"
+    sponsor_name = "Placka Instruments India Pvt Ltd"
     sponsor_website = "https://www.plackainstruments.com/"
     sponsor_logo = "https://github.com/Keerthivasan-11/ISA/blob/main/Placaka.png?raw=true"
+
+    sponsor_address = """
+        No-5, Ramamoorthy Street, Nehru Nagar, <br>
+        Chromepet, Chennai - 600 044, India.
+    """
+    sponsor_phone = "📞 91-44-22231559, 22234562, 22230187"
+    sponsor_fax = "📠 91-44-22236984"
+    sponsor_email = """
+        ✉ sales@plackainstruments.com <br>
+        ✉ plackainstruments@yahoo.com
+    """
 
     tshirt_provider_name = "Root5"
     tshirt_provider_website = "https://www.root5.in/"
@@ -23,6 +34,12 @@ def app():
             <p style="font-size: 18px; color: #333;">
                 We extend our heartfelt gratitude to <strong>{sponsor_name}</strong> 
                 for their generous support and contributions to the ISA MIT Student Chapter.
+            </p>
+            <p style="font-size: 16px; color: #333;">
+                {sponsor_address} <br>
+                {sponsor_phone} <br>
+                {sponsor_fax} <br>
+                {sponsor_email}
             </p>
             <a href="{sponsor_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
                 Visit Placka Instruments
