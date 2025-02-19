@@ -30,10 +30,12 @@ def app():
         </div>
         <br>
         <div style="text-align: center;">
-            <h3 style="color: #1f4e79;">A Big Thanks to Our T-Shirt Provider</h3>
+            <h3 style="color: #1f4e79;">Acknowledgment for T-Shirt Order</h3>
             <img src="{tshirt_provider_logo}" width="300" alt="Root5 Logo">
             <p style="font-size: 18px; color: #333;">
-                We also appreciate <strong>{tshirt_provider_name}</strong> for providing high-quality T-shirts on time for our order.
+                A special thanks to <strong>{tshirt_provider_name}</strong> for fulfilling our 
+                T-shirt order placed by Placka Instruments and delivering high-quality T-shirts 
+                on time for the event.
             </p>
             <a href="{tshirt_provider_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
                 Visit Root5
