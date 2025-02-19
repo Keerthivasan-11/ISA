@@ -10,6 +10,7 @@ import app5
 import app6
 import app7
 import app8
+import app9
 
 # Load environment variables
 load_dotenv()
@@ -173,6 +174,7 @@ with st.sidebar:
         options=[
             "Home", 
             "Laboratory Facilities", 
+            "Sponsorship",
             "2024 Events", 
             "International Society of Automation Officer", 
             "Registration form", 
@@ -209,6 +211,8 @@ elif selected_option == "Gform registration":
     app3.app()
 elif selected_option == "Laboratory Facilities":
     app4.app()
+elif selected_option =="Sponsorship":
+    app9.app()
 elif selected_option == "2024 Events":
     app5.app()
 elif selected_option == "International Society of Automation Officer":
