@@ -41,9 +41,11 @@ def app():
                 {sponsor_fax} <br>
                 {sponsor_email}
             </p>
-            <a href="{sponsor_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
-                Visit Placka Instruments
-            </a>
+            <p>
+                <a href="{sponsor_website}" style="font-size: 18px; color: #FFA500;">
+                    Visit Placka Instruments
+                </a>
+            </p>
         </div>
         <br>
         <div style="text-align: center;">
@@ -54,9 +56,11 @@ def app():
                 T-shirt order placed by Placka Instruments and delivering high-quality T-shirts 
                 on time for the event.
             </p>
-            <a> href="{tshirt_provider_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
-                Visit Root5
-            </a>
+            <p>
+                <a href="{tshirt_provider_website}" style="font-size: 18px; color: #FFA500;">
+                    Visit Root5
+                </a>
+            </p>
             <p style="font-size: 16px; color: #333;">{tshirt_provider_contact}</p>
         </div>
         """,
