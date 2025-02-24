@@ -9,11 +9,19 @@ def app():
     sponsor_website = "https://www.plackainstruments.com/"
     sponsor_logo = "https://github.com/Keerthivasan-11/ISA/blob/main/Placaka.png?raw=true"
 
-    # Supplier details
+    # Supplier details (T-Shirts)
     tshirt_supplier_name = "Root5"
     tshirt_supplier_website = "https://www.root5.in/"
     tshirt_supplier_contact = "8925379459"
     tshirt_image = "https://github.com/Keerthivasan-11/ISA/blob/main/Capture.JPG?raw=true"
+
+    # Additional Sponsor (Decoration Work)
+    decoration_sponsor_name = "Base Automation"
+    decoration_sponsor_website = "https://baseautomation.co.in/"
+    decoration_sponsor_address = "276, 2nd Main Road, Nehru Nagar, Kottivakkam, OMR, Chennai – 600096, India."
+    decoration_sponsor_contact = "91 73388 97775"
+    decoration_sponsor_email = "consult@batpl.com"
+    decoration_sponsorship_amount = "💰 ₹10,000"
 
     # Sponsorship appreciation
     st.markdown(
@@ -47,6 +55,22 @@ def app():
                 📞 <strong>Contact:</strong> {tshirt_supplier_contact} <br>
                 🌐 <a href="{tshirt_supplier_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
                     Visit Root5
+                </a>
+            </p>
+            <hr>
+            <h3 style="color: #1f4e79;">🎉 Huge Thanks to Base Automation 🎉</h3>
+            <p style="font-size: 18px; color: #333;">
+                A special appreciation to <strong>{decoration_sponsor_name}</strong> for their generous sponsorship of <strong>{decoration_sponsorship_amount}</strong> towards
+                the decoration work for the ISA Hackathon.
+            </p>
+            <p>
+                📍 <strong>Address:</strong> {decoration_sponsor_address}<br>
+                📞 <strong>Contact:</strong> {decoration_sponsor_contact}<br>
+                📧 <strong>Email:</strong> <a href="mailto:{decoration_sponsor_email}">{decoration_sponsor_email}</a>
+            </p>
+            <p>
+                🌐 <a href="{decoration_sponsor_website}" target="_blank" style="font-size: 18px; color: #FFA500;">
+                    Visit Base Automation
                 </a>
             </p>
         </div>
