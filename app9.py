@@ -1,5 +1,4 @@
 import streamlit as st
-
 def app():
     # Page title
     st.title("🙏 Sponsorship Appreciation 🙏")
