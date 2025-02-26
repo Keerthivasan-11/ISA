@@ -10,7 +10,7 @@ def app():
         {"Position": "President-elect 🤝", "Name": "Mr. Chandran", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Chandran.jpg"},
         {"Position": "Treasurer 💰", "Name": "Mr. Saravanan. B", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Saravanan_Balakrishnan.png"},
         {"Position": "Secretary 📋", "Name": "Mr. Prabhakaran", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Prabhakaran.jpg"},
-        {"Position": "Program Chair 🎤", "Name": "Mr. Jayaharan C J & Dr. M. Mythily", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/mythili.jpeg"},
+        {"Position": "Program Chair 🎤", "Name": "Mr. Jayaharan C J & Mr. Vidurar", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Vidurar.png"},
         {"Position": "Past President 🔙", "Name": "Mrs. Jamuna Saiganesh", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Yamuna.jpg"},
         {
             "Position": "HoD, Department of Instrumentation Engineering, MIT Campus, Anna University Chennai 🏫",
@@ -18,7 +18,7 @@ def app():
             "Image": "",
         },
         {
-            "Position": "Assistant Professor, Student Mentor of ISA MIT Student Chapter 👩‍🏫✨",
+            "Position": "Assistant Professor, Student Mentor of ISA MIT Student Chapter 👩‍🏫✨ & Program Chair 🎤",
             "Name": "Dr. M. Mythily",
             "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/mythili.jpeg",
         },
