@@ -4,14 +4,14 @@ def app():
     # App Title
     st.title("ISA International Society of Automation Officer List 🌍🤖")
 
-    # Officer List Data with Images
+    # Officer List Data with Corrected Image URLs
     officers = [
-        {"Position": "President 👑", "Name": "Mr. Gopinath PS", "Image": "https://github.com/Keerthivasan-11/ISA/blob/main/Gopinath.jpg?raw=true"},
-        {"Position": "President-elect 🤝", "Name": "Mr. Chandran", "Image": "https://github.com/Keerthivasan-11/ISA/blob/main/Chandran.jpg?raw=true"},
-        {"Position": "Treasurer 💰", "Name": "Mr. Saravanan. B", "Image": "https://github.com/Keerthivasan-11/ISA/blob/main/Saravanan_Balakrishnan.png?raw=true"},
-        {"Position": "Secretary 📋", "Name": "Mr. Prabhakaran", "Image": "https://github.com/Keerthivasan-11/ISA/blob/main/Prabhakaran.jpg?raw=true"},
-        {"Position": "Program Chair 🎤", "Name": "Mr. Jayaharan C J & Dr. M. Mythily", "Image": "https://github.com/Keerthivasan-11/ISA/blob/main/mythili.jpeg?raw=true"},
-        {"Position": "Past President 🔙", "Name": "Mrs. Jamuna Saiganesh", "Image": "https://github.com/Keerthivasan-11/ISA/blob/main/Yamuna.jpg?raw=true"},
+        {"Position": "President 👑", "Name": "Mr. Gopinath PS", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Gopinath.jpg"},
+        {"Position": "President-elect 🤝", "Name": "Mr. Chandran", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Chandran.jpg"},
+        {"Position": "Treasurer 💰", "Name": "Mr. Saravanan. B", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Saravanan_Balakrishnan.png"},
+        {"Position": "Secretary 📋", "Name": "Mr. Prabhakaran", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Prabhakaran.jpg"},
+        {"Position": "Program Chair 🎤", "Name": "Mr. Jayaharan C J & Dr. M. Mythily", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/mythili.jpeg"},
+        {"Position": "Past President 🔙", "Name": "Mrs. Jamuna Saiganesh", "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/Yamuna.jpg"},
         {
             "Position": "HoD, Department of Instrumentation Engineering, MIT Campus, Anna University Chennai 🏫",
             "Name": "Dr. Srinivasan",
@@ -20,7 +20,7 @@ def app():
         {
             "Position": "Assistant Professor, Student Mentor of ISA MIT Student Chapter 👩‍🏫✨",
             "Name": "Dr. M. Mythily",
-            "Image": "https://github.com/Keerthivasan-11/ISA/blob/main/mythili.jpeg?raw=true",
+            "Image": "https://raw.githubusercontent.com/Keerthivasan-11/ISA/main/mythili.jpeg",
         },
     ]
 
