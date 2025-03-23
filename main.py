@@ -124,5 +124,6 @@ elif selected_option == "About":
     app6.app()
 elif selected_option == "Contact":
     app7.app()
-elif selected_option =="2025 Events":
+
+elif selected_option == "2025 Events":
     app10.app()
