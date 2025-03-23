@@ -4,7 +4,7 @@ def main():
     st.title("Indian Engineers Elite Challenge 2022 - Thanksgiving Video")
     
     st.write("## Watch the Official Thanksgiving Video")
-    st.video("https://github.com/Keerthivasan-11/ISA/blob/main/WhatsApp%20Video%202025-03-23%20at%2010.34.44.mp4")
+    st.markdown("[Click here to download the video from GitHub](https://github.com/Keerthivasan-11/ISA/raw/main/WhatsApp%20Video%202025-03-23%20at%2010.34.44.mp4)")
     
     st.write("## Share Your Gratitude")
     st.write("Upload a short Thanksgiving video to express your gratitude and celebrate the success of the challenge.")
