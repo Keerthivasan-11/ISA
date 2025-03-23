@@ -10,7 +10,8 @@ import app5
 import app6
 import app7
 import app8
-import app9  # Import sponsorship page
+import app9 
+import app10 # Import sponsorship page
 
 # Load environment variables
 load_dotenv()
@@ -79,6 +80,7 @@ with st.sidebar:
             "Laboratory Facilities", 
             "Sponsorship",  # Sponsorship page
             "2024 Events", 
+            "2025 Events",
             "International Society of Automation Officer", 
             "Registration form", 
             "Gform registration", 
@@ -122,3 +124,5 @@ elif selected_option == "About":
     app6.app()
 elif selected_option == "Contact":
     app7.app()
+elif selected_option =="2025 Events":
+    app10.app()
