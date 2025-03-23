@@ -23,6 +23,13 @@ def app():
     - Captured the essence of the project through excellent video editing skills.  
     """)
 
+    st.header("Video Editor")
+    st.write("""
+    **Karthikeyan**  
+    Third  Year B.E. student, Electronics and Instrumentation Department.    
+    - Demonstrated exceptional creative talent by delivering engaging, high-quality videos within tight deadlines.
+    - Effectively captured the project's vision through innovative video editing techniques and storytelling  
+    """)
     # Closing remarks
     st.markdown("---")
     st.write("Creativity and teamwork in their respective contributions to this initiative.")
