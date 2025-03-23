@@ -6,7 +6,7 @@ def app():
     st.title("Meet the Team Behind the Initiative 🚀")
 
     # About the website maker
-    st.header("Website Maker")
+    st.header("Website Developer")
     st.write("""
     **Keerthivasan.G**  
     Final Year B.E. student, Electronics and Instrumentation Department.  
